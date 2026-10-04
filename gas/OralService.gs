@@ -161,15 +161,40 @@ function getOralSectionBundle_(sectionId) {
   return oralSectionBundleFromTables_(sectionId, readOralTables_());
 }
 
-function oralSectionBundleFromTables_(sectionId, tables) {
-  const id = String(sectionId || '');
-  if (!/^oral_rev3_p\d{2}_s\d{2}$/.test(id)) throw new Error('Invalid oral section ID');
-  const section = tables.oral_sections.filter(function (row) { return String(row.section_id) === id; })[0];
-  if (!section) throw new Error('Oral section unavailable');
+function oralBundleContext_(tables) {
   const answersById = Object.create(null);
   const sourcesById = Object.create(null);
   tables.oral_answers.forEach(function (row) { answersById[String(row.assessment_id)] = row; });
   tables.oral_sources.forEach(function (row) { sourcesById[String(row.source_id)] = row; });
+  return { answersById: answersById, sourcesById: sourcesById, revision: oralRevision_(tables) };
+}
+
+// Exactly one selected field, one fresh snapshot, no persistent answer cache.
+function getOralGroupBundle_(group) {
+  if (typeof group !== 'string' || !group.trim() || group.length > 80 || group !== group.trim()) throw new Error('Invalid oral group');
+  const tables = readOralTables_();
+  const parents = tables.oral_sections.filter(function (row) { return String(row.group || '') === group; })
+    .sort(function (a, b) { return Number(a.display_order) - Number(b.display_order); });
+  if (!parents.length) throw new Error('Oral group unavailable');
+  const context = oralBundleContext_(tables);
+  const bundles = parents.map(function (row) { return oralSectionBundleFromTables_(row.section_id, tables, context); });
+  const sections = bundles.map(function (bundle, index) {
+    const section = oralSectionForClient_(parents[index], false);
+    section.itemCount = bundle.items.length;
+    ORAL_ANSWER_STATUSES.forEach(function (status) {
+      section[status + 'Count'] = bundle.items.filter(function (item) { return item.answer.status === status; }).length;
+    });
+    return section;
+  });
+  return { schemaVersion: 1, revision: context.revision, group: group, sections: sections, bundles: bundles };
+}
+
+function oralSectionBundleFromTables_(sectionId, tables, sharedContext) {
+  const id = String(sectionId || '');
+  if (!/^oral_rev3_p\d{2}_s\d{2}$/.test(id)) throw new Error('Invalid oral section ID');
+  const section = tables.oral_sections.filter(function (row) { return String(row.section_id) === id; })[0];
+  if (!section) throw new Error('Oral section unavailable');
+  const context = sharedContext || oralBundleContext_(tables);
   const items = tables.oral_questions.filter(function (row) { return String(row.section_id) === id; })
     .sort(function (a, b) { return Number(a.display_order) - Number(b.display_order); })
     .map(function (row) {
@@ -178,8 +203,8 @@ function oralSectionBundleFromTables_(sectionId, tables) {
         subheading: String(row.subheading || ''), question: String(row.question || ''),
         prompts: oralArray_(row.prompts_json, 'prompts_json').map(function (prompt) {
           return { text: String(prompt.text || ''), level: String(prompt.level || '') };
-        }), answer: oralAnswerForClient_(answersById[String(row.assessment_id)], sourcesById,
+        }), answer: oralAnswerForClient_(context.answersById[String(row.assessment_id)], context.sourcesById,
           oralArray_(row.prompts_json, 'prompts_json').length) };
     });
-  return { schemaVersion: 1, revision: oralRevision_(tables), section: oralSectionForClient_(section, true), items: items };
+  return { schemaVersion: 1, revision: context.revision, section: oralSectionForClient_(section, true), items: items };
 }

@@ -5,7 +5,10 @@
   const ids = ['CatalogCount', 'Group', 'Search', 'Section', 'FilterCount', 'Status', 'Loading', 'StatusText', 'Retry', 'Workspace', 'ParentTitle', 'ParentMeta', 'Items', 'ItemPosition', 'ItemLevels', 'Subheading', 'QuestionHeading', 'Prompts', 'Reveal', 'Answer', 'AnswerStatus', 'AnswerPoints', 'AnswerGaps', 'GapList', 'ScopeNotes', 'ScopeNoteList', 'Previous', 'Next', 'NavigationPosition'];
   const ui = Object.fromEntries(ids.map(id => [id, document.getElementById('oral' + id)]));
   const coverageLabels = { supported: '根拠確認済み', partial: '一部の根拠が不足', insufficient: '根拠不足・要確認' };
-  const state = { sections: null, catalogLoading: false, catalogRequest: 0, bundleRequest: 0, selectedId: '', revision: '', cache: new Map(), positions: new Map(), retry: null };
+  // Field labels are part of the REV-3 navigation, not copied learning content.
+  // Keeping this tiny list local permits genuinely request-free startup.
+  const groups = ['点検要領Ⅰ', '点検要領Ⅱ', '交換・調整', 'Servicing', 'Open / Close・Override・Deactivate', 'SYSTEM：機体', 'SYSTEM：通信・航法・計器', 'SYSTEM：装備', 'SYSTEM：発動機'];
+  const state = { sections: [], groupRequest: 0, selectedId: '', revision: '', cache: new Map(), groups: new Map(), pending: new Map(), groupPositions: new Map(), positions: new Map(), retry: null };
 
   function element(tag, className, value) {
     const node = document.createElement(tag);
@@ -98,7 +101,6 @@
       option.value = '';
       ui.Section.appendChild(option);
       state.selectedId = '';
-      state.bundleRequest++;
       ui.Workspace.hidden = true;
       setStatus('条件に合う大問がありません。分野・検索語を変更してください。');
       return;
@@ -107,53 +109,90 @@
     ui.Section.value = selected;
     if (selected !== previousId || ui.Workspace.hidden) loadSection(selected);
   }
-  async function loadCatalog() {
-    if (state.catalogLoading) return;
-    state.catalogLoading = true;
-    const request = ++state.catalogRequest;
-    setStatus('大問一覧を読み込んでいます。', 'loading');
+  function groupPending(group) {
+    if (!state.pending.has(group)) {
+      const promise = callApi('apiGetOralGroupBundle', [group]);
+      state.pending.set(group, promise);
+      const cleanup = () => { if (state.pending.get(group) === promise) state.pending.delete(group); };
+      promise.then(cleanup, cleanup);
+    }
+    return state.pending.get(group);
+  }
+  function validateGroup(data, group) {
+    if (data.schemaVersion !== 1 || data.group !== group || !Array.isArray(data.sections) || !Array.isArray(data.bundles) ||
+        data.sections.length !== data.bundles.length || data.sections.some(section => !section.sectionId || typeof section.title !== 'string' || section.group !== group) ||
+        new Set(data.sections.map(section => section.sectionId)).size !== data.sections.length) throw new Error('分野データの形式を確認できませんでした。');
+    if (state.revision && data.revision !== state.revision) throw new Error('学習データが更新されました。ページを再読み込みしてください。');
+    const sections = sorted(data.sections);
+    const bundles = data.bundles.map(bundle => validateBundle(bundle || {}, bundle && bundle.section && bundle.section.sectionId));
+    if (new Set(bundles.map(bundle => bundle.section.sectionId)).size !== bundles.length || sections.some(section => {
+      const bundle = bundles.find(value => value.section.sectionId === section.sectionId);
+      return !bundle || bundle.section.group !== group || bundle.revision !== data.revision || bundle.items.length !== section.itemCount;
+    })) throw new Error('大問と小問の対応を確認できませんでした。');
+    const itemIds = bundles.flatMap(bundle => bundle.items.map(item => item.itemId));
+    if (new Set(itemIds).size !== itemIds.length) throw new Error('小問の重複を確認しました。再読み込みしてください。');
+    return { ...data, sections, bundles };
+  }
+  async function loadGroup() {
+    const group = ui.Group.value;
+    const request = ++state.groupRequest;
+    state.sections = [];
+    state.selectedId = '';
+    ui.Workspace.hidden = true;
+    ui.Search.value = '';
+    ui.Search.disabled = true;
+    ui.Section.disabled = true;
+    ui.FilterCount.textContent = '';
+    ui.Section.replaceChildren(element('option', '', group ? 'この分野を読み込んでいます' : '先に学習分野を選んでください'));
+    if (!group) {
+      ui.CatalogCount.textContent = '分野を選ぶと、その分野をまとめて読み込みます。';
+      setStatus('学習分野を選んでください。選択するまで問題は読み込みません。');
+      return;
+    }
+    ui.CatalogCount.textContent = group + ' · 読み込み中';
+    setStatus('「' + group + '」のすべての大問・小問・回答をまとめて読み込んでいます。', 'loading');
     try {
-      const data = await callApi('apiGetOralStart');
-      if (request !== state.catalogRequest) return;
-      if (data.schemaVersion !== 1 || !Array.isArray(data.sections) || data.sections.some(section => !section.sectionId || typeof section.title !== 'string')) throw new Error('大問一覧の形式を確認できませんでした。');
-      state.sections = sorted(data.sections);
-      state.revision = data.revision || '';
-      if (data.initialBundle) {
-        const initialId = state.sections[0] && state.sections[0].sectionId;
-        state.cache.set(initialId, validateBundle(data.initialBundle, initialId));
+      if (!groups.includes(group)) throw new Error('学習分野を選び直してください。');
+      let data = state.groups.get(group);
+      if (!data) {
+        data = await groupPending(group);
+        if (request !== state.groupRequest || ui.Group.value !== group) return;
+        data = validateGroup(data, group);
+        // Validate the complete group first; a partial response must not poison caches.
+        data.bundles.forEach(bundle => state.cache.set(bundle.section.sectionId, bundle));
+        state.groups.set(group, data);
       }
+      if (request !== state.groupRequest || ui.Group.value !== group) return;
+      state.sections = data.sections;
+      state.selectedId = state.groupPositions.get(group) || '';
+      state.revision = data.revision || '';
       const total = state.sections.reduce((count, section) => count + Number(section.itemCount || 0), 0);
-      ui.CatalogCount.textContent = state.sections.length + '大問 · ' + total + '小問';
-      options(ui.Group, [...new Set(state.sections.map(section => section.group).filter(Boolean))], 'すべての分野');
-      [ui.Group, ui.Search].forEach(node => { node.disabled = !state.sections.length; });
+      ui.CatalogCount.textContent = group + ' · ' + state.sections.length + '大問 · ' + total + '小問 · 読み込み済み';
+      ui.Search.disabled = !state.sections.length;
       if (!state.sections.length) {
         ui.Section.firstChild.textContent = '口頭試験データは未登録です';
-        ui.FilterCount.textContent = '';
-        setStatus('口頭試験データがまだ登録されていません。登録後に、もう一度読み込んでください。', 'info', loadCatalog);
+        state.groups.delete(group);
+        setStatus('この分野の口頭試験データがまだ登録されていません。', 'info', loadGroup);
       } else renderSelection();
     } catch (error) {
-      if (request === state.catalogRequest) setStatus('大問一覧を読み込めませんでした。' + error.message, 'error', loadCatalog);
-    } finally { if (request === state.catalogRequest) state.catalogLoading = false; }
-  }
-  async function loadSection(sectionId) {
-    state.selectedId = sectionId;
-    const request = ++state.bundleRequest;
-    ui.Workspace.hidden = true;
-    const selected = state.sections.find(section => section.sectionId === sectionId);
-    setStatus('「' + (selected ? selected.title : '大問') + '」の小問を読み込んでいます。', 'loading');
-    try {
-      let data = state.cache.get(sectionId);
-      if (!data) {
-        data = await callApi('apiGetOralSectionBundle', [sectionId]);
-        data = validateBundle(data, sectionId);
-        state.cache.set(sectionId, data);
+      if (request === state.groupRequest && ui.Group.value === group) {
+        ui.CatalogCount.textContent = group + ' · 読み込み未完了';
+        setStatus('分野を読み込めませんでした。' + error.message, 'error', loadGroup);
       }
-      if (request !== state.bundleRequest || state.selectedId !== sectionId) return;
+    }
+  }
+  function loadSection(sectionId) {
+    state.selectedId = sectionId;
+    state.groupPositions.set(ui.Group.value, sectionId);
+    ui.Workspace.hidden = true;
+    try {
+      const data = state.cache.get(sectionId);
+      if (!data || !state.sections.some(section => section.sectionId === sectionId)) throw new Error('この分野をもう一度読み込んでください。');
       if (!data.items.length) { setStatus('この大問には小問が登録されていません。別の大問を選択してください。'); return; }
       renderBundle(data);
-      setStatus('この大問の' + data.items.length + '小問を学習できます。');
+      setStatus('この大問の' + data.items.length + '小問を学習できます。この分野の大問は読み込み済みです。');
     } catch (error) {
-      if (request === state.bundleRequest && state.selectedId === sectionId) setStatus('小問を読み込めませんでした。' + error.message, 'error', () => loadSection(sectionId));
+      setStatus('小問を表示できませんでした。' + error.message, 'error', loadGroup);
     }
   }
   function validateBundle(data, sectionId) {
@@ -282,10 +321,10 @@
   ui.Previous.addEventListener('click', () => selectItem(position().index - 1, true));
   ui.Next.addEventListener('click', () => selectItem(position().index + 1, true));
   ui.Section.addEventListener('change', () => { if (ui.Section.value) loadSection(ui.Section.value); });
-  ui.Group.addEventListener('change', renderSelection);
+  ui.Group.addEventListener('change', loadGroup);
   ui.Search.addEventListener('input', renderSelection);
   ui.Retry.addEventListener('click', () => { if (state.retry) state.retry(); });
-  function activate() { if (window.location.hash === '#oral' && !state.sections && !state.catalogLoading) loadCatalog(); }
-  window.addEventListener('hashchange', activate);
-  activate();
+  options(ui.Group, groups, '分野選択');
+  ui.Group.disabled = false;
+  ui.Workspace.hidden = true;
 })();

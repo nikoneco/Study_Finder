@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>737-800勉強</title>
-    <link rel="stylesheet" href="./assets/css/app.css?v=content-4cf1f8ae4fa0">
-<link rel="stylesheet" href="./assets/css/pwa.css?v=content-4cf1f8ae4fa0">
-  <link rel="stylesheet" href="./assets/css/exam-modes.css?v=content-4cf1f8ae4fa0">
-<link rel="stylesheet" href="./assets/css/oral-study.css?v=content-4cf1f8ae4fa0">
+    <link rel="stylesheet" href="./assets/css/app.css?v=content-ff1a937985ae">
+<link rel="stylesheet" href="./assets/css/pwa.css?v=content-ff1a937985ae">
+  <link rel="stylesheet" href="./assets/css/exam-modes.css?v=content-ff1a937985ae">
+<link rel="stylesheet" href="./assets/css/oral-study.css?v=content-ff1a937985ae">
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=content-4cf1f8ae4fa0">
-<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=content-4cf1f8ae4fa0">
+<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=content-ff1a937985ae">
+<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=content-ff1a937985ae">
 <meta name="theme-color" content="#15110e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="737-800勉強">
@@ -59,17 +59,17 @@
   </div>
   <section id="oralStudy" class="oral-study" aria-label="口頭試験の学習">
     <div class="oral-controls">
-      <div class="oral-catalog-heading"><p class="eyebrow">評価シート REV-3</p><p id="oralCatalogCount" class="exam-muted">大問一覧は口頭試験を開くと読み込みます。</p></div>
+      <div class="oral-catalog-heading"><p class="eyebrow">評価シート REV-3</p><p id="oralCatalogCount" class="exam-muted">分野を選ぶと、その分野をまとめて読み込みます。</p></div>
       <div class="oral-filter-grid">
-        <label for="oralGroup">学習分野<select id="oralGroup" disabled><option value="">すべての分野</option></select></label>
-        <label for="oralSearch">大問を検索<input id="oralSearch" type="search" placeholder="タイトル・分野・ATA" autocomplete="off" disabled></label>
+        <label for="oralGroup">学習分野<select id="oralGroup"><option value="">分野選択</option></select></label>
+        <label for="oralSearch">この分野の大問を検索<input id="oralSearch" type="search" placeholder="タイトル・ATA" autocomplete="off" disabled></label>
       </div>
-      <label class="oral-parent-label" for="oralSection">大問（照査項目）<select id="oralSection" disabled><option value="">大問を読み込んでいます</option></select></label>
+      <label class="oral-parent-label" for="oralSection">大問（照査項目）<select id="oralSection" disabled><option value="">先に学習分野を選んでください</option></select></label>
       <p id="oralFilterCount" class="exam-note"></p>
     </div>
     <div id="oralStatus" class="oral-status" role="status" aria-live="polite" aria-atomic="true">
       <progress id="oralLoading" class="oral-loading" aria-label="口頭試験データを読み込み中" hidden></progress>
-      <span id="oralStatusText">大問ごとに小問を学習できます。</span>
+      <span id="oralStatusText">学習分野を選んでください。選択するまで問題は読み込みません。</span>
       <button id="oralRetry" type="button" hidden>もう一度読み込む</button>
     </div>
     <div id="oralWorkspace" class="oral-workspace" hidden>
@@ -205,10 +205,10 @@
       </section>
 </main>
     </div>
-    <script src="./assets/js/gas-run-shim.js?v=content-4cf1f8ae4fa0"></script>
-<script src="./assets/js/app.js?v=content-4cf1f8ae4fa0"></script>
-<script src="./assets/js/exam-modes.js?v=content-4cf1f8ae4fa0"></script>
-<script src="./assets/js/oral-study.js?v=content-4cf1f8ae4fa0"></script>
-<script src="./assets/js/pwa-client.js?v=content-4cf1f8ae4fa0"></script>
+    <script src="./assets/js/gas-run-shim.js?v=content-ff1a937985ae"></script>
+<script src="./assets/js/app.js?v=content-ff1a937985ae"></script>
+<script src="./assets/js/exam-modes.js?v=content-ff1a937985ae"></script>
+<script src="./assets/js/oral-study.js?v=content-ff1a937985ae"></script>
+<script src="./assets/js/pwa-client.js?v=content-ff1a937985ae"></script>
   </body>
 </html>

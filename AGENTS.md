@@ -33,8 +33,8 @@
 - GAS公開、Sheet更新、GitHubへのpush、Pages公開は別工程。今回の分離ではGoogle側を変更しない。
 - 趣味HUBの旧入口は新PWAをiframeで表示する中継ページ。GAS直表示版用の旧画像URLはHUB側で維持する。
 - このプロジェクトは趣味HUB本体やLifeBoardを担当しない。親リポジトリの無関係な変更を保持する。
-- Pagesトップは試験選択、`#written`は既存筆記、`#oral`は口頭学習。同じDOMの表示切替で筆記状態を保持する。GAS直表示版のトップは変更していない。口頭の匿名公開APIは大問一覧／選択大問bundleの読み取りだけに限定する。
-- 口頭初回は`apiGetOralStart`で一覧と最初の大問を1往復・同一Sheet snapshotで取得する。遅いJSONPには3秒後にread-only HtmlService frameを1本だけ併走させる。固定origin／nonce／API／iframe ancestry照合と後着応答・資源のcleanupを維持する。永続回答cacheで直接Sheet修正を隠さない。
+- Pagesトップは試験選択、`#written`は既存筆記、`#oral`は口頭学習。同じDOMの表示切替で筆記状態を保持する。GAS直表示版のトップは変更していない。口頭の匿名公開APIは選択分野bundleと互換用の大問一覧／選択大問bundleの読み取りだけに限定する。
+- 口頭初期は「分野選択」でAPIなしの待機。「すべての分野」は設けず、REV-3の9分野名だけをローカルのナビゲーションとして保持する。選択後に`apiGetOralGroupBundle`でその分野の全大問・小問・回答・根拠を同一Sheet snapshotから取得する。全bundleを検証してからページ内メモリへ登録し、分野内の大問切替は追加通信なし。互換用`apiGetOralStart`は保持する。遅いJSONPには3秒後にread-only HtmlService frameを1本だけ併走させる。固定origin／nonce／API／iframe ancestry照合と後着応答・資源のcleanupを維持する。永続回答cacheで直接Sheet修正を隠さない。
 
 ## ローカル検証
 

@@ -154,7 +154,7 @@
   window.google.script = window.google.script || {};
   window.google.script.run = makeRunner({});
   // A bounded read-only alternate route for delayed ContentService redirects.
-  const FRAME_READ_METHODS = ['apiGetOralStart', 'apiGetOralSections', 'apiGetOralSectionBundle',
+  const FRAME_READ_METHODS = ['apiGetOralStart', 'apiGetOralSections', 'apiGetOralSectionBundle', 'apiGetOralGroupBundle',
     'apiGetQuestionsBundle', 'apiGetQuestionDetail', 'apiGetRandomQuestionDetail'];
   function startReadFrame(method, args, success, failure) {
     let frame = null;

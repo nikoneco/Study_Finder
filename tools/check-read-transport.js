@@ -22,7 +22,7 @@ function harness() {
     const found = [...timers.entries()].find(([, timer]) => timer.ms === ms);
     assert(found, 'timer not found: ' + ms); timers.delete(found[0]); found[1].fn();
   }
-  function call(method = 'apiGetOralStart') { window.google.script.run.withSuccessHandler(v => responses.push(v)).withFailureHandler(e => failures.push(e))[method](); }
+  function call(method = 'apiGetOralStart', ...args) { window.google.script.run.withSuccessHandler(v => responses.push(v)).withFailureHandler(e => failures.push(e))[method](...args); }
   function jsonp(response) {
     const script = nodes.find(n => n.tag === 'script');
     window[new URL(script.src).searchParams.get('callback')](response);
@@ -81,4 +81,10 @@ const output = context.handleStudyReadFrame_({ api: 'apiGetOralStart', nonce: 'a
 assert.equal(dispatched, 1); assert.equal((output.html.match(/<\/script>/g) || []).length, 1);
 assert(output.html.includes('"https://nikoneco.github.io"')); assert(output.html.includes('serverMs'));
 assert(!output.html.includes('<script>bad'));
+const group = harness(); group.call('apiGetOralGroupBundle', 'SYSTEM：機体'); group.tick(3000);
+const groupUrl = new URL(group.nodes.find(n => n.tag === 'iframe').src);
+assert.equal(groupUrl.searchParams.get('api'), 'apiGetOralGroupBundle');
+assert.equal(Buffer.from(groupUrl.searchParams.get('argsB64'), 'base64url').toString('utf8'), '["SYSTEM：機体"]');
+group.message(); assert.equal(group.responses.length, 1); assert.equal(group.nodes.length, 0);
+assert(context.handleStudyReadFrame_({ api: 'apiGetOralGroupBundle', nonce: 'a'.repeat(32) }).html.includes('STUDY_READ_FRAME_V1'));
 console.log(JSON.stringify({ readTransport: 'ok', checks: ['fast JSONP', '3s alternate route', 'origin/nonce/API/ancestry guards', 'first response wins', 'late callback', 'timeout cleanup', 'read-only server', 'HTML literal escaping'] }));

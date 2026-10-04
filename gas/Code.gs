@@ -84,6 +84,12 @@ function apiGetOralSectionBundle(sectionId) {
   });
 }
 
+function apiGetOralGroupBundle(group) {
+  return safeOralRead_('apiGetOralGroupBundle', function () {
+    return getOralGroupBundle_(group);
+  });
+}
+
 function apiUpdateAnswerNote(noteId, payload) {
   return safeRun_('apiUpdateAnswerNote', function () {
     assertPrivateMutationAllowed_();
@@ -131,6 +137,8 @@ function handleWebAppJsonpRequest_(apiName, params) {
 function dispatchWebAppJsonpApi_(apiName, args) {
   const name = String(apiName || '').trim();
   switch (name) {
+    case 'apiGetOralGroupBundle':
+      return apiGetOralGroupBundle(args[0]);
     case 'apiGetOralStart':
       return apiGetOralStart();
     case 'apiGetOralSections':
@@ -172,7 +180,7 @@ function timedStudyRead_(apiName, args) {
 }
 
 function handleStudyReadFrame_(params) {
-  const allowed = ['apiGetOralStart', 'apiGetOralSections', 'apiGetOralSectionBundle',
+  const allowed = ['apiGetOralStart', 'apiGetOralSections', 'apiGetOralSectionBundle', 'apiGetOralGroupBundle',
     'apiGetQuestionsBundle', 'apiGetQuestionDetail', 'apiGetRandomQuestionDetail'];
   const api = String(params.api || '');
   const nonce = String(params.nonce || '');

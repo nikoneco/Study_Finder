@@ -67,7 +67,7 @@ Pagesは`main`ブランチの`/docs`から公開する。Actionsは再ビルド�
 
 PWAのmanifestとService Workerのscopeは`/Study_Finder/`。キャッシュ削除は`study-finder-pwa-`だけに限定し、他の同一ドメインのPWAを巻き込まない。Google側へのコード反映・データ更新はGitHubへのpushとは別工程。
 
-トップは`/Study_Finder/`、筆記は`#written`、口頭は`#oral`。モード切替では同じDOMを表示切替するため、読み込んだ筆記問題・回答を保持する。PWAの名前は「737-800勉強」、manifest ID・scope・公開URLは従来と同じ。トップはAPI呼び出しなし。口頭を開くと`apiGetOralStart`で大問一覧と最初の大問の小問・回答を同じSheet snapshotから1往復で取得する。他の大問は選択時に取得し、読み込み済みの大問はページ内メモリから即表示する。
+トップは`/Study_Finder/`、筆記は`#written`、口頭は`#oral`。モード切替では同じDOMを表示切替するため、読み込んだ筆記問題・回答を保持する。PWAの名前は「737-800勉強」、manifest ID・scope・公開URLは従来と同じ。トップと口頭を開いた段階では口頭APIを呼ばず、「分野選択」で待機する。REV-3の9分野の名称だけをナビゲーションとしてローカル保持し、「すべての分野」は設けない。分野選択後、`apiGetOralGroupBundle`でその分野の全大問・小問・回答・根拠情報を同じSheet snapshotからまとめて取得する。分野内の大問切替と読み込み済み分野への復帰はページ内メモリから即表示し、大問・小問・回答開示の位置を保持する。検索は選択分野内だけ。同一分野の実行中取得は共有し、後着応答で別分野を上書きしない。全bundleの対応を検証してからまとめてキャッシュへ登録する。
 
 JSONPが3秒で返らない場合、読み取り専用のHtmlService frame経路を1本だけ並行開始し、先に返った応答を使う。origin・nonce・API名・iframe ancestryを照合し、後着応答を無視して資源を片付ける。frame経路にはbootstrap／保存／importを許可しない。従来のJSONP再試行は保持する。`Study API timing`のdebugログはAPI名・経路・総時間・GAS内部時間だけを記録する。Sheetの直接修正を即再確認できるよう、再読み込みをまたぐ回答キャッシュは導入しない。
 
@@ -80,7 +80,7 @@ JSONPが3秒で返らない場合、読み取り専用のHtmlService frame経路
 ## 口頭データと更新境界
 
 - 専用タブは`oral_sections`（大問）、`oral_questions`（小問・原条件）、`oral_answers`（要点・不足点）、`oral_sources`（資料メタデータ）。筆記の既存タブへ混ぜない。
-- `gas/OralService.gs`の公開APIは`apiGetOralStart`、`apiGetOralSections`、`apiGetOralSectionBundle`の読み取りのみ。公開側から保存・インポートはできない。
+- `gas/OralService.gs`の公開APIは`apiGetOralGroupBundle`、互換用の`apiGetOralStart`、`apiGetOralSections`、`apiGetOralSectionBundle`の読み取りのみ。公開側から保存・インポートはできない。分野bundleにも既存の資料ホワイトリストと根拠不足への格下げ処理を適用する。
 - 回答は`supported`（根拠確認済み）、`partial`（一部不足）、`insufficient`（根拠不足）。資料ID・ページ・評価項目との対応が壊れた回答を確認済み扱いしない。
 - 公開画面には要点・資料名・ページ・所在箇所だけを渡す。元PDF、抽出全文、レビュー用引用、ローカルパス、認証情報は含めない。
 - ローカルの`build_oral_data.js`は検証と初回登録用JSONの生成だけを行う。Sheetへの自動上書きはしない。運用開始後の更新は、対象タブの最新データを取得・バックアップしてから、変更するID／セルだけを更新する。

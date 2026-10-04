@@ -53,7 +53,7 @@ const server = read('gas/Code.gs');
 const begin = server.indexOf('function dispatchWebAppJsonpApi_');
 const end = server.indexOf('\nfunction ', begin + 10);
 const dispatcher = server.slice(begin, end);
-for (const name of ['bootstrap', 'apiGetQuestions', 'apiGetQuestionsBundle', 'apiGetQuestionDetail', 'apiGetRandomQuestionDetail', 'apiBuildReviewPrompt', 'apiGetOralSections', 'apiGetOralSectionBundle']) assert(dispatcher.includes("case '" + name + "'"), 'Missing public read API: ' + name);
+for (const name of ['bootstrap', 'apiGetQuestions', 'apiGetQuestionsBundle', 'apiGetQuestionDetail', 'apiGetRandomQuestionDetail', 'apiBuildReviewPrompt', 'apiGetOralSections', 'apiGetOralSectionBundle', 'apiGetOralGroupBundle']) assert(dispatcher.includes("case '" + name + "'"), 'Missing public read API: ' + name);
 for (const name of ['setupProject', 'apiSaveAnswerNote', 'apiUpdateAnswerNote', 'apiSaveConfirmedAnswer', 'apiImportCsv', 'apiImportPreparedAtaData']) assert(!dispatcher.includes("case '" + name + "'"), 'Mutation exposed publicly: ' + name);
 assert(server.includes('normalizeWebAppJsonpCallback_') && server.includes('decodeWebAppJsonpArgs_'), 'Missing JSONP validation');
 const importService = read('gas/ImportService.gs');

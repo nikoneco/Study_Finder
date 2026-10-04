@@ -90,4 +90,39 @@ for (const change of ['emptySummary', 'badBinding', 'missingPrompt', 'missingOne
 const twoParents = JSON.parse(JSON.stringify(tables));
 twoParents.oral_questions.push({ ...twoParents.oral_questions[0], assessment_id: 'other', section_id: 'oral_rev3_p05_s01' });
 assert.equal(context(twoParents).apiGetOralSectionBundle(sectionId).data.items.length, 1, 'Child escaped parent');
-console.log(JSON.stringify({ oralService: 'ok', checks: ['parent isolation','levels/conditions','source whitelist','anonymous allowlist','missing-source downgrade','malformed JSON','invalid ID','empty data'] }));
+const grouped = JSON.parse(JSON.stringify(tables));
+for (const [suffix, group, order] of [['p05', '点検', 2], ['p06', 'Servicing', 3]]) {
+  const id = 'oral_rev3_' + suffix + '_s01';
+  grouped.oral_sections.push({ ...grouped.oral_sections[0], section_id: id, group, display_order: order });
+  grouped.oral_questions.push({ ...grouped.oral_questions[0], assessment_id: id + '_r01', section_id: id });
+  grouped.oral_answers.push({ ...grouped.oral_answers[0], assessment_id: id + '_r01' });
+}
+const groupService = context(grouped);
+const groupResponse = groupService.apiGetOralGroupBundle('点検');
+assert(groupResponse.ok);
+assert.equal(groupService.readCount(), 4, 'One snapshot reads each table once, not per parent');
+assert.equal(groupResponse.data.sections.length, 2);
+for (const [i, b] of groupResponse.data.bundles.entries()) {
+  assert.equal(JSON.stringify(b), JSON.stringify(context(grouped).apiGetOralSectionBundle(b.section.sectionId).data));
+  assert.equal(groupResponse.data.sections[i].itemCount, b.items.length);
+  assert.equal(groupResponse.data.sections[i].supportedCount, 1);
+  assert.equal(b.revision, groupResponse.data.revision);
+}
+assert(!JSON.stringify(groupResponse).includes('PRIVATE_'));
+assert(groupService.dispatchWebAppJsonpApi_('apiGetOralGroupBundle', ['Servicing']).ok);
+for (const group of [null, [], {}, '', ' 点検', '点検 ', 'すべての分野', 'x'.repeat(81), '__proto__']) {
+  const result = groupService.apiGetOralGroupBundle(group);
+  assert.equal(result.ok, false); assert(!result.error.stack);
+}
+const outsideMalformed = JSON.parse(JSON.stringify(grouped));
+outsideMalformed.oral_answers[2].points_json = '{}';
+assert(context(outsideMalformed).apiGetOralGroupBundle('点検').ok, 'Do not parse answers outside selected group');
+const before = groupService.apiGetOralGroupBundle('点検').data;
+grouped.oral_questions[0].question = 'Updated directly in Sheet';
+grouped.oral_questions[0].updated_at = '2026-10-05T01:00:00Z';
+const after = groupService.apiGetOralGroupBundle('点検').data;
+assert.notEqual(before.revision, after.revision);
+assert.equal(after.bundles[0].items[0].question, 'Updated directly in Sheet');
+const groupDowngrade = context(badSource).apiGetOralGroupBundle('点検');
+assert(groupDowngrade.ok && groupDowngrade.data.sections[0].insufficientCount === 1);
+console.log(JSON.stringify({ oralService: 'ok', checks: ['one-snapshot group','exact legacy equivalence','group/parent isolation','fresh Sheet reads','levels/conditions','source whitelist','anonymous allowlist','missing-source downgrade','malformed JSON','invalid ID/group','empty data'] }));
