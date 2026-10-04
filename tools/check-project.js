@@ -25,6 +25,7 @@ assert(html.includes('<title>737-800勉強</title>'), 'Wrong learning hub title'
 for (const id of ['examHome', 'examWritten', 'examOral', 'writtenExamLink', 'oralExamLink', 'examNavigation']) assert(html.includes('id="' + id + '"'), 'Missing exam route: ' + id);
 assert(html.includes('href="#written"') && html.includes('href="#oral"'), 'Missing exam selection links');
 assert(html.includes('回答は未作成') && html.includes('現時点では、問題の出題や回答の表示は行いません'), 'Oral readiness must be honest');
+assert(html.includes('55大問 · 279小問') && html.includes('大問は「照査項目」、小問はその中の番号付き項目です'), 'Oral main/subquestion hierarchy must match the assessment');
 assert(!/data\/oral|assessment_rev3\.json|標準問題集\/.*\.pdf/.test(html), 'Local assessment data leaked into the public page');
 assert(/<link rel="icon" type="image\/png" href="\.\/assets\/icons\/icon-192\.png\?v=content-[a-f0-9]+">/.test(html), 'Missing app-scoped browser icon');
 assert(!/Answer Draft|AI \/ Draft Answers|回答作成用プロンプト/.test(html + js), 'Draft/prompt UI returned');

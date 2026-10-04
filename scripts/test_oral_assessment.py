@@ -32,6 +32,17 @@ class AssessmentPreparationTests(unittest.TestCase):
         self.assertEqual(self.section(5, 1)["ata_raw"], "31")
         self.assertEqual(self.section(5, 2)["ata_raw"], "7X")
 
+    def test_main_questions_and_subquestions_remain_nested(self):
+        hierarchy = self.index["question_hierarchy"]
+        self.assertEqual(hierarchy["main_question"], {"source_label": "照査項目", "collection": "sections"})
+        self.assertEqual(hierarchy["subquestion"], {"source_label": "番号付き項目", "collection": "sections[].assessment_rows"})
+        for section in self.sections:
+            self.assertTrue(section["title"])
+            self.assertTrue(section["assessment_rows"])
+            for row in section["assessment_rows"]:
+                self.assertTrue(row["assessment_id"].startswith(section["section_id"] + "_r"))
+                self.assertTrue(row["source_item_number"].isdigit())
+
     def test_duplicate_numbers_remain_separate(self):
         fire = self.section(7)["assessment_rows"]
         self.assertEqual([r["source_item_number"] for r in fire], ["1", "2", "3", "3"])

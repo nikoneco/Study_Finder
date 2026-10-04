@@ -147,6 +147,11 @@ def prepare(pdf):
         "source_revision_date": "2024-03-05",
         "source_page_count": len(pages),
         "status": "assessment_index_only_not_question_bank_or_answers",
+        "question_hierarchy": {
+            "main_question": {"source_label": "照査項目", "collection": "sections"},
+            "subquestion": {"source_label": "番号付き項目", "collection": "sections[].assessment_rows"},
+            "supplement_policy": "小問内の補足・条件・LEVEL変更は同じ小問に保持し、親の照査項目から切り離さない",
+        },
         "level_policy": {"Ⅰ": "記憶して正式名称・適切な語句で口述", "Ⅱ": "最新の技術資料を参照して判断・作業・説明"},
         "groups": counts,
         "assessment_row_count": len(rows),
