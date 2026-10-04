@@ -20,6 +20,7 @@ const html = read('docs/index.html');
 const js = read('docs/assets/js/app.js');
 assert(!/<\?!=|<\?=/.test(html), 'Unexpanded GAS template');
 assert((html.match(/<title>/g) || []).length === 1, 'Duplicate page title');
+assert(/<link rel="icon" type="image\/png" href="\.\/assets\/icons\/icon-192\.png\?v=content-[a-f0-9]+">/.test(html), 'Missing app-scoped browser icon');
 assert(!/Answer Draft|AI \/ Draft Answers|回答作成用プロンプト/.test(html + js), 'Draft/prompt UI returned');
 assert(html.includes('id="termDialog"') && js.includes('resolveTermDefinitions') && js.includes('term-trigger'), 'Missing abbreviation UI');
 assert(js.includes('answerFigures') && js.includes('loading="lazy"'), 'Missing lazy answer images');

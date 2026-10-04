@@ -63,7 +63,7 @@ function main() {
   if (!/<meta\s+name=["']viewport["']/i.test(html)) meta.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
   if (!/<title(?:\s[^>]*)?>/i.test(html)) meta.push('<title>' + APP.title + '</title>');
   html = html.replace(/<head>/i, '<head>\n' + meta.join('\n'));
-  html = html.replace(/<\/head>/i, '<link rel="manifest" href="./manifest.webmanifest">\n<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<meta name="theme-color" content="#15110e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="737 Study Finder">\n</head>');
+  html = html.replace(/<\/head>/i, '<link rel="manifest" href="./manifest.webmanifest">\n<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<meta name="theme-color" content="#15110e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="737 Study Finder">\n</head>');
   write('index.html', html);
   write('manifest.webmanifest', JSON.stringify({
     id: PAGES_BASE, name: APP.title, short_name: 'Study737',
@@ -307,4 +307,3 @@ function buildServiceWorker() {
 }
 
 main();
-
