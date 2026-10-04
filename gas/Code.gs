@@ -69,6 +69,16 @@ function apiSaveAnswerNote(payload) {
   });
 }
 
+function apiGetOralSections() {
+  return safeOralRead_('apiGetOralSections', getOralSections_);
+}
+
+function apiGetOralSectionBundle(sectionId) {
+  return safeOralRead_('apiGetOralSectionBundle', function () {
+    return getOralSectionBundle_(sectionId);
+  });
+}
+
 function apiUpdateAnswerNote(noteId, payload) {
   return safeRun_('apiUpdateAnswerNote', function () {
     assertPrivateMutationAllowed_();
@@ -116,6 +126,10 @@ function handleWebAppJsonpRequest_(apiName, params) {
 function dispatchWebAppJsonpApi_(apiName, args) {
   const name = String(apiName || '').trim();
   switch (name) {
+    case 'apiGetOralSections':
+      return apiGetOralSections();
+    case 'apiGetOralSectionBundle':
+      return apiGetOralSectionBundle(args[0]);
     case 'bootstrap':
       return getClientBootstrap_();
     case 'questionsBundle':

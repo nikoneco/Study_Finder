@@ -13,11 +13,11 @@
       <span class="exam-card-action">筆記試験へ <span aria-hidden="true">→</span></span>
     </a>
     <a id="oralExamLink" class="exam-mode-card exam-mode-oral" href="#oral">
-      <span class="exam-card-top"><span class="eyebrow">Oral Exam</span><span class="exam-badge">準備中</span></span>
+      <span class="exam-card-top"><span class="eyebrow">Oral Exam</span><span class="exam-badge">大問ごとに学習</span></span>
       <h3>口頭試験</h3>
-      <p>評価シートに沿って、声に出して説明するための学習を準備しています。</p>
-      <span class="exam-card-details">評価項目の整理済み · 参照マニュアル収集中</span>
-      <span class="exam-card-action">準備状況を見る <span aria-hidden="true">→</span></span>
+      <p>評価シートの大問を選び、その中の小問を声に出して説明。回答の要点と根拠を確認します。</p>
+      <span class="exam-card-details">評価シート REV-3 · AMM / SGの根拠 · 未確認点</span>
+      <span class="exam-card-action">口頭試験へ <span aria-hidden="true">→</span></span>
     </a>
   </div>
 </section>
@@ -26,30 +26,49 @@
   <div class="exam-intro">
     <p class="eyebrow">Oral Exam</p>
     <h2 id="examOralHeading" tabindex="-1">口頭試験</h2>
-    <p class="exam-muted">評価シートを整理し、参照マニュアルを集めています。</p>
+    <p class="exam-muted">大問を選び、小問ごとに説明してから、回答の要点と資料の根拠を確認します。</p>
   </div>
-  <section class="exam-preparation" aria-labelledby="oralStatusHeading">
-    <div class="exam-card-top"><h3 id="oralStatusHeading">学習コンテンツを準備中</h3><span class="exam-badge">回答は未作成</span></div>
-    <p>評価項目と参照資料の対応を確認してから、口述用の問題と回答を作成します。現時点では、問題の出題や回答の表示は行いません。</p>
-    <dl class="exam-summary">
-      <div><dt>確認した資料</dt><dd>評価シート REV-3</dd></div>
-      <div><dt>原資料の構成</dt><dd>58ページ · 55大問 · 279小問</dd></div>
-      <div><dt>次の準備</dt><dd>参照マニュアルの対応確認</dd></div>
-    </dl>
-    <p class="exam-note">大問は「照査項目」、小問はその中の番号付き項目です。小問内の補足・条件は切り離さず、親の照査項目と結び付けて扱います。出題文と回答は準備中です。</p>
-  </section>
-  <div class="exam-level-grid">
-    <section class="exam-level"><p class="eyebrow">Level Ⅰ</p><h3>覚えて、口述する</h3><p>正式名称と適切な言葉を使い、資料を見ずに説明する練習を準備します。</p></section>
-    <section class="exam-level"><p class="eyebrow">Level Ⅱ</p><h3>資料を参照して、説明する</h3><p>参照すべき最新の技術資料を確認し、判断や手順を説明する練習を準備します。</p></section>
-  </div>
-  <section class="exam-preparation" aria-labelledby="oralScopeHeading">
-    <h3 id="oralScopeHeading">整理した学習分野</h3>
-    <ul class="exam-scope-list">
-      <li>点検要領Ⅰ・Ⅱ</li><li>交換・調整</li><li>Servicing</li>
-      <li>Open / Close・Override・Deactivate</li>
-      <li>SYSTEM：機体</li><li>SYSTEM：通信・航法・計器</li>
-      <li>SYSTEM：装備</li><li>SYSTEM：発動機</li>
-    </ul>
-    <p class="exam-note">資料本文と抽出データはローカルで管理し、この公開画面には掲載していません。</p>
+  <section id="oralStudy" class="oral-study" aria-label="口頭試験の学習">
+    <div class="oral-controls">
+      <div class="oral-catalog-heading"><p class="eyebrow">評価シート REV-3</p><p id="oralCatalogCount" class="exam-muted">大問一覧は口頭試験を開くと読み込みます。</p></div>
+      <div class="oral-filter-grid">
+        <label for="oralGroup">学習分野<select id="oralGroup" disabled><option value="">すべての分野</option></select></label>
+        <label for="oralAta">ATA<select id="oralAta" disabled><option value="">すべてのATA</option></select></label>
+        <label for="oralSearch">大問を検索<input id="oralSearch" type="search" placeholder="タイトル・分野・ATA" autocomplete="off" disabled></label>
+      </div>
+      <label class="oral-parent-label" for="oralSection">大問（照査項目）<select id="oralSection" disabled><option value="">大問を読み込んでいます</option></select></label>
+      <p id="oralFilterCount" class="exam-note"></p>
+    </div>
+    <div id="oralStatus" class="oral-status" role="status" aria-live="polite" aria-atomic="true">
+      <progress id="oralLoading" class="oral-loading" aria-label="口頭試験データを読み込み中" hidden></progress>
+      <span id="oralStatusText">大問ごとに小問を学習できます。</span>
+      <button id="oralRetry" type="button" hidden>もう一度読み込む</button>
+    </div>
+    <div id="oralWorkspace" class="oral-workspace" hidden>
+      <aside class="oral-items-panel" aria-labelledby="oralItemsHeading">
+        <p class="eyebrow">選択した大問</p>
+        <h3 id="oralParentTitle"></h3>
+        <p id="oralParentMeta" class="exam-note"></p>
+        <h4 id="oralItemsHeading">この大問の小問</h4>
+        <ol id="oralItems" class="oral-items"></ol>
+      </aside>
+      <div class="oral-detail">
+        <section class="oral-question-panel" aria-labelledby="oralQuestionHeading">
+          <div class="oral-question-meta"><p id="oralItemPosition" class="eyebrow"></p><div id="oralItemLevels" class="oral-tags"></div></div>
+          <p id="oralSubheading" class="oral-subheading" hidden></p>
+          <h3 id="oralQuestionHeading" tabindex="-1"></h3>
+          <div class="oral-prompts"><h4>評価項目・条件</h4><ul id="oralPrompts"></ul></div>
+          <div class="oral-question-actions"><button id="oralReveal" class="primary" type="button" aria-expanded="false" aria-controls="oralAnswer">回答の要点を見る</button><p class="exam-note">まず、声に出して説明してみよう。</p></div>
+        </section>
+        <section id="oralAnswer" class="oral-answer-panel" aria-labelledby="oralAnswerHeading" hidden>
+          <div class="oral-answer-heading"><h3 id="oralAnswerHeading">回答の要点</h3><span id="oralAnswerStatus" class="oral-coverage"></span></div>
+          <p class="exam-note">Codexが資料を基に整理した学習用の回答です。実作業では、対象機の適用性と最新の承認済み技術資料を確認してください。</p>
+          <div id="oralAnswerPoints" class="oral-answer-points"></div>
+          <div id="oralAnswerGaps" class="oral-gaps" hidden><h4>根拠が不足している点</h4><ul id="oralGapList"></ul></div>
+          <div id="oralScopeNotes" class="oral-scope-notes" hidden><h4>資料の範囲・適用上の注意</h4><ul id="oralScopeNoteList"></ul></div>
+        </section>
+        <nav class="oral-child-navigation" aria-label="この大問の小問を移動"><button id="oralPrevious" type="button">← 前の小問</button><span id="oralNavigationPosition" class="exam-note"></span><button id="oralNext" type="button">次の小問 →</button></nav>
+      </div>
+    </div>
   </section>
 </section>

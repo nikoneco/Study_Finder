@@ -55,10 +55,12 @@ function main() {
   write('assets/js/pwa-client.js', buildPwaClient(APP));
   write('assets/css/exam-modes.css', fs.readFileSync(path.join(WEB, 'exam-modes.css'), 'utf8'));
   write('assets/js/exam-modes.js', fs.readFileSync(path.join(WEB, 'exam-modes.js'), 'utf8'));
+  write('assets/js/oral-study.js', fs.readFileSync(path.join(WEB, 'oral-study.js'), 'utf8'));
+  write('assets/css/oral-study.css', fs.readFileSync(path.join(WEB, 'oral-study.css'), 'utf8'));
   let html = readSource('index.html').replace(/<base\s+target="_top">\s*/i, '');
   html = html.replace(/<\?!=\s*include\('([^']+)'\);\s*\?>/g, (match, name) => {
     if (name === 'style') return '<link rel="stylesheet" href="./assets/css/app.css?v=' + BUILD_VERSION + '">\n<link rel="stylesheet" href="./assets/css/pwa.css?v=' + BUILD_VERSION + '">';
-    if (name === 'script') return ['gas-run-shim', 'app', 'exam-modes', 'pwa-client'].map((name) => '<script src="./assets/js/' + name + '.js?v=' + BUILD_VERSION + '"></script>').join('\n');
+    if (name === 'script') return ['gas-run-shim', 'app', 'exam-modes', 'oral-study', 'pwa-client'].map((name) => '<script src="./assets/js/' + name + '.js?v=' + BUILD_VERSION + '"></script>').join('\n');
     return readSource(name + '.html').trim();
   });
   html = html.replace(/data-bootstrap='\s*<\?=\s*bootstrapJson\s*;?\s*\?>'/g, "data-bootstrap='" + escapeAttr(JSON.stringify(APP.bootstrap)) + "'");
@@ -71,7 +73,7 @@ function main() {
   if (!/<meta\s+name=["']viewport["']/i.test(html)) meta.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
   if (!/<title(?:\s[^>]*)?>/i.test(html)) meta.push('<title>' + APP.title + '</title>');
   html = html.replace(/<head>/i, '<head>\n' + meta.join('\n'));
-  html = html.replace(/<\/head>/i, '<link rel="stylesheet" href="./assets/css/exam-modes.css?v=' + BUILD_VERSION + '">\n<link rel="manifest" href="./manifest.webmanifest">\n<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<meta name="theme-color" content="#15110e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="' + PROJECT_TITLE + '">\n</head>');
+  html = html.replace(/<\/head>/i, '<link rel="stylesheet" href="./assets/css/exam-modes.css?v=' + BUILD_VERSION + '">\n<link rel="stylesheet" href="./assets/css/oral-study.css?v=' + BUILD_VERSION + '">\n<link rel="manifest" href="./manifest.webmanifest">\n<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<meta name="theme-color" content="#15110e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="' + PROJECT_TITLE + '">\n</head>');
   write('index.html', html);
   write('manifest.webmanifest', JSON.stringify({
     id: PAGES_BASE, name: PROJECT_TITLE, short_name: '737勉強',
@@ -282,7 +284,7 @@ function escapeAttr(value) {
 }
 
 function buildServiceWorker() {
-  const urls = ['', 'index.html', 'offline.html', 'manifest.webmanifest', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/pwa-client.js'].map((file) => PAGES_BASE + file);
+  const urls = ['', 'index.html', 'offline.html', 'manifest.webmanifest', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css', 'assets/css/oral-study.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/oral-study.js', 'assets/js/pwa-client.js'].map((file) => PAGES_BASE + file);
   return [
     'const CACHE_PREFIX = "study-finder-pwa-";',
     'const CACHE_NAME = CACHE_PREFIX + ' + JSON.stringify(BUILD_VERSION) + ';',

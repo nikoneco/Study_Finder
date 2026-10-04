@@ -73,4 +73,24 @@ python -X utf8 scripts\test_oral_assessment.py
 
 The exact input is `標準問題集/737-800 評価シート (REV-3).pdf`, not the written question collection. It indexes all 58 pages: 55 main questions (照査項目 / sections), each containing its numbered subquestions (279 assessment rows in total). Supplements and conditions remain inside the same subquestion; the index does not generate question wording or answers. Original item numbers, duplicate numbers, mixed LEVEL I/II, subheadings, conditions, REF text and PDF-page context are preserved. Do not expand shorthand REF values or invent blank references before manual verification.
 
-Output `data/oral/assessment_rev3.json` and preparation notes are ignored and local-only. Never embed them in `docs`, public `web` assets or the written `PreparedAtaData.gs`. Reference manuals are being collected by the user; answer creation and app data integration remain pending.
+Output `data/oral/assessment_rev3.json` and preparation notes are ignored and local-only. Never embed them in `docs`, public `web` assets or the written `PreparedAtaData.gs`.
+
+## Oral sources, reviewed answers and initial registration
+
+```powershell
+python -X utf8 scripts\prepare_oral_sources.py
+node scripts\build_oral_data.js --partial
+node scripts\build_oral_data.js
+```
+
+`prepare_oral_sources.py` indexes all collected `Study_Guide/*.pdf` and `標準問題集/口頭MM/*.pdf` into the private `data/oral/corpus/` directory. It records document hashes, page text, source type and ambiguous extraction flags. A false flag is not proof that numbers or conditions are correct: visually inspect garbled or ambiguous pages and verify applicability.
+
+Past examinees' Word materials under `標準問題集/口頭MM/過去資料/` are auxiliary learning/checking aids, not primary evidence. Relevant important points may be incorporated only after AMM/SG verification. Keep originals, extracted text and embedded images private; do not add these documents to the primary source corpus or public source endpoints automatically.
+
+Reviewed batches are private `data/oral/answers_procedures_*.json` and `answers_systems_*.json`. Every original child keeps its stable assessment ID. Each answer point binds all relevant original `content_lines` via zero-based `prompt_indexes`, records precise page anchors, and explains any unsupported part. `insufficient` points cannot carry an invented summary. This is human-reviewed source-based authoring, not an external AI API call.
+
+`--partial` validates authored entries without exporting incomplete production data. The full command requires 55 parents, 279 children, complete one-time prompt coverage, valid source IDs/pages, exact private evidence anchors, truthful status/gaps, visual verification of flagged pages and unchanged source PDF hashes. It produces private `compiled.json` and `validation.json` only when all checks pass. Semantic independent review is still required: a text anchor alone does not prove the summary.
+
+`oral-contract.js` defines the four dedicated Sheet schemas. `makeSheetRequests` builds literal-only, bounded 40-row `updateCells` batches for grounded Sheet IDs; it does not send them. Compiled rows exclude source quotes and local paths. Runtime `gas/OralService.gs` exposes read-only, whitelisted oral payloads, not this review corpus.
+
+These generated files are for the first approved registration. Once Sheets becomes canonical, do not replay all generated rows over direct Sheet corrections. Read/export and back up the current four oral tabs, compare IDs, and update only the approved cells. Preserve every written tab. Always distinguish structural validation, semantic source review, Sheet write/readback, GAS deployment and public PWA checks.

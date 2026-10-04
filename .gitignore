@@ -15,6 +15,7 @@ data/*.log
 data/oral/
 tmp/
 *.pdf
+*.docx
 *.tmp
 *.bak
 __pycache__/
