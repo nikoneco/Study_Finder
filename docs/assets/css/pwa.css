@@ -1,0 +1,25 @@
+html.is-pages-pwa #setupButton,
+html.is-pages-pwa .admin-tools,
+[hidden] {
+  display: none !important;
+}
+
+.pwa-prompt-shell {
+  margin-top: 14px;
+}
+
+body.is-offline::after {
+  content: "オフラインです。表示中の画面は開けますが、最新データの取得には通信が必要です。";
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 9999;
+  padding: 10px 12px;
+  border: 1px solid rgba(234, 211, 162, 0.6);
+  border-radius: 6px;
+  background: rgba(21, 17, 14, 0.96);
+  color: #f8efe0;
+  font: 13px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+}

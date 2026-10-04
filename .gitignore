@@ -1,0 +1,21 @@
+.clasp.json
+.clasprc.json
+LOCAL_URLS.md
+.env
+.env.*
+*.local
+*.local.*
+**/.clasp.json
+Codex 申し送り.txt
+secrets.*
+node_modules/
+data/*.csv
+data/*.xlsx
+data/*.log
+tmp/
+*.pdf
+*.tmp
+*.bak
+__pycache__/
+.venv/
+venv/

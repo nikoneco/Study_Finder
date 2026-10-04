@@ -1,0 +1,10 @@
+{
+  "name": "737-study-finder",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build-pages.js",
+    "check": "node tools/check-project.js",
+    "check:data": "node scripts/validate_study_data.js"
+  }
+}

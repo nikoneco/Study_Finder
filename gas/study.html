@@ -1,0 +1,101 @@
+<section class="study-shell" aria-label="737 Study Finder">
+  <section class="study-controls" aria-label="Study controls">
+    <div>
+      <p class="eyebrow">Study Mode</p>
+      <h2>ATAを選んで、ランダムに解く</h2>
+    </div>
+    <div class="study-actions">
+      <label>
+        ATA
+        <select id="ataFilter">
+          <option value="">ATA All</option>
+          <option value="21">ATA 21</option>
+          <option value="24">ATA 24</option>
+        </select>
+      </label>
+      <button id="loadQuestions">読み込み</button>
+      <button id="randomQuestionButton" class="primary action-large">次のランダム問題</button>
+    </div>
+    <div id="questionLoadPanel" class="load-panel is-idle" aria-live="polite" aria-busy="false">
+      <div class="load-panel-row">
+        <span id="questionLoadStatus">ATAを選んで読み込みを押してください。</span>
+        <span id="questionLoadCount">未読み込み</span>
+      </div>
+      <div class="load-progress-meta">
+        <span id="questionLoadStage">待機中</span>
+        <span id="questionLoadEta"></span>
+      </div>
+      <div id="questionLoadProgress" class="load-bar" role="progressbar" aria-label="問題の読み込み進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span id="questionLoadBar"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="focus-grid" aria-label="Study question and answer">
+    <section class="question-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Question</p>
+          <h2>まず自分で答える</h2>
+        </div>
+        <button id="toggleQuestionListButton" aria-expanded="false">問題一覧</button>
+      </div>
+      <div id="questionDetail" class="empty-state">問題を選択するか、ランダム出題を押してね。</div>
+      <div class="answer-reveal-actions">
+        <button id="revealAnswerButton" class="primary reveal-button" disabled>回答を見る</button>
+        <span id="revealHint" class="muted">回答はまだ隠れています。</span>
+      </div>
+      <div id="questionList" class="muted question-list is-collapsed">初期設定後に問題を読み込みます。</div>
+    </section>
+
+    <section class="answer-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Answer</p>
+          <h2>回答</h2>
+        </div>
+      </div>
+      <div id="answerRevealPlaceholder" class="empty-state">問題を解いたら「回答を見る」で確認します。</div>
+      <div id="answer" class="is-hidden"></div>
+      <details id="candidateDetails" class="candidate-details is-hidden">
+        <summary>PDF/根拠候補を見る</summary>
+        <div id="candidateList" class="candidate-list">候補ページはここに表示します。</div>
+      </details>
+    </section>
+  </section>
+
+</section>
+
+<dialog id="termDialog" class="term-dialog" aria-labelledby="termDialogTerm">
+  <section class="term-dialog-card">
+    <header class="term-dialog-header">
+      <div>
+        <p class="eyebrow">Abbreviation</p>
+        <h2 id="termDialogTerm"></h2>
+      </div>
+      <button id="termDialogClose" class="term-dialog-close" type="button" aria-label="用語説明を閉じる">閉じる</button>
+    </header>
+    <dl class="term-details">
+      <div>
+        <dt>正式名称</dt>
+        <dd id="termDialogFullName"></dd>
+      </div>
+      <div id="termDialogAtaRow">
+        <dt>定義の出典</dt>
+        <dd id="termDialogAta"></dd>
+      </div>
+      <div>
+        <dt>Location</dt>
+        <dd id="termDialogLocation"></dd>
+      </div>
+      <div>
+        <dt>機能</dt>
+        <dd id="termDialogFunction"></dd>
+      </div>
+      <div id="termDialogEvidenceRow">
+        <dt>根拠ページ</dt>
+        <dd id="termDialogEvidence"></dd>
+      </div>
+    </dl>
+  </section>
+</dialog>
