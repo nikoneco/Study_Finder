@@ -23,14 +23,13 @@
 
 - このルートに独立した`.git`がある。GitHubは`nikoneco/Study_Finder`、公開PWAは`https://nikoneco.github.io/Study_Finder/`。
 - Git操作はこのルートで行う。従来の履歴は趣味HUBに保持し、新リポジトリは移行時スナップショットから開始する。
-- 旧`D:\アプリ開発\趣味HUB\737_Study_Finder`はこのルートへのWindowsジャンクション。実ファイルの複製ではない。
-- 旧`D:\アプリ開発\趣味HUB\scripts`も新ルートの`scripts`へのジャンクション。既存Gitの`scripts/`追跡とコマンドを維持する。
+- 旧`D:\アプリ開発\趣味HUB\737_Study_Finder`と旧`scripts`の移行用ジャンクションは公開確認後に除去済み。コード・教材・データの実体はこのルートに保持する。
 - スクリプトはこのリポジトリの`scripts/`で追跡する。
 - Pages生成定義・生成先はこのルートの`tools\build-pages.js`・`docs\`。生成物を恒久修正先にしない。
 - Pagesは`main`の`/docs`から公開。push前に再ビルド・`tools\check-project.js`を実行する。Actionsでも生成物との一致を検証する。
 - manifest/SWのscopeは`/Study_Finder/`。キャッシュ削除はアプリ固有prefixに限定し、趣味HUB等のキャッシュを消さない。
 - GAS公開、Sheet更新、GitHubへのpush、Pages公開は別工程。今回の分離ではGoogle側を変更しない。
-- 新PWAの公開確認後、旧互換ジャンクションを外し、趣味HUBの入口を中継ページに変更する。GAS直表示版用の旧画像URLは維持する。
+- 趣味HUBの旧入口は新PWAをiframeで表示する中継ページ。GAS直表示版用の旧画像URLはHUB側で維持する。
 - このプロジェクトは趣味HUB本体やLifeBoardを担当しない。親リポジトリの無関係な変更を保持する。
 
 ## ローカル検証

@@ -2,7 +2,7 @@
 
 These scripts create local CSV files for the GAS import pipeline.
 
-Run the commands below from `D:\アプリ開発\737-800勉強`. The scripts were moved here on 2026-10-04; the old HobbyHUB `scripts` path is only a local compatibility junction. The extractors use Python with `pypdf` and `pdfplumber`.
+Run the commands below from `D:\アプリ開発\737-800勉強`. The scripts were moved here on 2026-10-04 and are tracked by the independent `Study_Finder` repository. The old HobbyHUB compatibility junction has been removed. The extractors use Python with `pypdf` and `pdfplumber`.
 
 Scripts with implicit paths detect both the new standalone layout and the legacy `hobby-hub/737_Study_Finder/` checkout. Explicit PDF and output arguments are relative to the working directory; the examples below use the new root.
 
