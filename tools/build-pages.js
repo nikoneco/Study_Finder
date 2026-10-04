@@ -5,6 +5,8 @@ const crypto = require('crypto');
 const ROOT = path.resolve(__dirname, '..');
 const DOCS = path.join(ROOT, 'docs');
 const PAGES_BASE = '/Study_Finder/';
+const PROJECT_TITLE = '737-800勉強';
+const WEB = path.join(ROOT, 'web');
 const APP = {
   id: 'study737',
   title: '737 Study Finder',
@@ -28,11 +30,11 @@ function listFiles(directory) {
 
 function createBuildVersion() {
   const hash = crypto.createHash('sha256');
-  const files = [__filename, ...listFiles(APP.sourceDir).filter((file) => file.endsWith('.html')), ...listFiles(APP.staticAssetsDir)];
+  const files = [__filename, ...listFiles(WEB), ...listFiles(APP.sourceDir).filter((file) => file.endsWith('.html')), ...listFiles(APP.staticAssetsDir)];
   files.sort().forEach((file) => {
     hash.update(path.relative(ROOT, file).replace(/\\/g, '/'));
     hash.update('\0');
-    hash.update(/\.(js|html)$/.test(file) ? fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n') : fs.readFileSync(file));
+    hash.update(/\.(js|html|css)$/.test(file) ? fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n') : fs.readFileSync(file));
     hash.update('\0');
   });
   return 'content-' + hash.digest('hex').slice(0, 12);
@@ -51,22 +53,28 @@ function main() {
   write('assets/js/app.js', stripWrapper(readSource('script.html'), 'script'));
   write('assets/js/gas-run-shim.js', buildGasRunShim(APP));
   write('assets/js/pwa-client.js', buildPwaClient(APP));
+  write('assets/css/exam-modes.css', fs.readFileSync(path.join(WEB, 'exam-modes.css'), 'utf8'));
+  write('assets/js/exam-modes.js', fs.readFileSync(path.join(WEB, 'exam-modes.js'), 'utf8'));
   let html = readSource('index.html').replace(/<base\s+target="_top">\s*/i, '');
   html = html.replace(/<\?!=\s*include\('([^']+)'\);\s*\?>/g, (match, name) => {
     if (name === 'style') return '<link rel="stylesheet" href="./assets/css/app.css?v=' + BUILD_VERSION + '">\n<link rel="stylesheet" href="./assets/css/pwa.css?v=' + BUILD_VERSION + '">';
-    if (name === 'script') return ['gas-run-shim', 'app', 'pwa-client'].map((name) => '<script src="./assets/js/' + name + '.js?v=' + BUILD_VERSION + '"></script>').join('\n');
+    if (name === 'script') return ['gas-run-shim', 'app', 'exam-modes', 'pwa-client'].map((name) => '<script src="./assets/js/' + name + '.js?v=' + BUILD_VERSION + '"></script>').join('\n');
     return readSource(name + '.html').trim();
   });
   html = html.replace(/data-bootstrap='\s*<\?=\s*bootstrapJson\s*;?\s*\?>'/g, "data-bootstrap='" + escapeAttr(JSON.stringify(APP.bootstrap)) + "'");
+  html = html.replace(/<title>[^<]*<\/title>/i, '<title>' + PROJECT_TITLE + '</title>');
+  html = html.replace(/<h1>737 Study Finder<\/h1>/, '<h1>' + PROJECT_TITLE + '</h1>');
+  html = html.replace(/<\/header>/i, '<nav id="examNavigation" class="exam-navigation" aria-label="学習モード" hidden><span id="examModeLabel"></span><a href="#home">試験を選び直す</a></nav>\n</header>');
+  html = html.replace(/(<main class="layout">)([\s\S]*?)(<\/main>)/, (_match, open, written, close) => open + '\n' + fs.readFileSync(path.join(WEB, 'exam-modes.html'), 'utf8') + '\n<section id="examWritten" aria-labelledby="examWrittenHeading" hidden><div class="exam-written-heading"><h2 id="examWrittenHeading" tabindex="-1">筆記試験</h2></div>' + written + '</section>\n' + close);
   const meta = [];
   if (!/<meta\s+charset=/i.test(html)) meta.push('<meta charset="utf-8">');
   if (!/<meta\s+name=["']viewport["']/i.test(html)) meta.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
   if (!/<title(?:\s[^>]*)?>/i.test(html)) meta.push('<title>' + APP.title + '</title>');
   html = html.replace(/<head>/i, '<head>\n' + meta.join('\n'));
-  html = html.replace(/<\/head>/i, '<link rel="manifest" href="./manifest.webmanifest">\n<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<meta name="theme-color" content="#15110e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="737 Study Finder">\n</head>');
+  html = html.replace(/<\/head>/i, '<link rel="stylesheet" href="./assets/css/exam-modes.css?v=' + BUILD_VERSION + '">\n<link rel="manifest" href="./manifest.webmanifest">\n<link rel="icon" type="image/png" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=' + BUILD_VERSION + '">\n<meta name="theme-color" content="#15110e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="' + PROJECT_TITLE + '">\n</head>');
   write('index.html', html);
   write('manifest.webmanifest', JSON.stringify({
-    id: PAGES_BASE, name: APP.title, short_name: 'Study737',
+    id: PAGES_BASE, name: PROJECT_TITLE, short_name: '737勉強',
     start_url: PAGES_BASE, scope: PAGES_BASE, display: 'standalone',
     background_color: '#15110e', theme_color: '#15110e',
     icons: [192, 512].map((size) => ({ src: 'assets/icons/icon-' + size + '.png?v=' + BUILD_VERSION, sizes: size + 'x' + size, type: 'image/png', purpose: 'any maskable' }))
@@ -274,7 +282,7 @@ function escapeAttr(value) {
 }
 
 function buildServiceWorker() {
-  const urls = ['', 'index.html', 'offline.html', 'manifest.webmanifest', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/pwa-client.js'].map((file) => PAGES_BASE + file);
+  const urls = ['', 'index.html', 'offline.html', 'manifest.webmanifest', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/pwa-client.js'].map((file) => PAGES_BASE + file);
   return [
     'const CACHE_PREFIX = "study-finder-pwa-";',
     'const CACHE_NAME = CACHE_PREFIX + ' + JSON.stringify(BUILD_VERSION) + ';',

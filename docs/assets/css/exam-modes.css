@@ -1,0 +1,52 @@
+.exam-hub {
+  max-width: 1000px;
+  margin: 12px auto 32px;
+}
+.exam-intro { margin: 20px 0 24px; }
+.exam-intro h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 10px; }
+.exam-muted, .exam-card-details, .exam-note { color: var(--muted); line-height: 1.7; }
+.exam-muted { margin-bottom: 0; }
+.exam-mode-grid, .exam-level-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.exam-mode-card, .exam-preparation, .exam-level {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+.exam-mode-card { display: flex; flex-direction: column; color: var(--text); text-decoration: none; min-width: 0; }
+.exam-mode-card:hover { border-color: var(--accent); background: var(--panel-strong); }
+.exam-mode-card:focus-visible, .exam-navigation a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.exam-mode-card h3 { margin: 24px 0 14px; font-size: 28px; }
+.exam-mode-card p, .exam-preparation > p, .exam-level p { line-height: 1.8; }
+.exam-card-top { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+.exam-card-top .eyebrow, .exam-card-top h3 { margin: 0; }
+.exam-badge { border: 1px solid var(--line); border-radius: 5px; padding: 4px 8px; font-size: 12px; color: var(--muted); }
+.exam-card-details { font-size: 13px; margin-bottom: 24px; }
+.exam-card-action { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); font-weight: 800; color: var(--accent); display: flex; justify-content: space-between; }
+.exam-mode-oral .eyebrow, .exam-mode-oral .exam-card-action { color: var(--accent-2); }
+.exam-mode-oral:hover { border-color: var(--accent-2); }
+.exam-navigation { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+.exam-navigation span { color: var(--muted); }
+.exam-navigation a { color: var(--accent); text-decoration: none; padding: 9px 0; }
+.exam-written-heading { max-width: 1500px; margin: 0 auto 14px; }
+.exam-written-heading h2 { color: var(--muted); font-size: 14px; }
+.exam-preparation { margin-bottom: 18px; }
+.exam-preparation > p { margin-top: 16px; }
+.exam-summary { display: grid; gap: 12px; margin: 20px 0; }
+.exam-summary > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; }
+.exam-summary dt { color: var(--muted); }
+.exam-summary dd { margin: 0; }
+.exam-note { font-size: 13px; margin-bottom: 0; }
+.exam-level-grid { margin-bottom: 18px; }
+.exam-level p:last-child { margin-bottom: 0; }
+.exam-level h3 { margin: 10px 0; }
+.exam-scope-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 30px; padding-left: 20px; line-height: 1.6; }
+@media (max-width: 620px) {
+  .exam-mode-grid, .exam-level-grid, .exam-scope-list { grid-template-columns: minmax(0, 1fr); }
+  .exam-hub { margin-top: 0; }
+  .exam-mode-card, .exam-preparation, .exam-level { padding: 20px; }
+  .exam-mode-card h3 { margin-top: 18px; }
+  .exam-summary > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .exam-navigation { justify-content: space-between; width: 100%; }
+  html[data-exam-mode="written"] .topbar, html[data-exam-mode="oral"] .topbar { flex-wrap: wrap; }
+}

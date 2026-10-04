@@ -12,6 +12,7 @@ node_modules/
 data/*.csv
 data/*.xlsx
 data/*.log
+data/oral/
 tmp/
 *.pdf
 *.tmp

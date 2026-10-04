@@ -1,7 +1,7 @@
 {
   "id": "/Study_Finder/",
-  "name": "737 Study Finder",
-  "short_name": "Study737",
+  "name": "737-800勉強",
+  "short_name": "737勉強",
   "start_url": "/Study_Finder/",
   "scope": "/Study_Finder/",
   "display": "standalone",
@@ -9,13 +9,13 @@
   "theme_color": "#15110e",
   "icons": [
     {
-      "src": "assets/icons/icon-192.png?v=content-7e3f6ad4991b",
+      "src": "assets/icons/icon-192.png?v=content-ddcf76dc645d",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "assets/icons/icon-512.png?v=content-7e3f6ad4991b",
+      "src": "assets/icons/icon-512.png?v=content-ddcf76dc645d",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

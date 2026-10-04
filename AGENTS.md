@@ -3,10 +3,10 @@
 ## 対象と正本
 
 - ローカル作業ルート：`D:\アプリ開発\737-800勉強`。既存の学習アプリ名は737 Study Finder。
-- このアプリは737-800資格勉強のうち筆記照査用。次の学習領域はユーザーの対象確認後に扱う。
+- 学習モードは筆記試験（既存のStudy Finder）と口頭試験。口頭は評価シートREV-3の索引化・マニュアル待ちで、まだ問題・回答を作成していない。
 - 申し送り：`D:\Dropbox\Obsidian\1.Application\Projects\737 Study Finder.md`。
 - このディレクトリの`README.md`、`scripts\README.md`と、アカウント共通ルールを読む。
-- 画面・GASソースは`gas\`、専用スクリプトは`scripts\`、画像は`assets\answer-figures\`。
+- 筆記画面・GASソースは`gas\`、Pages専用のトップ・モード切替・口頭準備画面は`web\`、専用スクリプトは`scripts\`、画像は`assets\answer-figures\`。
 - Google側のフォルダ・GAS・Sheetはローカル移動前と同じ。`.clasp.json`を保持し、対象を確認してから操作する。
 
 ## データを守る条件
@@ -18,6 +18,7 @@
 - SG／標準問題集PDF、CSV、認証情報、ローカル設定はGitHubやPagesに公開しない。
 - 回答は本回答として表示する。DRAFT ANSWERや回答変更用Promptを再導入しない。
 - 略語はATAをまたいで参照できるが、異なる定義を曖昧なまま自動リンクしない。
+- 口頭の正本は`標準問題集\737-800 評価シート (REV-3).pdf`。`data\oral\`の索引は原文・親照査項目・LEVEL変更・条件・REF・元PDFページを保持するローカル専用データ。マニュアル照合前に回答を作らず、既存筆記データへ混ぜない。
 
 ## Git・公開の移行状態（2026-10-04）
 
@@ -31,6 +32,7 @@
 - GAS公開、Sheet更新、GitHubへのpush、Pages公開は別工程。今回の分離ではGoogle側を変更しない。
 - 趣味HUBの旧入口は新PWAをiframeで表示する中継ページ。GAS直表示版用の旧画像URLはHUB側で維持する。
 - このプロジェクトは趣味HUB本体やLifeBoardを担当しない。親リポジトリの無関係な変更を保持する。
+- Pagesトップは試験選択、`#written`は既存筆記、`#oral`は口頭準備。同じDOMの表示切替で筆記状態を保持する。Google/GAS直表示版のトップは今回変更していない。
 
 ## ローカル検証
 
@@ -41,6 +43,8 @@ python scripts\validate_question_extractor.py "標準問題集\737-800標準問�
 
 node tools\build-pages.js
 node tools\check-project.js
+python -X utf8 scripts\prepare_oral_assessment.py
+python -X utf8 scripts\test_oral_assessment.py
 ```
 
 GAS操作の作業ディレクトリはこのルート、`rootDir`は`gas`。親の趣味HUB用`.clasp.json`と混同しない。

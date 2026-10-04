@@ -63,3 +63,14 @@ node scripts\validate_study_data.js
 ```
 
 The sync refuses missing questions, duplicate IDs, duplicate canonical answers, or question/answer count differences.
+
+## Oral assessment preparation (local only)
+
+```powershell
+python -X utf8 scripts\prepare_oral_assessment.py
+python -X utf8 scripts\test_oral_assessment.py
+```
+
+The exact input is `標準問題集/737-800 評価シート (REV-3).pdf`, not the written question collection. It indexes all 58 pages, 55 assessment sections and 279 parent assessment rows without generating questions or answers. Original item numbers, duplicate numbers, mixed LEVEL I/II, subheadings, conditions, REF text and PDF-page context are preserved. Do not expand shorthand REF values or invent blank references before manual verification.
+
+Output `data/oral/assessment_rev3.json` and preparation notes are ignored and local-only. Never embed them in `docs`, public `web` assets or the written `PreparedAtaData.gs`. Reference manuals are being collected by the user; answer creation and app data integration remain pending.

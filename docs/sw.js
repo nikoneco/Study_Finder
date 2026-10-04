@@ -1,7 +1,7 @@
 const CACHE_PREFIX = "study-finder-pwa-";
-const CACHE_NAME = CACHE_PREFIX + "content-7e3f6ad4991b";
+const CACHE_NAME = CACHE_PREFIX + "content-ddcf76dc645d";
 const BASE = "/Study_Finder/";
-const APP_SHELL = ["/Study_Finder/","/Study_Finder/index.html","/Study_Finder/offline.html","/Study_Finder/manifest.webmanifest","/Study_Finder/assets/icons/icon-192.png","/Study_Finder/assets/icons/icon-512.png","/Study_Finder/assets/css/app.css","/Study_Finder/assets/css/pwa.css","/Study_Finder/assets/js/gas-run-shim.js","/Study_Finder/assets/js/app.js","/Study_Finder/assets/js/pwa-client.js"];
+const APP_SHELL = ["/Study_Finder/","/Study_Finder/index.html","/Study_Finder/offline.html","/Study_Finder/manifest.webmanifest","/Study_Finder/assets/icons/icon-192.png","/Study_Finder/assets/icons/icon-512.png","/Study_Finder/assets/css/app.css","/Study_Finder/assets/css/pwa.css","/Study_Finder/assets/css/exam-modes.css","/Study_Finder/assets/js/gas-run-shim.js","/Study_Finder/assets/js/app.js","/Study_Finder/assets/js/exam-modes.js","/Study_Finder/assets/js/pwa-client.js"];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
   self.skipWaiting();

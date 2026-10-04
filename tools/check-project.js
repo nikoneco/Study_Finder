@@ -7,12 +7,13 @@ const ROOT = path.resolve(__dirname, '..');
 const DOCS = path.join(ROOT, 'docs');
 const read = (file) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 const exists = (file) => fs.existsSync(path.join(ROOT, file));
+require('./check-exam-routes');
 
-for (const file of ['index.html', 'manifest.webmanifest', 'sw.js', 'offline.html', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/pwa-client.js', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png']) {
+for (const file of ['index.html', 'manifest.webmanifest', 'sw.js', 'offline.html', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/pwa-client.js', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png']) {
   assert(exists('docs/' + file), 'Missing generated file: ' + file);
 }
-for (const file of ['assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/pwa-client.js', 'sw.js']) new vm.Script(read('docs/' + file), { filename: file });
-for (const file of ['assets/css/app.css', 'assets/css/pwa.css']) {
+for (const file of ['assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/pwa-client.js', 'sw.js']) new vm.Script(read('docs/' + file), { filename: file });
+for (const file of ['assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css']) {
   const css = read('docs/' + file);
   assert(css.trim().length && !/<\/?style|<\?!=|<\?=/.test(css), 'Invalid CSS: ' + file);
 }
@@ -20,6 +21,11 @@ const html = read('docs/index.html');
 const js = read('docs/assets/js/app.js');
 assert(!/<\?!=|<\?=/.test(html), 'Unexpanded GAS template');
 assert((html.match(/<title>/g) || []).length === 1, 'Duplicate page title');
+assert(html.includes('<title>737-800勉強</title>'), 'Wrong learning hub title');
+for (const id of ['examHome', 'examWritten', 'examOral', 'writtenExamLink', 'oralExamLink', 'examNavigation']) assert(html.includes('id="' + id + '"'), 'Missing exam route: ' + id);
+assert(html.includes('href="#written"') && html.includes('href="#oral"'), 'Missing exam selection links');
+assert(html.includes('回答は未作成') && html.includes('現時点では、問題の出題や回答の表示は行いません'), 'Oral readiness must be honest');
+assert(!/data\/oral|assessment_rev3\.json|標準問題集\/.*\.pdf/.test(html), 'Local assessment data leaked into the public page');
 assert(/<link rel="icon" type="image\/png" href="\.\/assets\/icons\/icon-192\.png\?v=content-[a-f0-9]+">/.test(html), 'Missing app-scoped browser icon');
 assert(!/Answer Draft|AI \/ Draft Answers|回答作成用プロンプト/.test(html + js), 'Draft/prompt UI returned');
 assert(html.includes('id="termDialog"') && js.includes('resolveTermDefinitions') && js.includes('term-trigger'), 'Missing abbreviation UI');
@@ -28,7 +34,7 @@ const figureFiles = [...js.matchAll(/\['([^']+\.webp)',\s*'[^']+'\]/g)].map((mat
 assert(figureFiles.length >= 26, 'Missing reviewed image map');
 for (const file of new Set(figureFiles)) assert(exists('docs/assets/answer-figures/' + file), 'Missing mapped figure: ' + file);
 const manifest = JSON.parse(read('docs/manifest.webmanifest'));
-assert.equal(manifest.name, '737 Study Finder');
+assert.equal(manifest.name, '737-800勉強');
 assert.equal(manifest.start_url, '/Study_Finder/');
 assert.equal(manifest.scope, '/Study_Finder/');
 assert.equal(manifest.display, 'standalone');
