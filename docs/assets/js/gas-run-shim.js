@@ -33,11 +33,43 @@
     }
 
     const callbackName = '__gasJsonp_' + Date.now() + '_' + (++requestSeq);
+    const startedAt = Date.now();
     let activeScript = null;
     let attemptTimeout = 0;
     let retryTimer = 0;
     let attempt = 0;
     let settled = false;
+    let frameTimer = 0;
+    let cancelFrame = null;
+    let frameStarted = false;
+    let frameFailed = false;
+    let jsonpFailed = false;
+
+    function finishResponse(response, transport) {
+      if (settled) return;
+      settled = true;
+      // A removed script can still execute late. Keep a harmless callback.
+      cleanup(true);
+      notifyProgress(method, 'success', { attempt, transport });
+      console.debug('Study API timing', JSON.stringify({ method, transport,
+        totalMs: Date.now() - startedAt, serverMs: response && response.timing && response.timing.serverMs }));
+      if (successHandler) successHandler(response);
+    }
+    function finishFailure() {
+      if (settled) return;
+      settled = true;
+      cleanup(true);
+      if (failureHandler) failureHandler(new Error('GAS API timeout: ' + method));
+    }
+    function fallback() {
+      if (settled || frameStarted) return;
+      frameStarted = true;
+      window.clearTimeout(frameTimer);
+      cancelFrame = startReadFrame(method, args, response => finishResponse(response, 'html-frame'), () => {
+        frameFailed = true;
+        if (jsonpFailed) finishFailure();
+      });
+    }
 
     function clearAttempt() {
       window.clearTimeout(attemptTimeout);
@@ -49,6 +81,8 @@
     function cleanup(keepLateCallback) {
       clearAttempt();
       window.clearTimeout(retryTimer);
+      window.clearTimeout(frameTimer);
+      if (cancelFrame) cancelFrame();
       if (keepLateCallback) {
         window[callbackName] = () => {};
         window.setTimeout(() => { delete window[callbackName]; }, 5 * 60 * 1000);
@@ -58,11 +92,7 @@
     }
 
     window[callbackName] = (response) => {
-      if (settled) return;
-      settled = true;
-      cleanup(attempt > 1);
-      notifyProgress(method, 'success', { attempt });
-      if (successHandler) successHandler(response);
+      finishResponse(response, 'jsonp');
     };
 
     function failAttempt(errorType) {
@@ -73,9 +103,9 @@
         retryTimer = window.setTimeout(loadAttempt, JSONP_RETRY_DELAYS[attempt]);
         return;
       }
-      settled = true;
-      cleanup(errorType === 'timeout');
-      if (failureHandler) failureHandler(new Error('GAS API ' + errorType + ': ' + method));
+      jsonpFailed = true;
+      fallback();
+      if (frameFailed) finishFailure();
     }
 
     function loadAttempt() {
@@ -103,6 +133,7 @@
     }
 
     loadAttempt();
+    frameTimer = window.setTimeout(fallback, 3000);
   }
 
   function makeRunner(state) {
@@ -122,4 +153,70 @@
   window.google = window.google || {};
   window.google.script = window.google.script || {};
   window.google.script.run = makeRunner({});
+  // A bounded read-only alternate route for delayed ContentService redirects.
+  const FRAME_READ_METHODS = ['apiGetOralStart', 'apiGetOralSections', 'apiGetOralSectionBundle',
+    'apiGetQuestionsBundle', 'apiGetQuestionDetail', 'apiGetRandomQuestionDetail'];
+  function startReadFrame(method, args, success, failure) {
+    let frame = null;
+    let timer = 0;
+    let finished = false;
+    let nonce = '';
+    function cleanup() {
+      window.clearTimeout(timer);
+      window.removeEventListener('message', receive);
+      if (frame && frame.parentNode) frame.parentNode.removeChild(frame);
+      frame = null;
+    }
+    function finish(error, response) {
+      if (finished) return;
+      finished = true;
+      cleanup();
+      if (error) failure(error); else success(response);
+    }
+    function belongsToFrame(source) {
+      if (!frame || !frame.contentWindow || !source) return false;
+      try {
+        for (let depth = 0; depth <= 4; depth++) {
+          if (source === frame.contentWindow) return true;
+          const parent = source.parent;
+          if (!parent || parent === source) return false;
+          source = parent;
+        }
+      } catch (_error) { return false; }
+      return false;
+    }
+    function receive(event) {
+      if (finished || !/^https:\/\/(?:[a-z0-9-]+-)?script\.googleusercontent\.com$/.test(event.origin) || !belongsToFrame(event.source)) return;
+      const message = event.data;
+      if (!message || message.kind !== 'STUDY_READ_FRAME_V1' || message.nonce !== nonce || message.api !== method) return;
+      const response = message.response;
+      if (!response || typeof response.ok !== 'boolean' ||
+          (response.ok && !Object.prototype.hasOwnProperty.call(response, 'data')) ||
+          (!response.ok && !response.error)) return;
+      finish(null, response);
+    }
+    try {
+      if (!window.crypto || !window.crypto.getRandomValues || !FRAME_READ_METHODS.includes(method)) throw new Error('Read frame unavailable');
+      const bytes = new Uint8Array(16);
+      window.crypto.getRandomValues(bytes);
+      nonce = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+      const url = new URL(GAS_ENDPOINT);
+      url.searchParams.set('transport', 'studyFrame');
+      url.searchParams.set('api', method);
+      url.searchParams.set('nonce', nonce);
+      url.searchParams.set('argsB64', encodeArgs(args));
+      frame = document.createElement('iframe');
+      frame.hidden = true;
+      frame.tabIndex = -1;
+      frame.setAttribute('aria-hidden', 'true');
+      frame.style.display = 'none';
+      frame.onerror = () => finish(new Error('Read frame failed'));
+      window.addEventListener('message', receive);
+      timer = window.setTimeout(() => finish(new Error('Read frame timeout')), 35000);
+      frame.src = url.toString();
+      (document.body || document.head).appendChild(frame);
+    } catch (error) { finish(error); }
+    return () => { if (!finished) { finished = true; cleanup(); } };
+  }
+
 })();

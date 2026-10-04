@@ -95,11 +95,15 @@
     const request = ++state.catalogRequest;
     setStatus('大問一覧を読み込んでいます。', 'loading');
     try {
-      const data = await callApi('apiGetOralSections');
+      const data = await callApi('apiGetOralStart');
       if (request !== state.catalogRequest) return;
       if (data.schemaVersion !== 1 || !Array.isArray(data.sections) || data.sections.some(section => !section.sectionId || typeof section.title !== 'string')) throw new Error('大問一覧の形式を確認できませんでした。');
       state.sections = sorted(data.sections);
       state.revision = data.revision || '';
+      if (data.initialBundle) {
+        const initialId = state.sections[0] && state.sections[0].sectionId;
+        state.cache.set(initialId, validateBundle(data.initialBundle, initialId));
+      }
       const total = state.sections.reduce((count, section) => count + Number(section.itemCount || 0), 0);
       ui.CatalogCount.textContent = state.sections.length + '大問 · ' + total + '小問';
       options(ui.Group, [...new Set(state.sections.map(section => section.group).filter(Boolean))], 'すべての分野');
@@ -124,9 +128,7 @@
       let data = state.cache.get(sectionId);
       if (!data) {
         data = await callApi('apiGetOralSectionBundle', [sectionId]);
-        if (data.schemaVersion !== 1 || !data.section || data.section.sectionId !== sectionId || !Array.isArray(data.items) || data.items.some(item => !item.itemId || typeof item.question !== 'string' || !Array.isArray(item.prompts) || !item.answer)) throw new Error('小問データの形式を確認できませんでした。');
-        if (state.revision && data.revision && state.revision !== data.revision) throw new Error('学習データが更新されました。ページを再読み込みしてください。');
-        data = { ...data, items: sorted(data.items) };
+        data = validateBundle(data, sectionId);
         state.cache.set(sectionId, data);
       }
       if (request !== state.bundleRequest || state.selectedId !== sectionId) return;
@@ -136,6 +138,11 @@
     } catch (error) {
       if (request === state.bundleRequest && state.selectedId === sectionId) setStatus('小問を読み込めませんでした。' + error.message, 'error', () => loadSection(sectionId));
     }
+  }
+  function validateBundle(data, sectionId) {
+    if (data.schemaVersion !== 1 || !data.section || data.section.sectionId !== sectionId || !Array.isArray(data.items) || data.items.some(item => !item.itemId || typeof item.question !== 'string' || !Array.isArray(item.prompts) || !item.answer)) throw new Error('小問データの形式を確認できませんでした。');
+    if (state.revision && data.revision && state.revision !== data.revision) throw new Error('学習データが更新されました。ページを再読み込みしてください。');
+    return { ...data, items: sorted(data.items) };
   }
   function position() {
     if (!state.positions.has(state.selectedId)) state.positions.set(state.selectedId, { index: 0, revealed: false });

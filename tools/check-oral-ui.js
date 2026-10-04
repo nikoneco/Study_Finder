@@ -54,12 +54,20 @@ function bundle(id, count = 2) {
 }
 
 (async () => {
+  assert(!html.includes('Codexが資料を基に整理した学習用の回答です。'), 'Removed disclaimer returned');
+  const combined = harness('#oral');
+  const start = catalog();
+  start.data.initialBundle = bundle('A').data;
+  combined.calls[0].success(start); await flush();
+  assert.equal(combined.calls.length, 1, 'initial oral study must take one request');
+  assert.equal(combined.nodes.oralQuestionHeading.textContent, 'A question 0');
+  assert.equal(combined.nodes.oralWorkspace.hidden, false);
   const h = harness();
   assert.equal(h.calls.length, 0, 'home must not fetch oral data');
   h.route('#written');
   assert.equal(h.calls.length, 0, 'written must not fetch oral data');
   h.route('#oral');
-  assert.equal(h.calls[0].name, 'apiGetOralSections');
+  assert.equal(h.calls[0].name, 'apiGetOralStart');
   assert.equal(h.nodes.oralLoading.hidden, false);
   h.calls[0].success(catalog()); await flush();
   assert.equal(h.calls[1].name, 'apiGetOralSectionBundle');

@@ -57,7 +57,20 @@ function oralSectionForClient_(row, detailed) {
 }
 
 function getOralSections_() {
+  return oralSectionsFromTables_(readOralTables_());
+}
+
+// One fresh Sheet snapshot supplies the catalog and its first parent. No stale
+// persistent cache: a page reload still sees direct Sheet corrections.
+function getOralStudyStart_() {
   const tables = readOralTables_();
+  const catalog = oralSectionsFromTables_(tables);
+  catalog.initialBundle = catalog.sections.length
+    ? oralSectionBundleFromTables_(catalog.sections[0].sectionId, tables) : null;
+  return catalog;
+}
+
+function oralSectionsFromTables_(tables) {
   const answerById = Object.create(null);
   const sourcesById = Object.create(null);
   tables.oral_sources.forEach(function (row) { sourcesById[String(row.source_id)] = row; });
@@ -144,9 +157,13 @@ function oralAnswerForClient_(row, sourcesById, promptCount) {
 }
 
 function getOralSectionBundle_(sectionId) {
+  if (!/^oral_rev3_p\d{2}_s\d{2}$/.test(String(sectionId || ''))) throw new Error('Invalid oral section ID');
+  return oralSectionBundleFromTables_(sectionId, readOralTables_());
+}
+
+function oralSectionBundleFromTables_(sectionId, tables) {
   const id = String(sectionId || '');
   if (!/^oral_rev3_p\d{2}_s\d{2}$/.test(id)) throw new Error('Invalid oral section ID');
-  const tables = readOralTables_();
   const section = tables.oral_sections.filter(function (row) { return String(row.section_id) === id; })[0];
   if (!section) throw new Error('Oral section unavailable');
   const answersById = Object.create(null);

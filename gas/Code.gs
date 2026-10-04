@@ -1,5 +1,6 @@
 function doGet(e) {
   if (e && e.parameter && e.parameter.api) {
+    if (e.parameter.transport === 'studyFrame') return handleStudyReadFrame_(e.parameter);
     return handleWebAppJsonpRequest_(e.parameter.api, e.parameter);
   }
 
@@ -73,6 +74,10 @@ function apiGetOralSections() {
   return safeOralRead_('apiGetOralSections', getOralSections_);
 }
 
+function apiGetOralStart() {
+  return safeOralRead_('apiGetOralStart', getOralStudyStart_);
+}
+
 function apiGetOralSectionBundle(sectionId) {
   return safeOralRead_('apiGetOralSectionBundle', function () {
     return getOralSectionBundle_(sectionId);
@@ -116,7 +121,7 @@ function apiImportPreparedAtaData(ata) {
 function handleWebAppJsonpRequest_(apiName, params) {
   const callback = normalizeWebAppJsonpCallback_(params && params.callback);
   const args = decodeWebAppJsonpArgs_(params && params.argsB64);
-  const response = dispatchWebAppJsonpApi_(apiName, args);
+  const response = timedStudyRead_(apiName, args);
   const body = callback + '(' + JSON.stringify(response) + ');';
   return ContentService
     .createTextOutput(body)
@@ -126,6 +131,8 @@ function handleWebAppJsonpRequest_(apiName, params) {
 function dispatchWebAppJsonpApi_(apiName, args) {
   const name = String(apiName || '').trim();
   switch (name) {
+    case 'apiGetOralStart':
+      return apiGetOralStart();
     case 'apiGetOralSections':
       return apiGetOralSections();
     case 'apiGetOralSectionBundle':
@@ -155,6 +162,31 @@ function dispatchWebAppJsonpApi_(apiName, args) {
         }
       };
   }
+}
+
+function timedStudyRead_(apiName, args) {
+  const started = Date.now();
+  const response = dispatchWebAppJsonpApi_(apiName, args);
+  response.timing = { serverMs: Date.now() - started };
+  return response;
+}
+
+function handleStudyReadFrame_(params) {
+  const allowed = ['apiGetOralStart', 'apiGetOralSections', 'apiGetOralSectionBundle',
+    'apiGetQuestionsBundle', 'apiGetQuestionDetail', 'apiGetRandomQuestionDetail'];
+  const api = String(params.api || '');
+  const nonce = String(params.nonce || '');
+  if (allowed.indexOf(api) < 0 || !/^[0-9a-f]{32}$/.test(nonce)) {
+    return HtmlService.createHtmlOutput('Invalid read request.');
+  }
+  const response = timedStudyRead_(api, decodeWebAppJsonpArgs_(params.argsB64));
+  // Literal JSON only, fixed recipient, no controls, no bootstrap/admin APIs.
+  const message = JSON.stringify({ kind: 'STUDY_READ_FRAME_V1', api: api, nonce: nonce, response: response })
+    .replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')
+    .replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+  return HtmlService.createHtmlOutput('<!doctype html><html><head><meta charset="utf-8"></head><body><script>' +
+    'window.top.postMessage(' + message + ',"https://nikoneco.github.io");</script></body></html>')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function normalizeWebAppJsonpCallback_(callback) {

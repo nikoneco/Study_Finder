@@ -34,6 +34,7 @@
 - 趣味HUBの旧入口は新PWAをiframeで表示する中継ページ。GAS直表示版用の旧画像URLはHUB側で維持する。
 - このプロジェクトは趣味HUB本体やLifeBoardを担当しない。親リポジトリの無関係な変更を保持する。
 - Pagesトップは試験選択、`#written`は既存筆記、`#oral`は口頭学習。同じDOMの表示切替で筆記状態を保持する。GAS直表示版のトップは変更していない。口頭の匿名公開APIは大問一覧／選択大問bundleの読み取りだけに限定する。
+- 口頭初回は`apiGetOralStart`で一覧と最初の大問を1往復・同一Sheet snapshotで取得する。遅いJSONPには3秒後にread-only HtmlService frameを1本だけ併走させる。固定origin／nonce／API／iframe ancestry照合と後着応答・資源のcleanupを維持する。永続回答cacheで直接Sheet修正を隠さない。
 
 ## ローカル検証
 

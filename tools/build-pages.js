@@ -130,11 +130,43 @@ ${app.id === 'study737' ? `
     }
 
     const callbackName = '__gasJsonp_' + Date.now() + '_' + (++requestSeq);
+    const startedAt = Date.now();
     let activeScript = null;
     let attemptTimeout = 0;
     let retryTimer = 0;
     let attempt = 0;
     let settled = false;
+    let frameTimer = 0;
+    let cancelFrame = null;
+    let frameStarted = false;
+    let frameFailed = false;
+    let jsonpFailed = false;
+
+    function finishResponse(response, transport) {
+      if (settled) return;
+      settled = true;
+      // A removed script can still execute late. Keep a harmless callback.
+      cleanup(true);
+      notifyProgress(method, 'success', { attempt, transport });
+      console.debug('Study API timing', JSON.stringify({ method, transport,
+        totalMs: Date.now() - startedAt, serverMs: response && response.timing && response.timing.serverMs }));
+      if (successHandler) successHandler(response);
+    }
+    function finishFailure() {
+      if (settled) return;
+      settled = true;
+      cleanup(true);
+      if (failureHandler) failureHandler(new Error('GAS API timeout: ' + method));
+    }
+    function fallback() {
+      if (settled || frameStarted) return;
+      frameStarted = true;
+      window.clearTimeout(frameTimer);
+      cancelFrame = startReadFrame(method, args, response => finishResponse(response, 'html-frame'), () => {
+        frameFailed = true;
+        if (jsonpFailed) finishFailure();
+      });
+    }
 
     function clearAttempt() {
       window.clearTimeout(attemptTimeout);
@@ -146,6 +178,8 @@ ${app.id === 'study737' ? `
     function cleanup(keepLateCallback) {
       clearAttempt();
       window.clearTimeout(retryTimer);
+      window.clearTimeout(frameTimer);
+      if (cancelFrame) cancelFrame();
       if (keepLateCallback) {
         window[callbackName] = () => {};
         window.setTimeout(() => { delete window[callbackName]; }, 5 * 60 * 1000);
@@ -155,10 +189,7 @@ ${app.id === 'study737' ? `
     }
 
     window[callbackName] = (response) => {
-      if (settled) return;
-      settled = true;
-${app.id === 'study737' ? '      cleanup(attempt > 1);' : '      cleanup();'}
-${app.id === 'study737' ? "      notifyProgress(method, 'success', { attempt });\n" : ''}      if (successHandler) successHandler(response);
+      finishResponse(response, 'jsonp');
     };
 
     function failAttempt(errorType) {
@@ -168,9 +199,9 @@ ${app.id === 'study737' ? "      notifyProgress(method, 'success', { attempt });
 ${app.id === 'study737' ? "        notifyProgress(method, 'retry', { attempt, nextAttempt: attempt + 1, errorType });\n" : ''}        retryTimer = window.setTimeout(loadAttempt, JSONP_RETRY_DELAYS[attempt]);
         return;
       }
-      settled = true;
-      cleanup(errorType === 'timeout');
-      if (failureHandler) failureHandler(new Error('GAS API ' + errorType + ': ' + method));
+      jsonpFailed = true;
+      fallback();
+      if (frameFailed) finishFailure();
     }
 
     function loadAttempt() {
@@ -197,6 +228,7 @@ ${app.id === 'study737' ? "      notifyProgress(method, 'attempt', { attempt: at
     }
 
     loadAttempt();
+    frameTimer = window.setTimeout(fallback, 3000);
   }
 
   function makeRunner(state) {
@@ -216,6 +248,7 @@ ${app.id === 'study737' ? "      notifyProgress(method, 'attempt', { attempt: at
   window.google = window.google || {};
   window.google.script = window.google.script || {};
   window.google.script.run = makeRunner({});
+${fs.readFileSync(path.join(WEB, 'read-frame.js'), 'utf8')}
 })();`;
 }
 

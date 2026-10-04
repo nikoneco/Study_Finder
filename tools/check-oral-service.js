@@ -16,8 +16,10 @@ const tables = {
     file: 'PRIVATE_PATH', sha256: 'PRIVATE_HASH', access_token: 'PRIVATE_TOKEN' }]
 };
 function context(data) {
+  let reads = 0;
   const result = { openStudySpreadsheet_: () => ({ getSheetByName: name => data[name] ? { name } : null }),
-    readObjects_: sheet => data[sheet.name], logError_: () => {}, safeRun_: (_label, fn) => ({ ok: true, data: fn() }) };
+    readObjects_: sheet => { reads++; return data[sheet.name]; }, readCount: () => reads,
+    logError_: () => {}, safeRun_: (_label, fn) => ({ ok: true, data: fn() }) };
   vm.createContext(result);
   vm.runInContext(fs.readFileSync(path.join(ROOT, 'gas/OralService.gs'), 'utf8'), result);
   vm.runInContext(fs.readFileSync(path.join(ROOT, 'gas/Code.gs'), 'utf8'), result);
@@ -36,6 +38,14 @@ assert.equal(bundle.data.items[0].levels.join(','), 'Ⅰ,Ⅱ');
 assert.equal(bundle.data.items[0].prompts[0].text, 'Condition preserved');
 assert.equal(bundle.data.items[0].answer.points[0].sources[0].pdfPage, 2);
 assert(!JSON.stringify(bundle).includes('PRIVATE_'), 'Private source material leaked');
+const once = context(tables);
+const start = once.apiGetOralStart();
+assert(start.ok);
+assert.equal(once.readCount(), 4, 'startup must read each oral table only once');
+assert.equal(JSON.stringify(start.data.initialBundle), JSON.stringify(bundle.data));
+const withoutBundle = { ...start.data }; delete withoutBundle.initialBundle;
+assert.equal(JSON.stringify(withoutBundle), JSON.stringify(catalog.data));
+assert(!JSON.stringify(start).includes('PRIVATE_'));
 assert.equal(service.dispatchWebAppJsonpApi_('apiGetOralSections', []).ok, true);
 for (const name of ['apiImportOralData', 'oral_sources', 'readOralTables_', 'setupProject']) {
   assert.equal(service.dispatchWebAppJsonpApi_(name, []).ok, false, 'Anonymous mutation/internal exposed');

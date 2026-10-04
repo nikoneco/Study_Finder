@@ -67,7 +67,9 @@ Pagesは`main`ブランチの`/docs`から公開する。Actionsは再ビルド�
 
 PWAのmanifestとService Workerのscopeは`/Study_Finder/`。キャッシュ削除は`study-finder-pwa-`だけに限定し、他の同一ドメインのPWAを巻き込まない。Google側へのコード反映・データ更新はGitHubへのpushとは別工程。
 
-トップは`/Study_Finder/`、筆記は`#written`、口頭は`#oral`。モード切替では同じDOMを表示切替するため、読み込んだ筆記問題・回答を保持する。PWAの名前は「737-800勉強」、manifest ID・scope・公開URLは従来と同じ。トップはAPI呼び出しなし。口頭を開いたときだけ大問一覧を取得し、選択した大問の小問・回答を読み込む。
+トップは`/Study_Finder/`、筆記は`#written`、口頭は`#oral`。モード切替では同じDOMを表示切替するため、読み込んだ筆記問題・回答を保持する。PWAの名前は「737-800勉強」、manifest ID・scope・公開URLは従来と同じ。トップはAPI呼び出しなし。口頭を開くと`apiGetOralStart`で大問一覧と最初の大問の小問・回答を同じSheet snapshotから1往復で取得する。他の大問は選択時に取得し、読み込み済みの大問はページ内メモリから即表示する。
+
+JSONPが3秒で返らない場合、読み取り専用のHtmlService frame経路を1本だけ並行開始し、先に返った応答を使う。origin・nonce・API名・iframe ancestryを照合し、後着応答を無視して資源を片付ける。frame経路にはbootstrap／保存／importを許可しない。従来のJSONP再試行は保持する。`Study API timing`のdebugログはAPI名・経路・総時間・GAS内部時間だけを記録する。Sheetの直接修正を即再確認できるよう、再読み込みをまたぐ回答キャッシュは導入しない。
 
 評価シートの「照査項目」を大問、その中の番号付き項目を小問として扱う。55大問・279小問（小問内の補足を別問題と数えない）。LEVELの混在、番号重複・欠番、機種条件、ATA28(47)を保持する。各回答の要点を評価項目と根拠資料へ対応付け、根拠がない箇所は推測せず不足点を明示する。Hand Pump、Manual Procedure、65-degree maintenance position等の類似手順を勝手に同一視しない。
 
@@ -76,7 +78,7 @@ PWAのmanifestとService Workerのscopeは`/Study_Finder/`。キャッシュ削�
 ## 口頭データと更新境界
 
 - 専用タブは`oral_sections`（大問）、`oral_questions`（小問・原条件）、`oral_answers`（要点・不足点）、`oral_sources`（資料メタデータ）。筆記の既存タブへ混ぜない。
-- `gas/OralService.gs`の公開APIは`apiGetOralSections`と`apiGetOralSectionBundle`の読み取りのみ。公開側から保存・インポートはできない。
+- `gas/OralService.gs`の公開APIは`apiGetOralStart`、`apiGetOralSections`、`apiGetOralSectionBundle`の読み取りのみ。公開側から保存・インポートはできない。
 - 回答は`supported`（根拠確認済み）、`partial`（一部不足）、`insufficient`（根拠不足）。資料ID・ページ・評価項目との対応が壊れた回答を確認済み扱いしない。
 - 公開画面には要点・資料名・ページ・所在箇所だけを渡す。元PDF、抽出全文、レビュー用引用、ローカルパス、認証情報は含めない。
 - ローカルの`build_oral_data.js`は検証と初回登録用JSONの生成だけを行う。Sheetへの自動上書きはしない。運用開始後の更新は、対象タブの最新データを取得・バックアップしてから、変更するID／セルだけを更新する。
