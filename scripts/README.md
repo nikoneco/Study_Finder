@@ -69,11 +69,15 @@ The sync refuses missing questions, duplicate IDs, duplicate canonical answers, 
 ```powershell
 python -X utf8 scripts\prepare_oral_assessment.py
 python -X utf8 scripts\test_oral_assessment.py
+python -X utf8 scripts\audit_oral_prompts.py
+node scripts\audit_oral_presentation.js
 ```
 
 The exact input is `標準問題集/737-800 評価シート (REV-3).pdf`, not the written question collection. It indexes all 58 pages: 55 main questions (照査項目 / sections), each containing its numbered subquestions (279 assessment rows in total). Supplements and conditions remain inside the same subquestion; the index does not generate question wording or answers. Original item numbers, duplicate numbers, mixed LEVEL I/II, subheadings, conditions, REF text and PDF-page context are preserved. Do not expand shorthand REF values or invent blank references before manual verification.
 
 Output `data/oral/assessment_rev3.json` and preparation notes are ignored and local-only. Never embed them in `docs`, public `web` assets or the written `PreparedAtaData.gs`.
+
+`audit_oral_prompts.py` independently compares every numbered child's text through pypdf and pdfplumber, allowing only whitespace and list-marker placement differences. It is read-only, prints IDs/counts rather than source text, and requires the current source hash/index to agree. `audit_oral_presentation.js` checks that the UI retains all meaningful source characters and answer-point ownership without mutating original prompt indexes. It uses private initial-registration files as a local regression fixture, not as authority to overwrite live Sheets. Before production edits, compare the latest Sheet separately. The original four bullet-only lines are retained in data but not rendered; 47 same-level wrapped continuations are joined in the current REV-3 display.
 
 ## Oral sources, reviewed answers and initial registration
 

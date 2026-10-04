@@ -55,6 +55,7 @@ function bundle(id, count = 2) {
 
 (async () => {
   assert(!html.includes('Codexが資料を基に整理した学習用の回答です。'), 'Removed disclaimer returned');
+  assert(!html.includes('id="oralAta"'), 'Oral ATA selector must not return');
   const combined = harness('#oral');
   const start = catalog();
   start.data.initialBundle = bundle('A').data;
@@ -110,8 +111,45 @@ function bundle(id, count = 2) {
   assert.equal(h.nodes.oralFilterCount.textContent, '1 / 2大問を表示');
   h.nodes.oralSearch.value = ''; h.nodes.oralGroup.value = 'System'; h.nodes.oralGroup.fire('change'); await flush();
   assert.equal(h.nodes.oralQuestionHeading.textContent, 'A question 1');
-  h.nodes.oralAta.value = '29'; h.nodes.oralAta.fire('change');
-  assert.equal(h.nodes.oralWorkspace.hidden, true, 'group and ATA filters combine');
+  h.nodes.oralSearch.value = 'ATA29'; h.nodes.oralSearch.fire('input');
+  assert.equal(h.nodes.oralWorkspace.hidden, true, 'group and text filters combine; ATA stays searchable');
+
+  const presentation = harness('#oral');
+  const formatted = bundle('A', 1);
+  formatted.data.items[0].prompts = [
+    { text: 'Main condition', level: 'I' },
+    { text: '・ Safety condition。', level: 'I' },
+    { text: ' ・ ', level: 'I' },
+    { text: '・ Long statement describing an', level: 'I' },
+    { text: 'additional requirement。', level: 'I' },
+    { text: '・ Literal component acronym', level: 'I' },
+    { text: 'Other level condition。', level: 'II' },
+    { text: '  ', level: 'II' }
+  ];
+  formatted.data.items[0].answer.points[0].promptIndexes = [1, 2, 3, 4, 5, 6];
+  const original = JSON.stringify(formatted.data.items[0]);
+  const presentedStart = catalog(); presentedStart.data.initialBundle = formatted.data;
+  presentation.calls[0].success(presentedStart); await flush();
+  const visiblePrompts = presentation.nodes.oralPrompts.children;
+  assert.equal(visiblePrompts.length, 5, 'hide blank bullets and join only consecutive same-level continuations');
+  assert(visiblePrompts[2].textContent.includes('Long statement describing an additional requirement。'));
+  assert(visiblePrompts[3].textContent.includes('Literal component acronym'));
+  assert(visiblePrompts[4].textContent.includes('Other level condition。'), 'never join across LEVEL changes');
+  assert(!visiblePrompts.some(node => node.textContent.includes('・')), 'use one HTML list marker, not duplicated PDF bullets');
+  assert(presentation.nodes.oralAnswerPoints.textContent.includes('Safety condition。 ／ Long statement describing an additional requirement。'));
+  assert(!presentation.nodes.oralAnswerPoints.textContent.includes(' ／ ・'), 'bindings must not show blank bullet entries');
+  assert.equal(JSON.stringify(formatted.data.items[0]), original, 'presentation must not modify original prompt indexes or answers');
+
+  // Answer points may bind only part of a wrapped source condition: never pull
+  // another point's words into that point or join nonconsecutive source indexes.
+  const isolated = harness('#oral');
+  const partialBindings = bundle('A', 1);
+  partialBindings.data.items[0].prompts = formatted.data.items[0].prompts;
+  partialBindings.data.items[0].answer.points[0].promptIndexes = [3, 6];
+  const isolatedStart = catalog(); isolatedStart.data.initialBundle = partialBindings.data;
+  isolated.calls[0].success(isolatedStart); await flush();
+  assert(isolated.nodes.oralAnswerPoints.textContent.includes('Long statement describing an ／ Other level condition。'));
+  assert(!isolated.nodes.oralAnswerPoints.textContent.includes('additional requirement'), 'do not borrow unbound source text');
 
   const failed = harness('#oral');
   failed.calls[0].failure({ message: 'Connection failed' }); await flush();
@@ -152,5 +190,5 @@ function bundle(id, count = 2) {
   mismatch.calls[1].success(wrongRevision); await flush();
   assert(mismatch.nodes.oralStatusText.textContent.includes('学習データが更新'));
   assert.equal(mismatch.nodes.oralWorkspace.hidden, true);
-  console.log(JSON.stringify({ oralUi: 'ok', verified: ['lazy loading', 'parent ownership', 'duplicate numbers', 'mixed levels and conditions', 'answer reveal', 'navigation bounds', 'sources and gaps', 'text-only rendering', 'mode state retention', 'combined filtering', 'out-of-order success/failure', 'empty catalog', 'error/retry', 'timeout', 'revision mismatch'], browserValidation: 'delegated to root' }));
+  console.log(JSON.stringify({ oralUi: 'ok', verified: ['lazy loading', 'parent ownership', 'duplicate numbers', 'mixed levels and conditions', 'blank-bullet presentation', 'wrapped conditions and answer bindings', 'immutable original prompt indexes', 'no oral ATA selector', 'answer reveal', 'navigation bounds', 'sources and gaps', 'text-only rendering', 'mode state retention', 'combined filtering', 'out-of-order success/failure', 'empty catalog', 'error/retry', 'timeout', 'revision mismatch'], browserValidation: 'public browser verification required' }));
 })().catch(error => { console.error(error); process.exitCode = 1; });

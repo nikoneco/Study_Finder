@@ -2,7 +2,7 @@
   'use strict';
   const root = document.getElementById('oralStudy');
   if (!root) return;
-  const ids = ['CatalogCount', 'Group', 'Ata', 'Search', 'Section', 'FilterCount', 'Status', 'Loading', 'StatusText', 'Retry', 'Workspace', 'ParentTitle', 'ParentMeta', 'Items', 'ItemPosition', 'ItemLevels', 'Subheading', 'QuestionHeading', 'Prompts', 'Reveal', 'Answer', 'AnswerStatus', 'AnswerPoints', 'AnswerGaps', 'GapList', 'ScopeNotes', 'ScopeNoteList', 'Previous', 'Next', 'NavigationPosition'];
+  const ids = ['CatalogCount', 'Group', 'Search', 'Section', 'FilterCount', 'Status', 'Loading', 'StatusText', 'Retry', 'Workspace', 'ParentTitle', 'ParentMeta', 'Items', 'ItemPosition', 'ItemLevels', 'Subheading', 'QuestionHeading', 'Prompts', 'Reveal', 'Answer', 'AnswerStatus', 'AnswerPoints', 'AnswerGaps', 'GapList', 'ScopeNotes', 'ScopeNoteList', 'Previous', 'Next', 'NavigationPosition'];
   const ui = Object.fromEntries(ids.map(id => [id, document.getElementById('oral' + id)]));
   const coverageLabels = { supported: '根拠確認済み', partial: '一部の根拠が不足', insufficient: '根拠不足・要確認' };
   const state = { sections: null, catalogLoading: false, catalogRequest: 0, bundleRequest: 0, selectedId: '', revision: '', cache: new Map(), positions: new Map(), retry: null };
@@ -14,6 +14,25 @@
     return node;
   }
   function strings(value) { return Array.isArray(value) ? value.filter(v => typeof v === 'string' && v.trim()) : []; }
+  // Presentation only: keep the source array and its answer-binding indexes intact.
+  function presentedPrompts(prompts, indexes = prompts.map((_prompt, index) => index)) {
+    const result = [];
+    indexes.forEach(index => {
+      if (!Number.isInteger(index) || !prompts[index]) return;
+      const prompt = prompts[index];
+      const raw = typeof prompt.text === 'string' ? prompt.text.trim() : '';
+      if (!raw || raw === '・') return;
+      const text = raw.replace(/^・\s*/, '');
+      const previous = result[result.length - 1];
+      if (previous && previous.lastIndex === index - 1 && previous.level === prompt.level &&
+          !raw.startsWith('・') && !/[。！？.!?]$/.test(previous.text)) {
+        const separator = /[A-Za-z0-9]$/.test(previous.text) && /^[A-Za-z0-9]/.test(text) ? ' ' : '';
+        previous.text += separator + text;
+        previous.lastIndex = index;
+      } else result.push({ text, level: prompt.level, lastIndex: index });
+    });
+    return result;
+  }
   function sorted(values) { return values.slice().sort((a, b) => Number(a.order || 0) - Number(b.order || 0)); }
   function coverage(node, value) {
     const key = Object.prototype.hasOwnProperty.call(coverageLabels, value) ? value : 'insufficient';
@@ -59,7 +78,6 @@
     const query = ui.Search.value.trim().toLocaleLowerCase().normalize('NFKC');
     return (state.sections || []).filter(section => {
       if (ui.Group.value && section.group !== ui.Group.value) return false;
-      if (ui.Ata.value && !strings(section.atas).includes(ui.Ata.value)) return false;
       const searchable = [section.title, section.group, ...strings(section.atas).map(ata => 'ATA' + ata)].join(' ').toLocaleLowerCase().normalize('NFKC');
       return !query || searchable.includes(query);
     });
@@ -82,7 +100,7 @@
       state.selectedId = '';
       state.bundleRequest++;
       ui.Workspace.hidden = true;
-      setStatus('条件に合う大問がありません。分野・ATA・検索語を変更してください。');
+      setStatus('条件に合う大問がありません。分野・検索語を変更してください。');
       return;
     }
     const selected = sections.some(section => section.sectionId === previousId) ? previousId : sections[0].sectionId;
@@ -107,8 +125,7 @@
       const total = state.sections.reduce((count, section) => count + Number(section.itemCount || 0), 0);
       ui.CatalogCount.textContent = state.sections.length + '大問 · ' + total + '小問';
       options(ui.Group, [...new Set(state.sections.map(section => section.group).filter(Boolean))], 'すべての分野');
-      options(ui.Ata, [...new Set(state.sections.flatMap(section => strings(section.atas)))].sort(), 'すべてのATA');
-      [ui.Group, ui.Ata, ui.Search].forEach(node => { node.disabled = !state.sections.length; });
+      [ui.Group, ui.Search].forEach(node => { node.disabled = !state.sections.length; });
       if (!state.sections.length) {
         ui.Section.firstChild.textContent = '口頭試験データは未登録です';
         ui.FilterCount.textContent = '';
@@ -196,7 +213,7 @@
     ui.Subheading.textContent = item.subheading || '';
     ui.QuestionHeading.textContent = item.question;
     ui.Prompts.replaceChildren();
-    item.prompts.forEach(prompt => {
+    presentedPrompts(item.prompts).forEach(prompt => {
       const li = element('li');
       if (prompt.level) li.appendChild(element('span', 'oral-prompt-level', 'LEVEL ' + prompt.level));
       li.appendChild(element('span', '', prompt.text || ''));
@@ -229,9 +246,8 @@
       coverage(badge, point.coverage);
       heading.appendChild(badge);
       section.appendChild(heading);
-      const bindings = (Array.isArray(point.promptIndexes) ? point.promptIndexes : [])
-        .filter(promptIndex => Number.isInteger(promptIndex) && item.prompts[promptIndex])
-        .map(promptIndex => item.prompts[promptIndex].text);
+      const bindings = presentedPrompts(item.prompts, Array.isArray(point.promptIndexes) ? point.promptIndexes : [])
+        .map(prompt => prompt.text);
       if (bindings.length) section.appendChild(element('p', 'oral-source-meta', '対応する評価項目：' + bindings.join(' ／ ')));
       const summary = element('ul', 'oral-point-summary');
       const summaries = strings(point.summary);
@@ -267,7 +283,6 @@
   ui.Next.addEventListener('click', () => selectItem(position().index + 1, true));
   ui.Section.addEventListener('change', () => { if (ui.Section.value) loadSection(ui.Section.value); });
   ui.Group.addEventListener('change', renderSelection);
-  ui.Ata.addEventListener('change', renderSelection);
   ui.Search.addEventListener('input', renderSelection);
   ui.Retry.addEventListener('click', () => { if (state.retry) state.retry(); });
   function activate() { if (window.location.hash === '#oral' && !state.sections && !state.catalogLoading) loadCatalog(); }
