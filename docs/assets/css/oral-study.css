@@ -35,6 +35,7 @@
 .oral-tag, .oral-coverage { font-size: 12px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 5px; line-height: 1.5; }
 .oral-coverage[data-coverage="supported"] { color: var(--good); }
 .oral-coverage[data-coverage="partial"], .oral-coverage[data-coverage="insufficient"] { color: var(--oral-accent); border-color: var(--oral-accent); }
+.oral-coverage[data-provisional="true"], .oral-item-coverage[data-provisional="true"] { color: var(--oral-accent); }
 .oral-subheading { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
 .oral-question-panel h3 { font-size: clamp(18px, 2.3vw, 23px); line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
 .oral-prompts { margin: 22px 0; border-top: 1px solid var(--line); padding-top: 16px; }

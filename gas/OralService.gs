@@ -132,6 +132,14 @@ function oralAnswerForClient_(row, sourcesById, promptCount) {
         gap: '登録された根拠資料を確認できないため、この要点は表示していません。' };
     }
     let gap = String(point.gap || '');
+    // Past examinees' notes can supply a provisional learning answer, never
+    // verified maintenance evidence, even if a Sheet cell says supported.
+    if (coverage !== 'insufficient' && sources.some(function (source) { return source.type === 'PAST'; })) {
+      coverage = 'partial';
+      if (gap.indexOf('裏付け中') < 0) {
+        gap = [gap, '過去受験資料に基づく暫定回答。AMM/SG等の裏付け中。'].filter(Boolean).join(' ');
+      }
+    }
     if (coverage !== 'insufficient' && sources.length !== refs.length) {
       coverage = 'partial';
       gap = [gap, '一部の登録根拠を確認できません。資料の対応を再確認してください。'].filter(Boolean).join(' ');

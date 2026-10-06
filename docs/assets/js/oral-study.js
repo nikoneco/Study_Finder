@@ -37,10 +37,18 @@
     return result;
   }
   function sorted(values) { return values.slice().sort((a, b) => Number(a.order || 0) - Number(b.order || 0)); }
-  function coverage(node, value) {
+  function provisionalPoint(point) {
+    return !!point && point.coverage !== 'insufficient' && strings(point.summary).length > 0 &&
+      Array.isArray(point.sources) && point.sources.some(source => source && source.type === 'PAST');
+  }
+  function provisionalAnswer(answer) {
+    return Array.isArray(answer.points) && answer.points.some(provisionalPoint);
+  }
+  function coverage(node, value, provisional = false) {
     const key = Object.prototype.hasOwnProperty.call(coverageLabels, value) ? value : 'insufficient';
     node.dataset.coverage = key;
-    node.textContent = coverageLabels[key];
+    node.dataset.provisional = String(provisional);
+    node.textContent = provisional ? '裏付け中' : coverageLabels[key];
   }
   function setStatus(message, kind = 'info', retry = null) {
     ui.StatusText.textContent = message;
@@ -219,7 +227,7 @@
       const description = element('span');
       description.appendChild(element('span', 'oral-item-label', item.question));
       const badge = element('span', 'oral-item-coverage');
-      coverage(badge, item.answer.status);
+      coverage(badge, item.answer.status, provisionalAnswer(item.answer));
       description.appendChild(badge);
       button.appendChild(description);
       button.addEventListener('click', () => selectItem(index, true));
@@ -265,8 +273,14 @@
     const wrapper = element('div', 'oral-source');
     wrapper.appendChild(element('p', '', [source.type, source.title, source.reference].filter(Boolean).join(' · ')));
     const location = [];
-    if (source.pdfPage) location.push('PDF p.' + source.pdfPage);
-    if (source.pageCode) location.push('資料ページ ' + source.pageCode);
+    if (source.type === 'PAST') {
+      // DOCX references are logical text locations, not invented PDF pages.
+      if (source.pageCode) location.push(source.pageCode);
+      else if (source.pdfPage) location.push('資料区画 ' + source.pdfPage);
+    } else {
+      if (source.pdfPage) location.push('PDF p.' + source.pdfPage);
+      if (source.pageCode) location.push('資料ページ ' + source.pageCode);
+    }
     if (source.locator) location.push(source.locator);
     if (source.revision) location.push('REV ' + source.revision);
     wrapper.appendChild(element('p', 'oral-source-meta', location.join(' · ')));
@@ -274,7 +288,7 @@
   }
   function renderAnswer(item) {
     const answer = item.answer;
-    coverage(ui.AnswerStatus, answer.status);
+    coverage(ui.AnswerStatus, answer.status, provisionalAnswer(answer));
     ui.AnswerPoints.replaceChildren();
     const points = Array.isArray(answer.points) ? answer.points : [];
     points.forEach((point, index) => {
@@ -282,7 +296,7 @@
       const heading = element('div', 'oral-point-heading');
       heading.appendChild(element('h4', '', '要点 ' + (index + 1)));
       const badge = element('span', 'oral-coverage');
-      coverage(badge, point.coverage);
+      coverage(badge, point.coverage, provisionalPoint(point));
       heading.appendChild(badge);
       section.appendChild(heading);
       const bindings = presentedPrompts(item.prompts, Array.isArray(point.promptIndexes) ? point.promptIndexes : [])

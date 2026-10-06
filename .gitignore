@@ -16,6 +16,7 @@ data/oral/
 tmp/
 *.pdf
 *.docx
+標準問題集/追加MM,EPM資料/
 *.tmp
 *.bak
 __pycache__/

@@ -74,8 +74,13 @@ function validate({ index, sources, entries }, partial = false) {
         const source = sourcesById.get(ref.source_id);
         if (!source && partial) { pendingSources.add(ref.source_id); continue; }
         assert(source, 'Missing source: ' + id + ':' + ref.source_id);
+        if (source.type === 'PAST' && point.coverage !== 'insufficient') {
+          assert.equal(point.coverage, 'partial', 'Past material cannot be verified evidence: ' + id);
+          assert(point.gap.includes('裏付け中'), 'Provisional answer must disclose pending corroboration: ' + id);
+        }
         assert(Number.isInteger(ref.pdf_page) && ref.pdf_page > 0 && ref.pdf_page <= source.pages.length, 'Bad source page: ' + id);
         const page = source.pages[ref.pdf_page - 1];
+        if (source.type === 'PAST') assert.equal(ref.page_code, page.page_code, 'Past paragraph locator mismatch: ' + id);
         assert(typeof ref.evidence_excerpt === 'string' && normalized(ref.evidence_excerpt).length >= 4, 'Missing evidence anchor: ' + id);
         const needle = normalized(ref.evidence_excerpt);
         assert(normalized(page.text).includes(needle) || normalized(page.repaired_text).includes(needle), 'Evidence anchor not on page: ' + id + ':' + ref.source_id + ':' + ref.pdf_page);

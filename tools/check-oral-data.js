@@ -28,6 +28,19 @@ for (const defect of ['duplicate', 'missingPrompt', 'badPage', 'badAnchor', 'wro
   assert.throws(() => validate(bad, true), undefined, defect + ' not rejected');
 }
 assert.throws(() => validate(input, false), /Not all/);
+const provisional = copy();
+provisional.sources[0].type = 'PAST';
+provisional.sources[0].pages[0].page_code = '段落 42';
+provisional.entries[0].answer.points[0].source_refs[0].page_code = '段落 42';
+assert.throws(() => validate(provisional, true), /Past material cannot be verified/);
+provisional.entries[0].answer.status = 'partial';
+provisional.entries[0].answer.points[0].coverage = 'partial';
+provisional.entries[0].answer.points[0].gap = 'Pending';
+assert.throws(() => validate(provisional, true), /pending corroboration/);
+provisional.entries[0].answer.points[0].gap = '過去受験資料に基づく暫定回答。裏付け中。';
+assert.equal(validate(provisional, true).authored, 1);
+provisional.entries[0].answer.points[0].source_refs[0].page_code = '段落 43';
+assert.throws(() => validate(provisional, true), /paragraph locator mismatch/);
 const compiled = compile({ ...input, entries: rows.map(row => entry(row.assessment_id)) });
 assert.equal(compiled.tables.oral_sections.length, 55);
 assert.equal(compiled.tables.oral_questions.length, 279);

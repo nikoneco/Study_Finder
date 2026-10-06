@@ -11,6 +11,7 @@ require('./check-exam-routes');
 require('./check-oral-ui');
 require('./check-oral-service');
 require('./check-oral-data');
+require('./check-oral-sheet-patch');
 require('./check-read-transport');
 
 for (const file of ['index.html', 'manifest.webmanifest', 'sw.js', 'offline.html', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css', 'assets/css/oral-study.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/oral-study.js', 'assets/js/pwa-client.js', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png']) {

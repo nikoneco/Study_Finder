@@ -76,6 +76,17 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   assert.equal(h.nodes.oralReveal.attributes['aria-expanded'], 'true');
   assert(h.nodes.oralAnswerPoints.textContent.includes('PDF p.2'));
   assert(h.nodes.oralAnswerPoints.textContent.includes('<script>not markup</script>'));
+  const pending = harness(); choose(pending);
+  const past = bundle('P');
+  past.items[0].answer.points[0].sources[0] = { type: 'PAST', title: '過去受験資料', reference: '過去受験資料（暫定）', pdfPage: 20, pageCode: '段落 42' };
+  pending.calls[0].success(response(G, [past])); await flush();
+  assert(pending.nodes.oralItems.children[0].textContent.includes('裏付け中'));
+  assert.equal(pending.nodes.oralAnswerStatus.textContent, '裏付け中');
+  assert(pending.nodes.oralAnswerPoints.textContent.includes('裏付け中'));
+  assert(pending.nodes.oralAnswerPoints.textContent.includes('段落 42'));
+  assert(!pending.nodes.oralAnswerPoints.textContent.includes('PDF p.20'));
+  pending.nodes.oralNext.fire('click');
+  assert.notEqual(pending.nodes.oralAnswerStatus.textContent, '裏付け中', 'Provisional badge leaked into primary answer');
   h.nodes.oralNext.fire('click');
   assert.equal(h.nodes.oralAnswer.hidden, true);
   assert.equal(h.nodes.oralNext.disabled, true);
