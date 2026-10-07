@@ -40,15 +40,21 @@
 .oral-question-panel h3 { font-size: clamp(18px, 2.3vw, 23px); line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
 .oral-prompts { margin: 22px 0; border-top: 1px solid var(--line); padding-top: 16px; }
 .oral-study h4 { font-size: 13px; }
-.oral-prompts ul, .oral-point-summary, .oral-gaps ul, .oral-scope-notes ul { padding-left: 20px; margin: 10px 0 0; line-height: 1.9; }
+.oral-prompts ol, .oral-point-summary, .oral-gaps ul, .oral-scope-notes ul { padding-left: 20px; margin: 10px 0 0; line-height: 1.9; }
+.oral-prompts ol { list-style: none; padding-left: 0; }
+.oral-prompt-number { display: block; color: var(--oral-accent); font-size: 12px; font-weight: 700; }
 .oral-prompts li, .oral-point-summary li, .oral-gaps li, .oral-scope-notes li { margin-bottom: 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .oral-prompt-level { display: inline-block; color: var(--muted); font-size: 11px; margin-right: 8px; }
 .oral-question-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin-top: 24px; }
 .oral-question-actions p { margin: 0; }
 .oral-answer-points { margin-top: 22px; }
+.oral-answer-item + .oral-answer-item { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 20px; }
+.oral-answer-item-heading { margin: 0; color: var(--oral-accent); }
+.oral-answer-item-text { line-height: 1.9; margin: 8px 0 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .oral-answer-point + .oral-answer-point { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 20px; }
 .oral-point-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.oral-point-heading h4 { margin: 0; color: var(--muted); }
+.oral-study h5 { font-size: 13px; }
+.oral-point-heading h5 { margin: 0; color: var(--muted); }
 .oral-sources { display: grid; gap: 8px; margin-top: 15px; }
 .oral-source { border-left: 2px solid var(--line); padding: 4px 0 4px 12px; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
 .oral-source p { margin: 0; white-space: pre-wrap; }

@@ -32,9 +32,23 @@
         const separator = /[A-Za-z0-9]$/.test(previous.text) && /^[A-Za-z0-9]/.test(text) ? ' ' : '';
         previous.text += separator + text;
         previous.lastIndex = index;
-      } else result.push({ text, level: prompt.level, lastIndex: index });
+        previous.indexes.push(index);
+      } else result.push({ text, level: prompt.level, lastIndex: index, indexes: [index] });
     });
     return result;
+  }
+  function presentedAnswerItems(prompts, points) {
+    const items = presentedPrompts(prompts).map((prompt, index) => ({ ...prompt, number: index + 1, points: [] }));
+    const unassigned = [];
+    points.forEach((point, pointIndex) => {
+      const bindings = Array.isArray(point.promptIndexes) ? point.promptIndexes : [];
+      // A summary has no finer binding: repeat its full point for every owned item.
+      const owners = items.filter(item => item.indexes.some(index => bindings.includes(index)));
+      const entry = { point, pointIndex, itemNumbers: owners.map(item => item.number) };
+      if (owners.length) owners.forEach(item => item.points.push(entry));
+      else unassigned.push(entry);
+    });
+    return { items, unassigned };
   }
   function sorted(values) { return values.slice().sort((a, b) => Number(a.order || 0) - Number(b.order || 0)); }
   function provisionalPoint(point) {
@@ -260,8 +274,10 @@
     ui.Subheading.textContent = item.subheading || '';
     ui.QuestionHeading.textContent = item.question;
     ui.Prompts.replaceChildren();
-    presentedPrompts(item.prompts).forEach(prompt => {
+    presentedPrompts(item.prompts).forEach((prompt, index) => {
       const li = element('li');
+      li.dataset.itemNumber = String(index + 1);
+      li.appendChild(element('span', 'oral-prompt-number', '項目 ' + (index + 1)));
       if (prompt.level) li.appendChild(element('span', 'oral-prompt-level', 'LEVEL ' + prompt.level));
       li.appendChild(element('span', '', prompt.text || ''));
       ui.Prompts.appendChild(li);
@@ -286,37 +302,52 @@
     wrapper.appendChild(element('p', 'oral-source-meta', location.join(' · ')));
     return wrapper;
   }
+  function renderPoint(entry) {
+    const point = entry.point;
+    const section = element('div', 'oral-answer-point');
+    const heading = element('div', 'oral-point-heading');
+    heading.appendChild(element('h5', '', '回答の要点'));
+    const badge = element('span', 'oral-coverage');
+    coverage(badge, point.coverage, provisionalPoint(point));
+    heading.appendChild(badge);
+    section.appendChild(heading);
+    if (entry.itemNumbers.length > 1) section.appendChild(element('p', 'oral-source-meta', '項目 ' + entry.itemNumbers.join('・') + ' に共通する回答'));
+    const summary = element('ul', 'oral-point-summary');
+    const summaries = strings(point.summary);
+    summaries.forEach(text => summary.appendChild(element('li', '', text)));
+    section.appendChild(summary);
+    const sources = element('div', 'oral-sources');
+    if (Array.isArray(point.sources) && point.sources.length) {
+      sources.setAttribute('aria-label', 'この要点の根拠資料');
+      sources.appendChild(element('h5', '', '根拠資料'));
+      point.sources.forEach(source => sources.appendChild(renderSource(source)));
+    } else sources.appendChild(element('p', 'exam-note', 'この要点を裏付ける資料は未確認です。'));
+    section.appendChild(sources);
+    if (point.gap) section.appendChild(element('p', 'oral-point-gap', '未確認：' + point.gap));
+    else if (!summaries.length) section.appendChild(element('p', 'oral-point-gap', 'この要点の回答を確定できる根拠が不足しています。'));
+    return section;
+  }
   function renderAnswer(item) {
     const answer = item.answer;
     coverage(ui.AnswerStatus, answer.status, provisionalAnswer(answer));
     ui.AnswerPoints.replaceChildren();
     const points = Array.isArray(answer.points) ? answer.points : [];
-    points.forEach((point, index) => {
-      const section = element('section', 'oral-answer-point');
-      const heading = element('div', 'oral-point-heading');
-      heading.appendChild(element('h4', '', '要点 ' + (index + 1)));
-      const badge = element('span', 'oral-coverage');
-      coverage(badge, point.coverage, provisionalPoint(point));
-      heading.appendChild(badge);
-      section.appendChild(heading);
-      const bindings = presentedPrompts(item.prompts, Array.isArray(point.promptIndexes) ? point.promptIndexes : [])
-        .map(prompt => prompt.text);
-      if (bindings.length) section.appendChild(element('p', 'oral-source-meta', '対応する評価項目：' + bindings.join(' ／ ')));
-      const summary = element('ul', 'oral-point-summary');
-      const summaries = strings(point.summary);
-      summaries.forEach(text => summary.appendChild(element('li', '', text)));
-      section.appendChild(summary);
-      const sources = element('div', 'oral-sources');
-      if (Array.isArray(point.sources) && point.sources.length) {
-        sources.setAttribute('aria-label', 'この要点の根拠資料');
-        sources.appendChild(element('h4', '', '根拠資料'));
-        point.sources.forEach(source => sources.appendChild(renderSource(source)));
-      } else sources.appendChild(element('p', 'exam-note', 'この要点を裏付ける資料は未確認です。'));
-      section.appendChild(sources);
-      if (point.gap) section.appendChild(element('p', 'oral-point-gap', '未確認：' + point.gap));
-      else if (!summaries.length) section.appendChild(element('p', 'oral-point-gap', 'この要点の回答を確定できる根拠が不足しています。'));
+    const presentation = presentedAnswerItems(item.prompts, points);
+    presentation.items.forEach(prompt => {
+      const section = element('section', 'oral-answer-item');
+      section.dataset.itemNumber = String(prompt.number);
+      section.appendChild(element('h4', 'oral-answer-item-heading', '項目 ' + prompt.number));
+      section.appendChild(element('p', 'oral-answer-item-text', prompt.text));
+      prompt.points.forEach(entry => section.appendChild(renderPoint(entry)));
+      if (!prompt.points.length) section.appendChild(element('p', 'oral-point-gap', 'この項目に対応する回答は未確認です。根拠資料の確認が必要です。'));
       ui.AnswerPoints.appendChild(section);
     });
+    if (presentation.unassigned.length) {
+      const section = element('section', 'oral-answer-item');
+      section.appendChild(element('h4', 'oral-answer-item-heading', '項目との対応が未確認の回答'));
+      presentation.unassigned.forEach(entry => section.appendChild(renderPoint(entry)));
+      ui.AnswerPoints.appendChild(section);
+    }
     if (!points.length) ui.AnswerPoints.appendChild(element('p', 'oral-point-gap', '回答の要点がまだ登録されていません。根拠資料の確認が必要です。'));
     const gaps = strings(answer.gaps);
     ui.GapList.replaceChildren(...gaps.map(gap => element('li', '', gap)));

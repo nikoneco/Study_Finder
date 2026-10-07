@@ -4,6 +4,8 @@ const vm = require('vm');
 const assert = require('assert/strict');
 const source = fs.readFileSync(path.join(__dirname, '..', 'web', 'oral-study.js'), 'utf8');
 const html = fs.readFileSync(path.join(__dirname, '..', 'web', 'exam-modes.html'), 'utf8');
+const helpers = vm.createContext({});
+vm.runInContext(source.slice(source.indexOf('  function presentedPrompts('), source.indexOf('  function sorted(')), helpers);
 class Node {
   constructor(tag = 'div') { this.tagName = tag; this.children = []; this.dataset = {}; this.attributes = {}; this.events = {}; this.hidden = false; this.disabled = false; this.value = ''; this._text = ''; }
   get firstChild() { return this.children[0]; }
@@ -125,12 +127,88 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   assert(visible[2].textContent.includes('Long statement describing an additional requirement。'));
   assert(visible[4].textContent.includes('Other level condition。'));
   assert(!visible.some(n => n.textContent.includes('・')));
-  assert(presentation.nodes.oralAnswerPoints.textContent.includes('Safety condition。 ／ Long statement describing an additional requirement。'));
+  assert.deepEqual(visible.map(n => n.firstChild.textContent), ['項目 1', '項目 2', '項目 3', '項目 4', '項目 5']);
+  assert(presentation.nodes.oralAnswerPoints.textContent.includes('項目 2・3・4・5 に共通する回答'));
+  assert.equal(presentation.nodes.oralAnswerPoints.children.length, visible.length);
   assert.equal(JSON.stringify(formatted), original);
   const isolated = harness(); choose(isolated);
   const partial = JSON.parse(original); partial.items[0].answer.points[0].promptIndexes = [3, 6];
   isolated.calls[0].success(response(G, [partial])); await flush();
-  assert(!isolated.nodes.oralAnswerPoints.textContent.includes('additional requirement'));
+  assert(!helpers.presentedPrompts(partial.items[0].prompts, [3, 6]).map(p => p.text).join('').includes('additional requirement'), 'Subset presentation must not pull unbound continuations');
+  assert(isolated.nodes.oralAnswerPoints.children[2].textContent.includes('additional requirement'), 'Folded item heading retains its complete condition');
+  assert(isolated.nodes.oralAnswerPoints.textContent.includes('項目 3・5 に共通する回答'));
+  async function shownItem(prompts, points, status = 'supported') {
+    const data = bundle('T', G, 1);
+    data.items[0].prompts = prompts;
+    data.items[0].answer = { status, points, gaps: ['Global gap'], scopeNotes: ['Global scope'] };
+    const before = JSON.stringify(data);
+    const view = harness(); choose(view);
+    view.calls[0].success(response(G, [data])); await flush();
+    assert.equal(JSON.stringify(data), before, 'Presentation changed source prompts/answers');
+    assert.equal(view.calls.length, 1, 'Answer grouping must not make an API call');
+    assert.equal(view.nodes.oralGapList.textContent, 'Global gap');
+    assert.equal(view.nodes.oralScopeNoteList.textContent, 'Global scope');
+    return view.nodes;
+  }
+  const four = [1, 2, 3, 4].map(n => ({ text: '・ Condition ' + n + '。', level: 'I' }));
+  const point = { promptIndexes: [0, 1, 2, 3], summary: ['Full answer one <script>literal</script>', 'Full answer two'], coverage: 'partial', sources: [{ type: 'AMM', title: 'Manual <img>', pdfPage: 9 }], gap: 'Point gap <b>literal</b>' };
+  const shared = await shownItem(four, [point]);
+  assert.deepEqual(shared.oralAnswerPoints.children.map(section => section.firstChild.textContent), ['項目 1', '項目 2', '項目 3', '項目 4']);
+  shared.oralAnswerPoints.children.forEach((section, index) => {
+    assert.equal(section.dataset.itemNumber, String(index + 1));
+    assert.equal(shared.oralPrompts.children[index].dataset.itemNumber, section.dataset.itemNumber);
+    assert.equal(section.children[1].textContent, 'Condition ' + (index + 1) + '。');
+    for (const value of [...point.summary, 'Manual <img>', 'PDF p.9', point.gap, '項目 1・2・3・4 に共通する回答']) assert(section.textContent.includes(value), 'Shared answer content missing: ' + value);
+    assert.equal(section.children[2].firstChild.children[1].textContent, '一部の根拠が不足');
+  });
+  const separate = await shownItem(four, four.map((_p, index) => ({ ...point, promptIndexes: [index], summary: ['Only answer ' + (index + 1)] })).reverse());
+  separate.oralAnswerPoints.children.forEach((section, index) => {
+    assert(section.textContent.includes('Only answer ' + (index + 1)), 'Point array order overrode item numbering');
+    assert(!section.textContent.includes('に共通する回答'));
+    assert.equal(section.children.length, 3, 'Unrelated point assigned to item');
+  });
+  const wrappedPrompts = [{ text: '・ Wrapped condition starts', level: 'I' }, { text: 'and continues。', level: 'I' }];
+  const wrapped = await shownItem(wrappedPrompts, [
+    { ...point, promptIndexes: [0], coverage: 'supported', summary: ['Primary content'], gap: '' },
+    { ...point, promptIndexes: [1], coverage: 'partial', summary: ['Past content'], sources: [{ type: 'PAST', title: 'Past manual', pdfPage: 20, pageCode: '段落 42' }], gap: '裏付け中' }
+  ], 'partial');
+  assert.equal(wrapped.oralPrompts.children.length, 1);
+  const folded = wrapped.oralAnswerPoints.firstChild;
+  assert.equal(folded.children.length, 4, 'Multiple owners of a folded item must both render');
+  assert(folded.children[1].textContent.includes('starts and continues。'));
+  assert.equal(folded.children[2].firstChild.children[1].textContent, '根拠確認済み');
+  assert.equal(folded.children[3].firstChild.children[1].textContent, '裏付け中');
+  assert(folded.children[2].textContent.includes('Primary content') && !folded.children[2].textContent.includes('裏付け中'));
+  assert(folded.children[3].textContent.includes('Past content') && folded.children[3].textContent.includes('段落 42'));
+  assert(!folded.children[3].textContent.includes('PDF p.20'));
+  const blanks = [{ text: ' ・ ', level: 'I' }, { text: '', level: 'I' }, { text: '  ', level: 'I' }, { text: '・ Valid。', level: 'I' }];
+  const edge = await shownItem(blanks, [
+    { ...point, promptIndexes: [3, 3, -1, 99, '3', null], summary: ['Valid binding'] },
+    { ...point, promptIndexes: [0, 1, 2], summary: ['Hidden-only binding'] },
+    { ...point, promptIndexes: [-1, 99, '3', null, 3.5], summary: ['Invalid binding'] },
+    { ...point, promptIndexes: undefined, summary: ['No binding'] }
+  ]);
+  assert.equal(edge.oralPrompts.children.length, 1);
+  assert.equal(edge.oralAnswerPoints.children.length, 2);
+  assert.equal(edge.oralAnswerPoints.firstChild.firstChild.textContent, '項目 1');
+  assert.equal(edge.oralAnswerPoints.firstChild.children.length, 3, 'Repeated binding duplicated point');
+  assert(edge.oralAnswerPoints.firstChild.textContent.includes('Valid binding'));
+  const unmatched = edge.oralAnswerPoints.children[1];
+  assert.equal(unmatched.firstChild.textContent, '項目との対応が未確認の回答');
+  for (const value of ['Hidden-only binding', 'Invalid binding', 'No binding']) assert(unmatched.textContent.includes(value));
+  assert(!unmatched.textContent.includes('に共通する回答'));
+  const insufficient = await shownItem(four.slice(0, 1), [{ promptIndexes: [0], summary: [], coverage: 'insufficient', sources: [], gap: '' }], 'insufficient');
+  assert(insufficient.oralAnswerPoints.textContent.includes('根拠が不足しています'));
+  assert.equal(insufficient.oralAnswerPoints.firstChild.children[2].firstChild.children[1].textContent, '根拠不足・要確認');
+  const noPoints = await shownItem(four.slice(0, 1), [], 'insufficient');
+  assert(noPoints.oralAnswerPoints.textContent.includes('この項目に対応する回答は未確認'));
+  assert(noPoints.oralAnswerPoints.textContent.includes('回答の要点がまだ登録されていません'));
+  const noPrompts = await shownItem(blanks.slice(0, 3), [{ ...point, promptIndexes: [], summary: ['Retained unmatched answer'] }]);
+  assert.equal(noPrompts.oralPrompts.children.length, 0);
+  assert(noPrompts.oralAnswerPoints.textContent.includes('Retained unmatched answer'));
+  const tags = node => [node.tagName, ...node.children.flatMap(tags)];
+  assert(!tags(shared.oralAnswerPoints).some(tag => ['script', 'img', 'b'].includes(tag)), 'Source content became markup');
+  assert(!/innerHTML|insertAdjacentHTML/.test(source), 'Rendering must remain text-only');
   const race = harness(); choose(race, G); choose(race, H);
   race.calls[1].success(response(H, [bundle('C', H)])); await flush();
   race.calls[0].success(response()); await flush();
@@ -174,5 +252,5 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   updated.calls[1].success(changed); await flush(); assert(updated.nodes.oralStatusText.textContent.includes('学習データが更新'));
   assert(updated.nodes.oralWorkspace.hidden);
   const invalid = harness(); choose(invalid, 'すべての分野'); await flush(); assert.equal(invalid.calls.length, 0);
-  console.log(JSON.stringify({ oralUi: 'ok', verified: ['zero-request placeholder', 'one group API', 'instant parent switching', 'page-local cache', 'reload freshness', 'parent/child/reveal retention', 'text-only sources/gaps', 'immutable prompt presentation', 'search', 'races and deduplication', 'cleared selection', 'retry/timeout', 'atomic validation', 'revision guard'], browserValidation: 'public browser verification required' }));
+  console.log(JSON.stringify({ oralUi: 'ok', verified: ['zero-request placeholder', 'one group API', 'instant parent switching', 'page-local cache', 'reload freshness', 'parent/child/reveal retention', 'matching item numbering', 'full shared answers in every item', 'folded item with multiple owners', 'unmatched/invalid bindings retained', 'isolated point coverage/PAST', 'empty/insufficient fallback', 'text-only sources/gaps', 'immutable prompt presentation', 'search', 'races and deduplication', 'cleared selection', 'retry/timeout', 'atomic validation', 'revision guard'], browserValidation: 'public browser verification required' }));
 })().catch(error => { console.error(error); process.exitCode = 1; });
