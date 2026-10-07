@@ -27,8 +27,11 @@
       if (!raw || raw === '・') return;
       const text = raw.replace(/^・\s*/, '');
       const previous = result[result.length - 1];
+      // REV-3 p.11 has a bullet before the verb-only continuation of
+      // "Wing ... CK要領を". Keep the original indexes, but show one sentence.
+      const verbContinuation = previous && /を$/.test(previous.text) && text === '述べられる。';
       if (previous && previous.lastIndex === index - 1 && previous.level === prompt.level &&
-          !raw.startsWith('・') && !/[。！？.!?]$/.test(previous.text)) {
+          (!raw.startsWith('・') || verbContinuation) && !/[。！？.!?]$/.test(previous.text)) {
         const separator = /[A-Za-z0-9]$/.test(previous.text) && /^[A-Za-z0-9]/.test(text) ? ' ' : '';
         previous.text += separator + text;
         previous.lastIndex = index;
@@ -42,10 +45,11 @@
     const unassigned = [];
     points.forEach((point, pointIndex) => {
       const bindings = Array.isArray(point.promptIndexes) ? point.promptIndexes : [];
-      // A summary has no finer binding: repeat its full point for every owned item.
+      // Item-specific content is authored in Sheets. A multi-item point does not
+      // establish which of its clauses answers each item, so retain it separately.
       const owners = items.filter(item => item.indexes.some(index => bindings.includes(index)));
-      const entry = { point, pointIndex, itemNumbers: owners.map(item => item.number) };
-      if (owners.length) owners.forEach(item => item.points.push(entry));
+      const entry = { point, pointIndex, itemNumbers: owners.length === 1 ? [owners[0].number] : [] };
+      if (owners.length === 1) owners[0].points.push(entry);
       else unassigned.push(entry);
     });
     return { items, unassigned };
@@ -311,7 +315,6 @@
     coverage(badge, point.coverage, provisionalPoint(point));
     heading.appendChild(badge);
     section.appendChild(heading);
-    if (entry.itemNumbers.length > 1) section.appendChild(element('p', 'oral-source-meta', '項目 ' + entry.itemNumbers.join('・') + ' に共通する回答'));
     const summary = element('ul', 'oral-point-summary');
     const summaries = strings(point.summary);
     summaries.forEach(text => summary.appendChild(element('li', '', text)));

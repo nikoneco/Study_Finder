@@ -11,10 +11,11 @@ assert(start >= 0 && end > start, 'Presentation helper missing');
 const context = vm.createContext({});
 vm.runInContext(source.slice(start, end), context);
 const index = JSON.parse(fs.readFileSync(path.join(root, 'data/oral/assessment_rev3.json'), 'utf8'));
-const canonical = JSON.parse(fs.readFileSync(path.join(root, 'data/oral/compiled.json'), 'utf8'));
+const compiledFile = process.argv[2] ? path.resolve(process.argv[2]) : path.join(root, 'data/oral/compiled.json');
+const canonical = JSON.parse(fs.readFileSync(compiledFile, 'utf8'));
 const answers = new Map(canonical.tables.oral_answers.map(row => [row.assessment_id, row]));
 const characters = text => text.replace(/[\s・]+/g, '');
-let children = 0, rawLines = 0, displayedLines = 0, blankLines = 0, boundPoints = 0, repeatedPoints = 0;
+let children = 0, rawLines = 0, displayedLines = 0, blankLines = 0, boundPoints = 0;
 for (const section of index.sections) for (const item of section.assessment_rows) {
   const prompts = item.content_lines;
   const answer = answers.get(item.assessment_id);
@@ -28,6 +29,7 @@ for (const section of index.sections) for (const item of section.assessment_rows
   const pointsBefore = JSON.stringify(points);
   const presentation = context.presentedAnswerItems(prompts, points);
   assert.equal(presentation.items.length, presented.length);
+  assert.equal(presentation.unassigned.length, 0, 'Answer still spans unrelated display items or has no item: ' + item.assessment_id);
   presentation.items.forEach((shown, index) => {
     assert.equal(shown.number, index + 1, 'Item numbering/order changed: ' + item.assessment_id);
     assert.equal(shown.text, presented[index].text);
@@ -35,6 +37,7 @@ for (const section of index.sections) for (const item of section.assessment_rows
     const expected = points.map((point, pointIndex) => ({ point, pointIndex }))
       .filter(({ point }) => shown.indexes.some(raw => point.prompt_indexes.includes(raw)));
     assert.deepEqual(Array.from(shown.points, entry => entry.pointIndex), expected.map(entry => entry.pointIndex), 'Dropped or invented item ownership: ' + item.assessment_id);
+    assert.equal(shown.points.length, 1, 'Expected one individually reviewed point per display item: ' + item.assessment_id + ':' + shown.number);
     shown.points.forEach(entry => {
       assert.strictEqual(entry.point, points[entry.pointIndex], 'Summary/source/gap changed');
     });
@@ -47,12 +50,12 @@ for (const section of index.sections) for (const item of section.assessment_rows
     assert.equal(characters(bound.map(p => p.text).join('')), characters(bindings.map(i => prompts[i].text).join('')), 'Changed point ownership: ' + item.assessment_id);
     const expectedOwners = presentation.items.filter(shown => shown.indexes.some(raw => bindings.includes(raw))).map(shown => shown.number);
     const entries = presentation.items.flatMap(shown => shown.points.filter(entry => entry.pointIndex === pointIndex));
-    assert.equal(entries.length, expectedOwners.length, 'Shared answer not repeated in every item');
-    entries.forEach(entry => assert.deepEqual(Array.from(entry.itemNumbers), Array.from(expectedOwners), 'Shared item label differs'));
+    assert.equal(expectedOwners.length, 1, 'Point must answer one display item: ' + item.assessment_id);
+    assert.equal(entries.length, 1, 'Item-specific point lost or duplicated');
+    entries.forEach(entry => assert.deepEqual(Array.from(entry.itemNumbers), Array.from(expectedOwners), 'Item number differs'));
     const unmatched = presentation.unassigned.filter(entry => entry.pointIndex === pointIndex);
     assert.equal(unmatched.length, expectedOwners.length ? 0 : 1, 'Unmatched point dropped or spuriously assigned');
     unmatched.forEach(entry => assert.strictEqual(entry.point, point, 'Unmatched summary/source/gap changed'));
-    repeatedPoints += Math.max(0, entries.length - 1);
     boundPoints++;
   }
   assert.equal(JSON.stringify({ prompts, answer }), before, 'Mutated original data');
@@ -63,4 +66,4 @@ for (const section of index.sections) for (const item of section.assessment_rows
 assert.equal(children, 279);
 assert.equal(rawLines, 714);
 assert.equal(blankLines, 4);
-console.log(JSON.stringify({ status: 'ok', children, rawLines, blankLines, displayedLines, wrappedContinuations: rawLines - blankLines - displayedLines, boundPoints, repeatedPoints, verified: ['all meaningful characters retained', 'matching item numbering/order', 'all original point ownership retained', 'full shared answers repeated', 'no dropped summary/source/gap', 'no data mutation'] }));
+console.log(JSON.stringify({ status: 'ok', children, rawLines, blankLines, displayedLines, wrappedContinuations: rawLines - blankLines - displayedLines, boundPoints, verified: ['all meaningful characters retained', 'matching item numbering/order', 'one reviewed point per display item', 'no automatic answer repetition', 'no data mutation'], semanticReview: 'Meaning and evidence alignment require a separate human or agent review' }));

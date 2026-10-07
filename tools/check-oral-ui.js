@@ -128,15 +128,17 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   assert(visible[4].textContent.includes('Other level condition。'));
   assert(!visible.some(n => n.textContent.includes('・')));
   assert.deepEqual(visible.map(n => n.firstChild.textContent), ['項目 1', '項目 2', '項目 3', '項目 4', '項目 5']);
-  assert(presentation.nodes.oralAnswerPoints.textContent.includes('項目 2・3・4・5 に共通する回答'));
-  assert.equal(presentation.nodes.oralAnswerPoints.children.length, visible.length);
+  assert(!presentation.nodes.oralAnswerPoints.textContent.includes('に共通する回答'));
+  assert.equal(presentation.nodes.oralAnswerPoints.children.length, visible.length + 1);
+  assert.equal(presentation.nodes.oralAnswerPoints.children[5].firstChild.textContent, '項目との対応が未確認の回答');
   assert.equal(JSON.stringify(formatted), original);
   const isolated = harness(); choose(isolated);
   const partial = JSON.parse(original); partial.items[0].answer.points[0].promptIndexes = [3, 6];
   isolated.calls[0].success(response(G, [partial])); await flush();
   assert(!helpers.presentedPrompts(partial.items[0].prompts, [3, 6]).map(p => p.text).join('').includes('additional requirement'), 'Subset presentation must not pull unbound continuations');
   assert(isolated.nodes.oralAnswerPoints.children[2].textContent.includes('additional requirement'), 'Folded item heading retains its complete condition');
-  assert(isolated.nodes.oralAnswerPoints.textContent.includes('項目 3・5 に共通する回答'));
+  assert(!isolated.nodes.oralAnswerPoints.children[2].textContent.includes(partial.items[0].answer.points[0].summary[0]), 'Multi-item point was assigned without a clause binding');
+  assert.equal(isolated.nodes.oralAnswerPoints.children[5].firstChild.textContent, '項目との対応が未確認の回答');
   async function shownItem(prompts, points, status = 'supported') {
     const data = bundle('T', G, 1);
     data.items[0].prompts = prompts;
@@ -153,21 +155,33 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   const four = [1, 2, 3, 4].map(n => ({ text: '・ Condition ' + n + '。', level: 'I' }));
   const point = { promptIndexes: [0, 1, 2, 3], summary: ['Full answer one <script>literal</script>', 'Full answer two'], coverage: 'partial', sources: [{ type: 'AMM', title: 'Manual <img>', pdfPage: 9 }], gap: 'Point gap <b>literal</b>' };
   const shared = await shownItem(four, [point]);
-  assert.deepEqual(shared.oralAnswerPoints.children.map(section => section.firstChild.textContent), ['項目 1', '項目 2', '項目 3', '項目 4']);
-  shared.oralAnswerPoints.children.forEach((section, index) => {
+  assert.deepEqual(shared.oralAnswerPoints.children.map(section => section.firstChild.textContent), ['項目 1', '項目 2', '項目 3', '項目 4', '項目との対応が未確認の回答']);
+  shared.oralAnswerPoints.children.slice(0, 4).forEach((section, index) => {
     assert.equal(section.dataset.itemNumber, String(index + 1));
     assert.equal(shared.oralPrompts.children[index].dataset.itemNumber, section.dataset.itemNumber);
     assert.equal(section.children[1].textContent, 'Condition ' + (index + 1) + '。');
-    for (const value of [...point.summary, 'Manual <img>', 'PDF p.9', point.gap, '項目 1・2・3・4 に共通する回答']) assert(section.textContent.includes(value), 'Shared answer content missing: ' + value);
-    assert.equal(section.children[2].firstChild.children[1].textContent, '一部の根拠が不足');
+    point.summary.forEach(value => assert(!section.textContent.includes(value), 'Grouped summary automatically repeated'));
+    assert(section.textContent.includes('この項目に対応する回答は未確認'));
   });
+  for (const value of [...point.summary, 'Manual <img>', 'PDF p.9', point.gap]) assert(shared.oralAnswerPoints.children[4].textContent.includes(value), 'Unresolved content was lost: ' + value);
   const separate = await shownItem(four, four.map((_p, index) => ({ ...point, promptIndexes: [index], summary: ['Only answer ' + (index + 1)] })).reverse());
   separate.oralAnswerPoints.children.forEach((section, index) => {
     assert(section.textContent.includes('Only answer ' + (index + 1)), 'Point array order overrode item numbering');
     assert(!section.textContent.includes('に共通する回答'));
     assert.equal(section.children.length, 3, 'Unrelated point assigned to item');
   });
+  // An explicitly authored shared fact can occur in selected item summaries,
+  // while another item's private detail must never appear beside it.
+  const reviewed = await shownItem(four, four.map((_p, index) => ({ ...point, promptIndexes: [index], summary: index < 2 ? ['Relevant shared precaution', 'Item ' + (index + 1) + ' procedure'] : ['Item ' + (index + 1) + ' limits'] })));
+  assert(reviewed.oralAnswerPoints.children[0].textContent.includes('Relevant shared precaution'));
+  assert(reviewed.oralAnswerPoints.children[1].textContent.includes('Relevant shared precaution'));
+  assert(!reviewed.oralAnswerPoints.children[2].textContent.includes('Relevant shared precaution'));
+  assert(!reviewed.oralAnswerPoints.children[0].textContent.includes('Item 4 limits'));
   const wrappedPrompts = [{ text: '・ Wrapped condition starts', level: 'I' }, { text: 'and continues。', level: 'I' }];
+  const wing = helpers.presentedPrompts([{ text: '・ WingのCK要領を', level: 'I' }, { text: '・ 述べられる。', level: 'I' }, { text: '・ Wing Upperの霜を確認できる。', level: 'I' }]);
+  assert.equal(wing.length, 2, 'A verb-only source continuation became a separate question');
+  assert.equal(wing[0].text, 'WingのCK要領を述べられる。');
+  assert.deepEqual(Array.from(wing[0].indexes), [0, 1]);
   const wrapped = await shownItem(wrappedPrompts, [
     { ...point, promptIndexes: [0], coverage: 'supported', summary: ['Primary content'], gap: '' },
     { ...point, promptIndexes: [1], coverage: 'partial', summary: ['Past content'], sources: [{ type: 'PAST', title: 'Past manual', pdfPage: 20, pageCode: '段落 42' }], gap: '裏付け中' }
@@ -252,5 +266,5 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   updated.calls[1].success(changed); await flush(); assert(updated.nodes.oralStatusText.textContent.includes('学習データが更新'));
   assert(updated.nodes.oralWorkspace.hidden);
   const invalid = harness(); choose(invalid, 'すべての分野'); await flush(); assert.equal(invalid.calls.length, 0);
-  console.log(JSON.stringify({ oralUi: 'ok', verified: ['zero-request placeholder', 'one group API', 'instant parent switching', 'page-local cache', 'reload freshness', 'parent/child/reveal retention', 'matching item numbering', 'full shared answers in every item', 'folded item with multiple owners', 'unmatched/invalid bindings retained', 'isolated point coverage/PAST', 'empty/insufficient fallback', 'text-only sources/gaps', 'immutable prompt presentation', 'search', 'races and deduplication', 'cleared selection', 'retry/timeout', 'atomic validation', 'revision guard'], browserValidation: 'public browser verification required' }));
+  console.log(JSON.stringify({ oralUi: 'ok', verified: ['zero-request placeholder', 'one group API', 'instant parent switching', 'page-local cache', 'reload freshness', 'parent/child/reveal retention', 'matching item numbering', 'no automatic multi-item summary repetition', 'explicit relevant shared clauses', 'folded item with multiple owners', 'unmatched/invalid bindings retained', 'isolated point coverage/PAST', 'empty/insufficient fallback', 'text-only sources/gaps', 'immutable prompt presentation', 'search', 'races and deduplication', 'cleared selection', 'retry/timeout', 'atomic validation', 'revision guard'], browserValidation: 'public browser verification required' }));
 })().catch(error => { console.error(error); process.exitCode = 1; });
