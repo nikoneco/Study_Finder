@@ -15,7 +15,7 @@
 .oral-study select:disabled, .oral-study input:disabled { opacity: .55; }
 .oral-parent-label { margin-top: 16px; }
 .oral-study button { min-height: 44px; }
-.oral-study :is(button, input, select):focus-visible { outline: 3px solid var(--oral-accent); outline-offset: 3px; }
+.oral-study :is(button, input, select, a):focus-visible { outline: 3px solid var(--oral-accent); outline-offset: 3px; }
 .oral-status { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
 .oral-status[data-kind="error"] { color: var(--danger); }
 .oral-loading { width: 100px; height: 5px; accent-color: var(--oral-accent); }
@@ -52,6 +52,12 @@
 .oral-answer-item-heading { margin: 0; color: var(--oral-accent); }
 .oral-answer-item-text { line-height: 1.9; margin: 8px 0 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .oral-answer-point + .oral-answer-point { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 20px; }
+.oral-answer-figure { min-width: 0; margin: 20px 0 0; padding: 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-soft); }
+.oral-figure-link { display: block; min-width: 0; color: var(--oral-accent); text-decoration: none; }
+.oral-figure-link img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 3px; background: #fff; }
+.oral-figure-expand { display: flex; align-items: center; min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.oral-figure-caption { line-height: 1.8; font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.oral-figure-note { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
 .oral-point-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .oral-study h5 { font-size: 13px; }
 .oral-point-heading h5 { margin: 0; color: var(--muted); }

@@ -9,6 +9,8 @@
   // Keeping this tiny list local permits genuinely request-free startup.
   const groups = ['点検要領Ⅰ', '点検要領Ⅱ', '交換・調整', 'Servicing', 'Open / Close・Override・Deactivate', 'SYSTEM：機体', 'SYSTEM：通信・航法・計器', 'SYSTEM：装備', 'SYSTEM：発動機'];
   const state = { sections: [], groupRequest: 0, selectedId: '', revision: '', cache: new Map(), groups: new Map(), pending: new Map(), groupPositions: new Map(), positions: new Map(), retry: null };
+  const figureConfig = window.STUDY_CONFIG && window.STUDY_CONFIG.oralFigures;
+  const figures = figureConfig && figureConfig.schemaVersion === 1 && Array.isArray(figureConfig.figures) ? figureConfig.figures.filter(validFigure) : [];
 
   function element(tag, className, value) {
     const node = document.createElement(tag);
@@ -17,6 +19,49 @@
     return node;
   }
   function strings(value) { return Array.isArray(value) ? value.filter(v => typeof v === 'string' && v.trim()) : []; }
+  function validFigure(figure) {
+    return !!figure && typeof figure.questionId === 'string' && /^oral_rev3_p\d{2}_s\d{2}_r\d{2}$/.test(figure.questionId) &&
+      typeof figure.file === 'string' && /^[a-z0-9][a-z0-9_-]*\.webp$/.test(figure.file) &&
+      Array.isArray(figure.promptIndexes) && figure.promptIndexes.length > 0 &&
+      figure.promptIndexes.every(index => Number.isInteger(index) && index >= 0) && new Set(figure.promptIndexes).size === figure.promptIndexes.length &&
+      ['alt', 'caption'].every(key => typeof figure[key] === 'string' && figure[key].trim() && figure[key].length <= 1200) &&
+      (figure.note === undefined || typeof figure.note === 'string' && figure.note.trim() && figure.note.length <= 1200);
+  }
+  function figuresForItem(item, prompt) {
+    return figures.filter(figure => {
+      const visibleIndexes = presentedPrompts(item.prompts, figure.promptIndexes).flatMap(owner => owner.indexes);
+      return figure.questionId === item.itemId && visibleIndexes.length > 0 && visibleIndexes.every(index => prompt.indexes.includes(index)) &&
+      prompt.points.some(entry => {
+        if (!['supported', 'partial'].includes(entry.point.coverage) || strings(entry.point.summary).length === 0 ||
+            !Array.isArray(entry.point.sources) || !entry.point.sources.some(source => source && typeof source.type === 'string' && source.type.trim())) return false;
+        const indexes = Array.isArray(entry.point.promptIndexes) ? entry.point.promptIndexes : [];
+        // Exact reviewed bindings only. A broader or unresolved point must not
+        // lend its figure to a different item or to an unmatched answer.
+        return indexes.length === figure.promptIndexes.length && figure.promptIndexes.every(index => indexes.includes(index));
+      });
+    });
+  }
+  function renderFigure(figure) {
+    const wrapper = element('figure', 'oral-answer-figure');
+    const link = element('a', 'oral-figure-link');
+    const url = './assets/answer-figures/' + encodeURIComponent(figure.file);
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', figure.caption + '：図を拡大（新しいタブ）');
+    const image = element('img');
+    image.src = url;
+    image.alt = figure.alt;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    link.appendChild(image);
+    link.appendChild(element('span', 'oral-figure-expand', '図を拡大'));
+    wrapper.appendChild(link);
+    const caption = element('figcaption', 'oral-figure-caption', figure.caption);
+    if (figure.note) caption.appendChild(element('span', 'oral-figure-note', figure.note));
+    wrapper.appendChild(caption);
+    return wrapper;
+  }
   // Presentation only: keep the source array and its answer-binding indexes intact.
   function presentedPrompts(prompts, indexes = prompts.map((_prompt, index) => index)) {
     const result = [];
@@ -342,6 +387,7 @@
       section.appendChild(element('h4', 'oral-answer-item-heading', '項目 ' + prompt.number));
       section.appendChild(element('p', 'oral-answer-item-text', prompt.text));
       prompt.points.forEach(entry => section.appendChild(renderPoint(entry)));
+      figuresForItem(item, prompt).forEach(figure => section.appendChild(renderFigure(figure)));
       if (!prompt.points.length) section.appendChild(element('p', 'oral-point-gap', 'この項目に対応する回答は未確認です。根拠資料の確認が必要です。'));
       ui.AnswerPoints.appendChild(section);
     });

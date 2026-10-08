@@ -34,13 +34,14 @@ function createBuildVersion() {
   files.sort().forEach((file) => {
     hash.update(path.relative(ROOT, file).replace(/\\/g, '/'));
     hash.update('\0');
-    hash.update(/\.(js|html|css)$/.test(file) ? fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n') : fs.readFileSync(file));
+    hash.update(/\.(js|html|css|json)$/.test(file) ? fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n') : fs.readFileSync(file));
     hash.update('\0');
   });
   return 'content-' + hash.digest('hex').slice(0, 12);
 }
 
 function main() {
+  const oralFigures = validateOralFigures(JSON.parse(fs.readFileSync(path.join(WEB, 'oral-figures.json'), 'utf8')));
   if (path.resolve(DOCS) !== path.join(ROOT, 'docs') || (fs.existsSync(DOCS) && fs.lstatSync(DOCS).isSymbolicLink())) {
     throw new Error('Refusing unsafe generated docs target');
   }
@@ -55,7 +56,7 @@ function main() {
   write('assets/js/pwa-client.js', buildPwaClient(APP));
   write('assets/css/exam-modes.css', fs.readFileSync(path.join(WEB, 'exam-modes.css'), 'utf8'));
   write('assets/js/exam-modes.js', fs.readFileSync(path.join(WEB, 'exam-modes.js'), 'utf8'));
-  write('assets/js/oral-study.js', fs.readFileSync(path.join(WEB, 'oral-study.js'), 'utf8'));
+  write('assets/js/oral-study.js', 'window.STUDY_CONFIG = ' + JSON.stringify({ oralFigures }) + ';\n' + fs.readFileSync(path.join(WEB, 'oral-study.js'), 'utf8'));
   write('assets/css/oral-study.css', fs.readFileSync(path.join(WEB, 'oral-study.css'), 'utf8'));
   let html = readSource('index.html').replace(/<base\s+target="_top">\s*/i, '');
   html = html.replace(/<\?!=\s*include\('([^']+)'\);\s*\?>/g, (match, name) => {
@@ -316,6 +317,35 @@ function escapeAttr(value) {
     .replace(/>/g, '&gt;');
 }
 
+function validateOralFigures(data, directory = path.join(APP.staticAssetsDir, 'answer-figures')) {
+  const fail = message => { throw new Error('Invalid oral figure metadata: ' + message); };
+  if (!data || data.schemaVersion !== 1 || !Array.isArray(data.figures) ||
+      Object.keys(data).some(key => !['schemaVersion', 'figures'].includes(key))) fail('schema');
+  const seen = new Set();
+  const figures = data.figures.map((figure, index) => {
+    if (!figure || typeof figure !== 'object' || Array.isArray(figure) ||
+        Object.keys(figure).some(key => !['questionId', 'promptIndexes', 'file', 'alt', 'caption', 'note'].includes(key))) fail('fields at ' + index);
+    if (typeof figure.questionId !== 'string' || !/^oral_rev3_p\d{2}_s\d{2}_r\d{2}$/.test(figure.questionId)) fail('question ID at ' + index);
+    if (!Array.isArray(figure.promptIndexes) || !figure.promptIndexes.length ||
+        figure.promptIndexes.some(value => !Number.isInteger(value) || value < 0) ||
+        new Set(figure.promptIndexes).size !== figure.promptIndexes.length) fail('prompt indexes at ' + index);
+    if (typeof figure.file !== 'string' || !/^[a-z0-9][a-z0-9_-]*\.webp$/.test(figure.file)) fail('asset basename at ' + index);
+    const asset = path.join(directory, figure.file);
+    if (!fs.existsSync(asset) || !fs.lstatSync(asset).isFile()) fail('missing or unsafe asset: ' + figure.file);
+    for (const field of ['alt', 'caption', 'note']) {
+      if (field === 'note' && figure[field] === undefined) continue;
+      if (typeof figure[field] !== 'string' || !figure[field].trim() || figure[field].length > 1200) fail(field + ' at ' + index);
+    }
+    const promptIndexes = figure.promptIndexes.slice().sort((a, b) => a - b);
+    const key = figure.questionId + ':' + promptIndexes.join(',') + ':' + figure.file;
+    if (seen.has(key)) fail('duplicate binding at ' + index);
+    seen.add(key);
+    return { questionId: figure.questionId, promptIndexes, file: figure.file, alt: figure.alt.trim(), caption: figure.caption.trim(),
+      ...(figure.note === undefined ? {} : { note: figure.note.trim() }) };
+  });
+  return { schemaVersion: 1, figures };
+}
+
 function buildServiceWorker() {
   const urls = ['', 'index.html', 'offline.html', 'manifest.webmanifest', 'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/css/app.css', 'assets/css/pwa.css', 'assets/css/exam-modes.css', 'assets/css/oral-study.css', 'assets/js/gas-run-shim.js', 'assets/js/app.js', 'assets/js/exam-modes.js', 'assets/js/oral-study.js', 'assets/js/pwa-client.js'].map((file) => PAGES_BASE + file);
   return [
@@ -349,4 +379,5 @@ function buildServiceWorker() {
   ].join('\n');
 }
 
-main();
+module.exports = { validateOralFigures };
+if (require.main === module) main();

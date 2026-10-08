@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "figures": [
+    {
+      "questionId": "oral_rev3_p44_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata22-autoflight-functions.webp",
+      "alt": "AutoflightのGuidance、Stability Augmentation、Thrust Managementと各機能の対応図。",
+      "caption": "Autoflightの3つの役割と、F/D・A/P・Trim・A/Tの対応。DFCSの6 Sub Systemとは別の機能分類。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata22-speed-autopilot-trim.webp",
+      "alt": "FCC A/BからSpeed TrimまたはAutopilot TrimがStabilizer Actuatorを制御する入出力図。",
+      "caption": "A/P OFFではSpeed Trim、A/P ONではA/P Stabilizer Trim。Limit Switch・Cutout Switch・Stabilizer位置のFeedbackも確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata22-trim-command-flow.webp",
+      "alt": "FCCのTrim Up/DownとClutch信号がMain Electric Trim、Column Switch、Cutout Switch、Limit Switchを通る回路図。",
+      "caption": "緑はBrake Release/Clutch、桃色はTrim Up、水色はTrim Downの経路。Main Electric TrimによるCrew Inputを優先する。",
+      "note": "Column CutoutはColumn操作と逆方向のStabilizer Trimを遮断する。ElevatorとStabilizerの動きが常に逆という意味ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata22-mcp.webp",
+      "alt": "MCPのCourse、A/T、IAS/Mach、Roll、Pitch、CMD/CWS、F/Dの配置を色分けした図。",
+      "caption": "MCPの操作部の配置。橙はA/T、青はRoll、赤はPitch、緑はA/P Engage、紫はF/D。SPD INTV・ALT INTVの位置も確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata22-mcp.webp",
+      "alt": "MCPのMode SelectorとSelected Parameter表示、CMD/CWSとF/D Switchの配置図。",
+      "caption": "Mode選択と設定値の位置を確認する。ALT INTVはFlight Phaseに応じて作動し、1回の操作で解除できるAltitude Constraintは1つ。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata22-ap-synchronization.webp",
+      "alt": "MCPとFCC、Actuator LVDT、Control Surface Position Sensor、Main/Detent Pistonを結ぶAutopilot Actuator図。",
+      "caption": "A/P Engage前にActuator側と実際のControl Surface位置を同期させ、Engage時の急な舵面の動きを防ぐ。Main PistonのLVDTとControl Surface Position Sensorは別のFeedback。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r04",
+      "promptIndexes": [
+        2,
+        3
+      ],
+      "file": "oral-ata22-trim-warning.webp",
+      "alt": "Speed Trim FailとStabilizer Out of Trimの入力、比較、Delayと警告灯の回路図。",
+      "caption": "SPEED TRIM FAILとSTAB OUT OF TRIMの検出経路。片側Trim機能の故障はRecall、両側故障は通常点灯。",
+      "note": "この図のSTAB OUT OF TRIM検出条件とASAのA/P赤色警告条件は別。高度・Dual Pitch等の条件は回答本文で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r04",
+      "promptIndexes": [
+        2,
+        3
+      ],
+      "file": "oral-ata22-mach-trim-feedback.webp",
+      "alt": "Mach Trim Actuator、Neutral Shift、Elevator位置のFeedbackとFCC/IFSAUを結ぶ図。",
+      "caption": "Mach Trim Actuator位置、Neutral Shift位置、Elevator位置の3つのFeedbackを区別する。A/P ONではInput Torque Tubeが拘束され、Neutral ShiftとElevator位置のFeedbackを使ってA/Pが応答する。",
+      "note": "Mach Trimを担当するFCCは初期A、Landingごとに交代し、故障時は他系へ移る。EngageしているA/P側だけで選択が決まるという追記は採用していない。"
+    },
+    {
+      "questionId": "oral_rev3_p47_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "ata34-adirs-component-locations.webp",
+      "alt": "ADIRSのISDU、MSU、表示器およびP61 IRS Master Caution Unitの配置図。",
+      "caption": "ISDU/MSUはP5 Aft Overhead、IRS Master Caution UnitはP61にある。操縦室の表示器と操作部の配置を確認する。",
+      "note": "この図は操縦室/P61の配置。ADIRUとADMのRack位置は回答本文を参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p47_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata34-adirs-adr-ir-signal-flow.webp",
+      "alt": "Pitot、Static、TAT、AOA、ADM、ISDU、MSU、FMCとADIRUのADR/IR入出力を結ぶ図。",
+      "caption": "Pitot/StaticからADMを通るADR入力と、Gyro/Accelerometerを使うIRの流れ。FMC/ISDUの初期位置入力、MSUのMode選択も示す。"
+    },
+    {
+      "questionId": "oral_rev3_p47_s01_r04",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata34-wxr-control-panel.webp",
+      "alt": "WXR Control Panelの左右のMode、Tilt、Gain、TFR、GCと共通AUTO/TESTの配置図。",
+      "caption": "左右のMode/Tilt/Gain/TFRと共通AUTO/TEST。AUTOはTiltとGround Clutterを自動制御し、GainはCalibrated位置を推奨する。"
+    },
+    {
+      "questionId": "oral_rev3_p47_s01_r04",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata34-pws-warning-caution-areas.webp",
+      "alt": "離陸と進入のPWS Warning/Caution領域と0.5、1.5、3 NMの距離を比較する図。",
+      "caption": "左はTakeoff、右はApproach。前方のWarningと周辺のCaution領域を比較する。自動作動条件は本文のFlight Phase別条件に従う。"
+    },
+    {
+      "questionId": "oral_rev3_p47_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata34-egpws-terrain-clearance-floor.webp",
+      "alt": "滑走路周囲のTCF Envelopeと滑走路中心からの距離に応じたFloorを示す立体図と断面図。",
+      "caption": "TCFはRadio Altitudeと位置/Runway Databaseを用い、滑走路周囲に距離に応じたFloorを作る。Floorを下回る侵入を警告する。"
+    },
+    {
+      "questionId": "oral_rev3_p47_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata34-egpws-runway-field-clearance-floor.webp",
+      "alt": "滑走路標高を基準とするRFCF Alert Area、300 ft Ceiling、1.5/5 NM、KRF、滑走路端を示す断面図。",
+      "caption": "RFCFはGeometric Altitudeから滑走路標高を引いたField ClearanceでTCFを補う。滑走路端から5 NM、滑走路上方最大300 ftのFloorを示す。"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+window.STUDY_CONFIG = {"oralFigures":{"schemaVersion":1,"figures":[{"questionId":"oral_rev3_p44_s01_r01","promptIndexes":[0],"file":"oral-ata22-autoflight-functions.webp","alt":"AutoflightのGuidance、Stability Augmentation、Thrust Managementと各機能の対応図。","caption":"Autoflightの3つの役割と、F/D・A/P・Trim・A/Tの対応。DFCSの6 Sub Systemとは別の機能分類。"},{"questionId":"oral_rev3_p44_s01_r01","promptIndexes":[1],"file":"oral-ata22-speed-autopilot-trim.webp","alt":"FCC A/BからSpeed TrimまたはAutopilot TrimがStabilizer Actuatorを制御する入出力図。","caption":"A/P OFFではSpeed Trim、A/P ONではA/P Stabilizer Trim。Limit Switch・Cutout Switch・Stabilizer位置のFeedbackも確認する。"},{"questionId":"oral_rev3_p44_s01_r01","promptIndexes":[1],"file":"oral-ata22-trim-command-flow.webp","alt":"FCCのTrim Up/DownとClutch信号がMain Electric Trim、Column Switch、Cutout Switch、Limit Switchを通る回路図。","caption":"緑はBrake Release/Clutch、桃色はTrim Up、水色はTrim Downの経路。Main Electric TrimによるCrew Inputを優先する。","note":"Column CutoutはColumn操作と逆方向のStabilizer Trimを遮断する。ElevatorとStabilizerの動きが常に逆という意味ではない。"},{"questionId":"oral_rev3_p44_s01_r02","promptIndexes":[1],"file":"oral-ata22-mcp.webp","alt":"MCPのCourse、A/T、IAS/Mach、Roll、Pitch、CMD/CWS、F/Dの配置を色分けした図。","caption":"MCPの操作部の配置。橙はA/T、青はRoll、赤はPitch、緑はA/P Engage、紫はF/D。SPD INTV・ALT INTVの位置も確認する。"},{"questionId":"oral_rev3_p44_s01_r03","promptIndexes":[0],"file":"oral-ata22-mcp.webp","alt":"MCPのMode SelectorとSelected Parameter表示、CMD/CWSとF/D Switchの配置図。","caption":"Mode選択と設定値の位置を確認する。ALT INTVはFlight Phaseに応じて作動し、1回の操作で解除できるAltitude Constraintは1つ。"},{"questionId":"oral_rev3_p44_s01_r03","promptIndexes":[1],"file":"oral-ata22-ap-synchronization.webp","alt":"MCPとFCC、Actuator LVDT、Control Surface Position Sensor、Main/Detent Pistonを結ぶAutopilot Actuator図。","caption":"A/P Engage前にActuator側と実際のControl Surface位置を同期させ、Engage時の急な舵面の動きを防ぐ。Main PistonのLVDTとControl Surface Position Sensorは別のFeedback。"},{"questionId":"oral_rev3_p44_s01_r04","promptIndexes":[2,3],"file":"oral-ata22-trim-warning.webp","alt":"Speed Trim FailとStabilizer Out of Trimの入力、比較、Delayと警告灯の回路図。","caption":"SPEED TRIM FAILとSTAB OUT OF TRIMの検出経路。片側Trim機能の故障はRecall、両側故障は通常点灯。","note":"この図のSTAB OUT OF TRIM検出条件とASAのA/P赤色警告条件は別。高度・Dual Pitch等の条件は回答本文で確認する。"},{"questionId":"oral_rev3_p44_s01_r04","promptIndexes":[2,3],"file":"oral-ata22-mach-trim-feedback.webp","alt":"Mach Trim Actuator、Neutral Shift、Elevator位置のFeedbackとFCC/IFSAUを結ぶ図。","caption":"Mach Trim Actuator位置、Neutral Shift位置、Elevator位置の3つのFeedbackを区別する。A/P ONではInput Torque Tubeが拘束され、Neutral ShiftとElevator位置のFeedbackを使ってA/Pが応答する。","note":"Mach Trimを担当するFCCは初期A、Landingごとに交代し、故障時は他系へ移る。EngageしているA/P側だけで選択が決まるという追記は採用していない。"},{"questionId":"oral_rev3_p47_s01_r02","promptIndexes":[0],"file":"ata34-adirs-component-locations.webp","alt":"ADIRSのISDU、MSU、表示器およびP61 IRS Master Caution Unitの配置図。","caption":"ISDU/MSUはP5 Aft Overhead、IRS Master Caution UnitはP61にある。操縦室の表示器と操作部の配置を確認する。","note":"この図は操縦室/P61の配置。ADIRUとADMのRack位置は回答本文を参照する。"},{"questionId":"oral_rev3_p47_s01_r02","promptIndexes":[1],"file":"oral-ata34-adirs-adr-ir-signal-flow.webp","alt":"Pitot、Static、TAT、AOA、ADM、ISDU、MSU、FMCとADIRUのADR/IR入出力を結ぶ図。","caption":"Pitot/StaticからADMを通るADR入力と、Gyro/Accelerometerを使うIRの流れ。FMC/ISDUの初期位置入力、MSUのMode選択も示す。"},{"questionId":"oral_rev3_p47_s01_r04","promptIndexes":[2],"file":"oral-ata34-wxr-control-panel.webp","alt":"WXR Control Panelの左右のMode、Tilt、Gain、TFR、GCと共通AUTO/TESTの配置図。","caption":"左右のMode/Tilt/Gain/TFRと共通AUTO/TEST。AUTOはTiltとGround Clutterを自動制御し、GainはCalibrated位置を推奨する。"},{"questionId":"oral_rev3_p47_s01_r04","promptIndexes":[3],"file":"oral-ata34-pws-warning-caution-areas.webp","alt":"離陸と進入のPWS Warning/Caution領域と0.5、1.5、3 NMの距離を比較する図。","caption":"左はTakeoff、右はApproach。前方のWarningと周辺のCaution領域を比較する。自動作動条件は本文のFlight Phase別条件に従う。"},{"questionId":"oral_rev3_p47_s01_r05","promptIndexes":[0],"file":"oral-ata34-egpws-terrain-clearance-floor.webp","alt":"滑走路周囲のTCF Envelopeと滑走路中心からの距離に応じたFloorを示す立体図と断面図。","caption":"TCFはRadio Altitudeと位置/Runway Databaseを用い、滑走路周囲に距離に応じたFloorを作る。Floorを下回る侵入を警告する。"},{"questionId":"oral_rev3_p47_s01_r05","promptIndexes":[0],"file":"oral-ata34-egpws-runway-field-clearance-floor.webp","alt":"滑走路標高を基準とするRFCF Alert Area、300 ft Ceiling、1.5/5 NM、KRF、滑走路端を示す断面図。","caption":"RFCFはGeometric Altitudeから滑走路標高を引いたField ClearanceでTCFを補う。滑走路端から5 NM、滑走路上方最大300 ftのFloorを示す。"}]}};
 (() => {
   'use strict';
   const root = document.getElementById('oralStudy');
@@ -9,6 +10,8 @@
   // Keeping this tiny list local permits genuinely request-free startup.
   const groups = ['点検要領Ⅰ', '点検要領Ⅱ', '交換・調整', 'Servicing', 'Open / Close・Override・Deactivate', 'SYSTEM：機体', 'SYSTEM：通信・航法・計器', 'SYSTEM：装備', 'SYSTEM：発動機'];
   const state = { sections: [], groupRequest: 0, selectedId: '', revision: '', cache: new Map(), groups: new Map(), pending: new Map(), groupPositions: new Map(), positions: new Map(), retry: null };
+  const figureConfig = window.STUDY_CONFIG && window.STUDY_CONFIG.oralFigures;
+  const figures = figureConfig && figureConfig.schemaVersion === 1 && Array.isArray(figureConfig.figures) ? figureConfig.figures.filter(validFigure) : [];
 
   function element(tag, className, value) {
     const node = document.createElement(tag);
@@ -17,6 +20,49 @@
     return node;
   }
   function strings(value) { return Array.isArray(value) ? value.filter(v => typeof v === 'string' && v.trim()) : []; }
+  function validFigure(figure) {
+    return !!figure && typeof figure.questionId === 'string' && /^oral_rev3_p\d{2}_s\d{2}_r\d{2}$/.test(figure.questionId) &&
+      typeof figure.file === 'string' && /^[a-z0-9][a-z0-9_-]*\.webp$/.test(figure.file) &&
+      Array.isArray(figure.promptIndexes) && figure.promptIndexes.length > 0 &&
+      figure.promptIndexes.every(index => Number.isInteger(index) && index >= 0) && new Set(figure.promptIndexes).size === figure.promptIndexes.length &&
+      ['alt', 'caption'].every(key => typeof figure[key] === 'string' && figure[key].trim() && figure[key].length <= 1200) &&
+      (figure.note === undefined || typeof figure.note === 'string' && figure.note.trim() && figure.note.length <= 1200);
+  }
+  function figuresForItem(item, prompt) {
+    return figures.filter(figure => {
+      const visibleIndexes = presentedPrompts(item.prompts, figure.promptIndexes).flatMap(owner => owner.indexes);
+      return figure.questionId === item.itemId && visibleIndexes.length > 0 && visibleIndexes.every(index => prompt.indexes.includes(index)) &&
+      prompt.points.some(entry => {
+        if (!['supported', 'partial'].includes(entry.point.coverage) || strings(entry.point.summary).length === 0 ||
+            !Array.isArray(entry.point.sources) || !entry.point.sources.some(source => source && typeof source.type === 'string' && source.type.trim())) return false;
+        const indexes = Array.isArray(entry.point.promptIndexes) ? entry.point.promptIndexes : [];
+        // Exact reviewed bindings only. A broader or unresolved point must not
+        // lend its figure to a different item or to an unmatched answer.
+        return indexes.length === figure.promptIndexes.length && figure.promptIndexes.every(index => indexes.includes(index));
+      });
+    });
+  }
+  function renderFigure(figure) {
+    const wrapper = element('figure', 'oral-answer-figure');
+    const link = element('a', 'oral-figure-link');
+    const url = './assets/answer-figures/' + encodeURIComponent(figure.file);
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', figure.caption + '：図を拡大（新しいタブ）');
+    const image = element('img');
+    image.src = url;
+    image.alt = figure.alt;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    link.appendChild(image);
+    link.appendChild(element('span', 'oral-figure-expand', '図を拡大'));
+    wrapper.appendChild(link);
+    const caption = element('figcaption', 'oral-figure-caption', figure.caption);
+    if (figure.note) caption.appendChild(element('span', 'oral-figure-note', figure.note));
+    wrapper.appendChild(caption);
+    return wrapper;
+  }
   // Presentation only: keep the source array and its answer-binding indexes intact.
   function presentedPrompts(prompts, indexes = prompts.map((_prompt, index) => index)) {
     const result = [];
@@ -342,6 +388,7 @@
       section.appendChild(element('h4', 'oral-answer-item-heading', '項目 ' + prompt.number));
       section.appendChild(element('p', 'oral-answer-item-text', prompt.text));
       prompt.points.forEach(entry => section.appendChild(renderPoint(entry)));
+      figuresForItem(item, prompt).forEach(figure => section.appendChild(renderFigure(figure)));
       if (!prompt.points.length) section.appendChild(element('p', 'oral-point-gap', 'この項目に対応する回答は未確認です。根拠資料の確認が必要です。'));
       ui.AnswerPoints.appendChild(section);
     });

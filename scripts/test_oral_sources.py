@@ -2,6 +2,7 @@
 import contextlib
 import hashlib
 import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -21,6 +22,7 @@ class OralSourcePreparationTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.out = self.root / 'data' / 'oral' / 'corpus'
         self.texts = {}
+        self.annotations = {}
 
     def fixture(self, relative, text):
         file = self.root / relative
@@ -32,7 +34,8 @@ class OralSourcePreparationTests(unittest.TestCase):
 
     def run_prepare(self):
         def reader(file):
-            return SimpleNamespace(pages=[SimpleNamespace(extract_text=lambda: self.texts[file])])
+            return SimpleNamespace(pages=[SimpleNamespace(extract_text=lambda: self.texts[file],
+                get=lambda key, default=None: self.annotations.get(file, []) if key == '/Annots' else default)])
         with patch.object(corpus, 'PdfReader', side_effect=reader), contextlib.redirect_stdout(io.StringIO()):
             return corpus.main(self.root, self.out)
 
@@ -82,6 +85,40 @@ class OralSourcePreparationTests(unittest.TestCase):
 
     def metadata(self, name, head, repaired=''):
         return corpus.additional_metadata(Path(name), [{'text': head, 'repaired_text': repaired, 'needs_visual_check': bool(repaired)}])
+
+    def test_comments_do_not_replace_body_and_drawing_requires_visual_check(self):
+        file = self.fixture(corpus.ANNOTATED_SG_DIR / '22_REF.pdf', 'printed body ' * 30)
+        self.annotations[file] = [{'/Subtype': '/FreeText', '/Contents': '授業の追記'}, {'/Subtype': '/Ink'}]
+        self.run_prepare()
+        target = self.out / (corpus.make_source_id('SG', file, self.root) + '.json')
+        page = json.loads(target.read_text(encoding='utf-8'))['pages'][0]
+        self.assertEqual(page['text'], self.texts[file])
+        self.assertEqual(page['annotation_text'], '授業の追記')
+        self.assertEqual(page['repaired_text'], '')
+        self.assertTrue(page['needs_visual_check'])
+        self.annotations[file] = [{'/Subtype': '/Stamp'}]
+        self.run_prepare()
+        page = json.loads(target.read_text(encoding='utf-8'))['pages'][0]
+        self.assertEqual(page['annotation_text'], '')
+        self.assertTrue(page['needs_visual_check'])
+
+    def test_cached_enrichment_keeps_visually_verified_transcription(self):
+        file = self.fixture(corpus.ANNOTATED_SG_DIR / '22_REF.pdf', 'printed body ' * 30)
+        self.annotations[file] = [{'/Subtype': '/FreeText', '/Contents': 'Native comment'}]
+        self.run_prepare()
+        target = self.out / (corpus.make_source_id('SG', file, self.root) + '.json')
+        cached = json.loads(target.read_text(encoding='utf-8'))
+        del cached['pages'][0]['annotation_text']
+        cached['pages'][0].update(visual_text='Reviewed stamp text', visual_text_verified=True)
+        target.write_text(json.dumps(cached), encoding='utf-8')
+        self.run_prepare()
+        page = json.loads(target.read_text(encoding='utf-8'))['pages'][0]
+        self.assertEqual(page['annotation_text'], 'Native comment')
+        self.assertEqual(page['visual_text'], 'Reviewed stamp text')
+        self.assertTrue(page['visual_text_verified'])
+        before = target.read_bytes()
+        self.run_prepare()
+        self.assertEqual(target.read_bytes(), before)
 
     def test_original_task_wins_over_misspelled_filename(self):
         meta = self.metadata('2-41-41-700-801.pdf', 'Rev 90 - 15 Jun 2026\nTASK 32-41-41-700-801\n')

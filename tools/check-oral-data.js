@@ -28,6 +28,18 @@ for (const defect of ['duplicate', 'missingPrompt', 'badPage', 'badAnchor', 'wro
   assert.throws(() => validate(bad, true), undefined, defect + ' not rejected');
 }
 assert.throws(() => validate(input, false), /Not all/);
+for (const kind of ['annotation', 'visual']) {
+  const annotated = copy(), page = annotated.sources[0].pages[0], ref = annotated.entries[0].answer.points[0].source_refs[0];
+  ref.evidence_excerpt = 'Reviewed diagram text';
+  if (kind === 'annotation') page.annotation_text = ref.evidence_excerpt;
+  else { page.visual_text = ref.evidence_excerpt; page.visual_text_verified = true; }
+  assert.throws(() => validate(annotated, true), /visual verification/);
+  ref.visual_verified = true;
+  assert.equal(validate(annotated, true).authored, 1);
+  if (kind === 'visual') { page.visual_text_verified = false; assert.throws(() => validate(annotated, true), /Evidence anchor/); }
+  const publicData = compile({ ...annotated, entries: rows.map(row => ({ ...structuredClone(annotated.entries[0]), assessment_id: row.assessment_id })) });
+  assert(!JSON.stringify(publicData).includes('Reviewed diagram text'), 'Private annotation/visual text leaked');
+}
 const provisional = copy();
 provisional.sources[0].type = 'PAST';
 provisional.sources[0].pages[0].page_code = '段落 42';

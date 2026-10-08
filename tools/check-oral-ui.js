@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const assert = require('assert/strict');
+const { validateOralFigures } = require('./build-pages');
 const source = fs.readFileSync(path.join(__dirname, '..', 'web', 'oral-study.js'), 'utf8');
 const html = fs.readFileSync(path.join(__dirname, '..', 'web', 'exam-modes.html'), 'utf8');
 const helpers = vm.createContext({});
@@ -18,7 +19,7 @@ class Node {
   focus() { this.focused = true; }
   fire(name) { this.events[name](); }
 }
-function harness(hash = '#oral') {
+function harness(hash = '#oral', oralFigures = null) {
   const nodes = {};
   for (const [, id] of html.matchAll(/id="([^"]+)"/g)) nodes[id] = new Node();
   nodes.oralSection.appendChild(new Node('option'));
@@ -33,7 +34,7 @@ function harness(hash = '#oral') {
     } });
   }
   let seq = 0;
-  const window = { location: { hash }, google: { script: { run: runner() } },
+  const window = { location: { hash }, STUDY_CONFIG: { oralFigures }, google: { script: { run: runner() } },
     setTimeout(fn) { timers.set(++seq, fn); return seq; }, clearTimeout(id) { timers.delete(id); },
     addEventListener(name, fn) { events[name] = fn; } };
   vm.runInNewContext(source, { document: { getElementById: id => nodes[id], createElement: tag => new Node(tag) }, window, console });
@@ -53,6 +54,21 @@ function response(group = G, bundles = [bundle('A'), bundle('B')]) {
 function choose(h, group = G) { h.nodes.oralGroup.value = group; h.nodes.oralGroup.fire('change'); }
 function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fire('change'); }
 (async () => {
+  const localFigureData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'web', 'oral-figures.json'), 'utf8'));
+  validateOralFigures(localFigureData);
+  const questionId = 'oral_rev3_p04_s01_r01';
+  const figure = { questionId, promptIndexes: [0], file: 'ata22-dfcs-component-locations.webp', alt: 'Component <img> labels', caption: 'Component locations <script>literal</script>', note: 'Printed labels and handwritten note differ.' };
+  const metadata = figure => ({ schemaVersion: 1, figures: [figure] });
+  assert.deepEqual(validateOralFigures(metadata(figure)), metadata(figure));
+  for (const file of ['../other.webp', 'nested/other.webp', 'https://example.com/other.webp', 'other.webp?x=1', 'other.webp#fragment', 'other.png', 'C:\\other.webp']) {
+    assert.throws(() => validateOralFigures(metadata({ ...figure, file })), /asset basename/);
+  }
+  assert.throws(() => validateOralFigures(metadata({ ...figure, file: 'missing-oral-figure.webp' })), /missing or unsafe asset/);
+  for (const promptIndexes of [[], [-1], [1.5], ['0'], [0, 0]]) assert.throws(() => validateOralFigures(metadata({ ...figure, promptIndexes })), /prompt indexes/);
+  for (const change of [{ questionId: 'other' }, { alt: ' ' }, { caption: null }, { note: '' }, { sourcePath: 'private' }]) assert.throws(() => validateOralFigures(metadata({ ...figure, ...change })), /Invalid oral figure metadata/);
+  assert.throws(() => validateOralFigures({ ...metadata(figure), rawText: 'private' }), /schema/);
+  assert.throws(() => validateOralFigures({ schemaVersion: 2, figures: [] }), /schema/);
+  assert.throws(() => validateOralFigures({ schemaVersion: 1, figures: [figure, figure] }), /duplicate binding/);
   assert(!html.includes('Codexが資料を基に整理した学習用の回答です。'));
   assert(!html.includes('id="oralAta"'));
   const h = harness('#home');
@@ -220,6 +236,70 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   const noPrompts = await shownItem(blanks.slice(0, 3), [{ ...point, promptIndexes: [], summary: ['Retained unmatched answer'] }]);
   assert.equal(noPrompts.oralPrompts.children.length, 0);
   assert(noPrompts.oralAnswerPoints.textContent.includes('Retained unmatched answer'));
+  const findTags = (node, tag) => [ ...(node.tagName === tag ? [node] : []), ...node.children.flatMap(child => findTags(child, tag)) ];
+  async function shownFigures(prompts, points, figures, itemId = questionId) {
+    const data = bundle('F', G, 1);
+    data.items[0].itemId = itemId;
+    data.items[0].prompts = prompts;
+    data.items[0].answer.points = points;
+    const before = JSON.stringify(data);
+    const view = harness('#oral', { schemaVersion: 1, figures }); choose(view);
+    view.calls[0].success(response(G, [data])); await flush();
+    assert.equal(JSON.stringify(data), before, 'Figures changed API answers or prompts');
+    assert.equal(view.calls.length, 1, 'Figures added an API request');
+    return view;
+  }
+  const ownedPoints = four.map((_prompt, index) => ({ ...point, promptIndexes: [index], summary: ['Owned answer ' + index] }));
+  const withFigures = await shownFigures(four, ownedPoints, [figure]);
+  assert.equal(findTags(withFigures.nodes.oralAnswerPoints, 'figure').length, 1);
+  const ownedFigure = withFigures.nodes.oralAnswerPoints.firstChild.children[3];
+  assert.equal(ownedFigure.tagName, 'figure', 'Figure must follow its item answer');
+  assert.equal(findTags(withFigures.nodes.oralAnswerPoints.children[1], 'figure').length, 0, 'Figure spread to another item');
+  assert.equal(withFigures.nodes.oralAnswer.hidden, true, 'Figure revealed an answer early');
+  const link = ownedFigure.firstChild;
+  assert.equal(link.tagName, 'a');
+  assert.equal(link.href, './assets/answer-figures/' + figure.file);
+  assert.equal(link.target, '_blank');
+  assert.equal(link.rel, 'noopener noreferrer');
+  assert(link.attributes['aria-label'].includes('新しいタブ'));
+  assert.equal(link.firstChild.tagName, 'img');
+  assert.equal(link.firstChild.src, link.href);
+  assert.equal(link.firstChild.alt, figure.alt);
+  assert.equal(link.firstChild.loading, 'lazy');
+  assert.equal(link.firstChild.decoding, 'async');
+  assert.equal(ownedFigure.children[1].tagName, 'figcaption');
+  assert(ownedFigure.children[1].textContent.includes(figure.caption) && ownedFigure.children[1].textContent.includes(figure.note));
+  assert.equal(findTags(ownedFigure, 'script').length, 0, 'Figure caption became markup');
+  const foldedFigure = await shownFigures(wrappedPrompts, [{ ...point, promptIndexes: [0, 1] }], [{ ...figure, promptIndexes: [1, 0] }]);
+  assert.equal(findTags(foldedFigure.nodes.oralAnswerPoints, 'figure').length, 1, 'Folded item exact binding was lost');
+  const placeholderFigure = await shownFigures([{ text: 'Trim fail lights。', level: 'I' }, { text: '・', level: 'I' }], [{ ...point, promptIndexes: [0, 1] }], [{ ...figure, promptIndexes: [0, 1] }]);
+  assert.equal(findTags(placeholderFigure.nodes.oralAnswerPoints, 'figure').length, 1, 'Empty source bullet blocked the exact owned figure');
+  const emptyFigure = await shownFigures([{ text: 'Other question。', level: 'I' }, { text: '・', level: 'I' }], [{ ...point, promptIndexes: [1] }], [{ ...figure, promptIndexes: [1] }]);
+  assert.equal(findTags(emptyFigure.nodes.oralAnswerPoints, 'figure').length, 0, 'Empty source bullet borrowed a figure for another question');
+  const partialFigure = await shownFigures(four, [{ ...ownedPoints[0], coverage: 'partial' }], [figure]);
+  assert.equal(findTags(partialFigure.nodes.oralAnswerPoints, 'figure').length, 1, 'Grounded partial answer lost its owned figure');
+  for (const change of [{ coverage: 'insufficient' }, { coverage: 'insufficient', summary: [], sources: [] }, { summary: [] }, { summary: ['  '] }, { sources: [] }, { sources: [{}] }]) {
+    const unsupportedFigure = await shownFigures(four, [{ ...ownedPoints[0], ...change }], [figure]);
+    assert.equal(findTags(unsupportedFigure.nodes.oralAnswerPoints, 'figure').length, 0, 'Insufficient or empty answer retained an owned figure');
+  }
+  const duplicatePoints = await shownFigures(four, [ownedPoints[0], ownedPoints[0]], [figure]);
+  assert.equal(findTags(duplicatePoints.nodes.oralAnswerPoints, 'figure').length, 1, 'Multiple points repeated one item figure');
+  for (const example of [
+    { prompts: four, points: [point], figures: [{ ...figure, promptIndexes: [0, 1, 2, 3] }] },
+    { prompts: four, points: [], figures: [figure] },
+    { prompts: four, points: ownedPoints, figures: [{ ...figure, promptIndexes: [0, 1] }] },
+    { prompts: wrappedPrompts, points: [{ ...point, promptIndexes: [0, 1] }], figures: [figure] },
+    { prompts: four, points: ownedPoints, figures: [{ ...figure, questionId: 'oral_rev3_p04_s01_r02' }] },
+    { prompts: four, points: ownedPoints, figures: [{ ...figure, file: '../other.webp' }] },
+    { prompts: four, points: ownedPoints, figures: [{ ...figure, file: 'https://example.com/other.webp' }] },
+    { prompts: four, points: ownedPoints, figures: [{ ...figure, promptIndexes: [0, 0] }] },
+    { prompts: four, points: ownedPoints, figures: [{ ...figure, alt: '' }] }
+  ]) {
+    const rejected = await shownFigures(example.prompts, example.points, example.figures);
+    assert.equal(findTags(rejected.nodes.oralAnswerPoints, 'figure').length, 0, 'Unsafe or non-owning figure was displayed');
+  }
+  const css = fs.readFileSync(path.join(__dirname, '..', 'web', 'oral-study.css'), 'utf8');
+  assert(/\.oral-figure-link img\s*\{[^}]*width: 100%;[^}]*max-width: 100%;[^}]*height: auto;/.test(css));
   const tags = node => [node.tagName, ...node.children.flatMap(tags)];
   assert(!tags(shared.oralAnswerPoints).some(tag => ['script', 'img', 'b'].includes(tag)), 'Source content became markup');
   assert(!/innerHTML|insertAdjacentHTML/.test(source), 'Rendering must remain text-only');
@@ -266,5 +346,5 @@ function parent(h, id) { h.nodes.oralSection.value = id; h.nodes.oralSection.fir
   updated.calls[1].success(changed); await flush(); assert(updated.nodes.oralStatusText.textContent.includes('学習データが更新'));
   assert(updated.nodes.oralWorkspace.hidden);
   const invalid = harness(); choose(invalid, 'すべての分野'); await flush(); assert.equal(invalid.calls.length, 0);
-  console.log(JSON.stringify({ oralUi: 'ok', verified: ['zero-request placeholder', 'one group API', 'instant parent switching', 'page-local cache', 'reload freshness', 'parent/child/reveal retention', 'matching item numbering', 'no automatic multi-item summary repetition', 'explicit relevant shared clauses', 'folded item with multiple owners', 'unmatched/invalid bindings retained', 'isolated point coverage/PAST', 'empty/insufficient fallback', 'text-only sources/gaps', 'immutable prompt presentation', 'search', 'races and deduplication', 'cleared selection', 'retry/timeout', 'atomic validation', 'revision guard'], browserValidation: 'public browser verification required' }));
+  console.log(JSON.stringify({ oralUi: 'ok', verified: ['zero-request placeholder', 'one group API', 'instant parent switching', 'page-local cache', 'reload freshness', 'parent/child/reveal retention', 'matching item numbering', 'no automatic multi-item summary repetition', 'explicit relevant shared clauses', 'folded item with multiple owners', 'unmatched/invalid bindings retained', 'isolated point coverage/PAST', 'empty/insufficient fallback', 'text-only sources/gaps', 'immutable prompt presentation', 'exact figure ownership', 'figure schema and existing assets', 'unsafe figure rejection', 'safe enlargement URL and accessible lazy images', 'search', 'races and deduplication', 'cleared selection', 'retry/timeout', 'atomic validation', 'revision guard'], browserValidation: 'public browser and narrow viewport verification required' }));
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -28,6 +28,20 @@ def make_source_id(kind, file, root):
     key = file.relative_to(root).as_posix() if file.parent in (root / ADDITIONAL_DIR, root / ANNOTATED_SG_DIR) else file.name
     return kind.lower() + '_' + hashlib.sha256(key.encode('utf-8')).hexdigest()[:12]
 
+
+def annotation_data(page):
+    """Keep comment text separate from printed body; drawings need visual review."""
+    annotations = page.get('/Annots', []) if hasattr(page, 'get') else []
+    if hasattr(annotations, 'get_object'):
+        annotations = annotations.get_object()
+    texts = []
+    for reference in annotations or []:
+        annotation = reference.get_object() if hasattr(reference, 'get_object') else reference
+        content = annotation.get('/Contents')
+        if isinstance(content, str) and content.strip():
+            texts.append(content.strip())
+    return '\n\n'.join(texts), bool(annotations)
+
 def source_type(kind, file):
     if kind == 'SG':
         return 'SG'
@@ -132,6 +146,17 @@ def main(root=ROOT, out=None):
                     title = file.stem + '（Hコース後・授業追記）'
                     changed = changed or cached.get('title') != title
                     cached['title'] = title
+                    reader = PdfReader(file)
+                    if len(reader.pages) != len(cached['pages']):
+                        raise ValueError(f'Cached page count mismatch: {source_id}')
+                    for page, original in zip(cached['pages'], reader.pages):
+                        annotation_text, has_annotations = annotation_data(original)
+                        if has_annotations or 'annotation_text' in page:
+                            changed = changed or page.get('annotation_text') != annotation_text
+                            page['annotation_text'] = annotation_text
+                        if has_annotations:
+                            changed = changed or not page['needs_visual_check']
+                            page['needs_visual_check'] = True
                 if kind == 'SG' and file.stem.lower().startswith('5x'):
                     for page in cached['pages']:
                         page['repaired_text'] = repair_shifted_ascii_text(page['text'])
@@ -162,6 +187,11 @@ def main(root=ROOT, out=None):
                           'text':text, 'repaired_text':repaired,
                           'needs_visual_check': bool(repaired) or len(text.strip()) < 100 or file.stem in
                           ('05-51-01-210-801', '05-51-01-210-802', '24-34-00-710-801')})
+            if file.parent == root / ANNOTATED_SG_DIR:
+                annotation_text, has_annotations = annotation_data(page)
+                if has_annotations:
+                    pages[-1]['annotation_text'] = annotation_text
+                    pages[-1]['needs_visual_check'] = True
         head = pages[0]['text'] if pages else ''
         revision_match = re.search(r'Rev\s+\d+\s*-\s*[^\r\n]+', head)
         reference_match = re.search(r'TASK\s+([\dA-Z-]+)', head)

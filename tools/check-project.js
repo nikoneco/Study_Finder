@@ -39,6 +39,13 @@ assert(js.includes('answerFigures') && js.includes('loading="lazy"'), 'Missing l
 const figureFiles = [...js.matchAll(/\['([^']+\.webp)',\s*'[^']+'\]/g)].map((match) => match[1]);
 assert(figureFiles.length >= 26, 'Missing reviewed image map');
 for (const file of new Set(figureFiles)) assert(exists('docs/assets/answer-figures/' + file), 'Missing mapped figure: ' + file);
+const oralJs = read('docs/assets/js/oral-study.js');
+const configLine = oralJs.match(/^window\.STUDY_CONFIG = ([^\n]+);\r?\n/);
+assert(configLine, 'Missing oral figure config');
+const oralFigures = JSON.parse(configLine[1]).oralFigures;
+const { validateOralFigures } = require('./build-pages');
+assert.deepEqual(oralFigures, validateOralFigures(JSON.parse(read('web/oral-figures.json'))), 'Generated oral figures differ from reviewed metadata');
+for (const figure of oralFigures.figures) assert(exists('docs/assets/answer-figures/' + figure.file), 'Missing oral figure: ' + figure.file);
 const manifest = JSON.parse(read('docs/manifest.webmanifest'));
 assert.equal(manifest.name, '737-800勉強');
 assert.equal(manifest.start_url, '/Study_Finder/');
@@ -75,5 +82,5 @@ activation.then(() => {
     const files = execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, encoding: 'utf8' }).split('\0').filter(Boolean);
     for (const file of files) assert(!/\.pdf$|(?:^|\/)\.clasp\.json$|\.clasprc\.json$|(?:^|\/)LOCAL_URLS\.md$|^data\/|^tmp\/|\.local(?:\.|$)|Codex 申し送り\.txt$/.test(file), 'Local material tracked: ' + file);
   }
-  console.log(JSON.stringify({ status: 'ok', images: new Set(figureFiles).size, pagesBase: manifest.scope, publicApis: 'read-only', cacheIsolation: 'ok' }));
+  console.log(JSON.stringify({ status: 'ok', images: new Set(figureFiles).size, oralFigures: oralFigures.figures.length, pagesBase: manifest.scope, publicApis: 'read-only', cacheIsolation: 'ok' }));
 }).catch((error) => { console.error(error); process.exitCode = 1; });

@@ -83,7 +83,11 @@ function validate({ index, sources, entries }, partial = false) {
         if (source.type === 'PAST') assert.equal(ref.page_code, page.page_code, 'Past paragraph locator mismatch: ' + id);
         assert(typeof ref.evidence_excerpt === 'string' && normalized(ref.evidence_excerpt).length >= 4, 'Missing evidence anchor: ' + id);
         const needle = normalized(ref.evidence_excerpt);
-        assert(normalized(page.text).includes(needle) || normalized(page.repaired_text).includes(needle), 'Evidence anchor not on page: ' + id + ':' + ref.source_id + ':' + ref.pdf_page);
+        const bodyAnchor = normalized(page.text).includes(needle) || normalized(page.repaired_text).includes(needle);
+        const annotationAnchor = normalized(page.annotation_text).includes(needle);
+        const visualAnchor = page.visual_text_verified === true && normalized(page.visual_text).includes(needle);
+        assert(bodyAnchor || annotationAnchor || visualAnchor, 'Evidence anchor not on page: ' + id + ':' + ref.source_id + ':' + ref.pdf_page);
+        if (!bodyAnchor) assert(ref.visual_verified === true, 'Annotation/visual evidence needs recorded visual verification: ' + id);
         assert(typeof ref.locator === 'string' && ref.locator.trim(), 'Missing evidence locator: ' + id);
         if (!partial && page.needs_visual_check) assert(ref.visual_verified === true, 'Ambiguous page needs recorded visual verification: ' + id + ':' + ref.source_id + ':' + ref.pdf_page);
       }
@@ -141,7 +145,7 @@ function compile(inputs) {
     }
   }
   const serialized = JSON.stringify(tables);
-  assert(!/evidence_excerpt|repaired_text|needs_visual_check|(?:[A-Z]:\\)|access_token|refresh_token/.test(serialized), 'Private review evidence leaked into compiled data');
+  assert(!/evidence_excerpt|repaired_text|annotation_text|visual_text|needs_visual_check|(?:[A-Z]:\\)|access_token|refresh_token/.test(serialized), 'Private review evidence leaked into compiled data');
   return { schema_version: 1, created_at: timestamp, source_assessment_sha256: index.source_sha256, tables };
 }
 

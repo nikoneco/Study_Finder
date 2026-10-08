@@ -32,6 +32,8 @@ Outputs are ATA-scoped, for example:
 - `gas/PreparedAtaData.gs`
 
 Generated CSV files are intentionally ignored by Git.
+
+For post-course SG PDFs, private corpus pages keep native PDF comment text in `annotation_text` separately from printed `text`. Ink and Stamp annotations require visual review. A reviewed image transcription may use `visual_text` with `visual_text_verified: true`; references relying on either annotation or visual text must record `visual_verified: true`. These fields are never compiled into public data.
 `PreparedAtaData.gs` is generated from those CSVs and is committed so the Study app can import prepared ATA data without manual CSV upload. The builder preserves existing embedded ATA blocks when adding selected ATAs.
 
 ## Question boundary validation
