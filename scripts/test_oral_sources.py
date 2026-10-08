@@ -63,6 +63,23 @@ class OralSourcePreparationTests(unittest.TestCase):
         self.fixture('標準問題集/unrelated.pdf', 'unrelated')
         self.assertEqual(corpus.discover_inputs(self.root), [('AMM', expected)])
 
+    def test_annotated_sg_has_path_id_and_preserves_original_corpus(self):
+        original = self.fixture('Study_Guide/34_REF.pdf', 'original guide ' * 30)
+        self.run_prepare()
+        original_id = corpus.make_source_id('SG', original, self.root)
+        before = (self.out / (original_id + '.json')).read_bytes()
+        annotated = self.fixture(corpus.ANNOTATED_SG_DIR / original.name, 'annotated guide ' * 30)
+        self.fixture(corpus.ANNOTATED_SG_DIR / 'nested/extra.pdf', 'unrelated')
+        after = self.run_prepare()
+        annotated_id = corpus.make_source_id('SG', annotated, self.root)
+        self.assertEqual(annotated_id, 'sg_' + hashlib.sha256(annotated.relative_to(self.root).as_posix().encode()).hexdigest()[:12])
+        self.assertNotEqual(annotated_id, original_id)
+        self.assertEqual(after['source_count'], 2)
+        self.assertEqual((self.out / (original_id + '.json')).read_bytes(), before)
+        self.assertEqual(next(s for s in after['sources'] if s['source_id'] == annotated_id)['file'], annotated.relative_to(self.root).as_posix())
+        self.assertEqual(next(s for s in after['sources'] if s['source_id'] == annotated_id)['title'], '34_REF（Hコース後・授業追記）')
+        self.assertEqual(self.run_prepare(), after)
+
     def metadata(self, name, head, repaired=''):
         return corpus.additional_metadata(Path(name), [{'text': head, 'repaired_text': repaired, 'needs_visual_check': bool(repaired)}])
 

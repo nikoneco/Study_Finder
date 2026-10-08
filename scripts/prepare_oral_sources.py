@@ -11,11 +11,13 @@ from prepare_oral_past_sources import prepare_past_sources
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data' / 'oral' / 'corpus'
 ADDITIONAL_DIR = Path('標準問題集') / '追加MM,EPM資料'
+ANNOTATED_SG_DIR = Path('Study_Guide') / 'Hコース後'
 
 
 def discover_inputs(root):
     """Only primary PDF collections; no recursive auxiliary/image ingestion."""
     inputs = [('SG', p) for p in sorted((root / 'Study_Guide').glob('*.pdf'))]
+    inputs += [('SG', p) for p in sorted((root / ANNOTATED_SG_DIR).glob('*.pdf'))]
     inputs += [('AMM', p) for p in sorted((root / '標準問題集' / '口頭MM').glob('*.pdf'))]
     inputs += [('AMM', p) for p in sorted((root / ADDITIONAL_DIR).glob('*.pdf'))]
     return inputs
@@ -23,7 +25,7 @@ def discover_inputs(root):
 
 def make_source_id(kind, file, root):
     # Legacy filename IDs are referenced by reviewed answers and must not change.
-    key = file.relative_to(root).as_posix() if file.parent == root / ADDITIONAL_DIR else file.name
+    key = file.relative_to(root).as_posix() if file.parent in (root / ADDITIONAL_DIR, root / ANNOTATED_SG_DIR) else file.name
     return kind.lower() + '_' + hashlib.sha256(key.encode('utf-8')).hexdigest()[:12]
 
 def source_type(kind, file):
@@ -126,6 +128,10 @@ def main(root=ROOT, out=None):
                 expected_type = source_type(kind, file)
                 changed = cached.get('type') != expected_type
                 cached['type'] = expected_type
+                if file.parent == root / ANNOTATED_SG_DIR:
+                    title = file.stem + '（Hコース後・授業追記）'
+                    changed = changed or cached.get('title') != title
+                    cached['title'] = title
                 if kind == 'SG' and file.stem.lower().startswith('5x'):
                     for page in cached['pages']:
                         page['repaired_text'] = repair_shifted_ascii_text(page['text'])
@@ -159,7 +165,8 @@ def main(root=ROOT, out=None):
         head = pages[0]['text'] if pages else ''
         revision_match = re.search(r'Rev\s+\d+\s*-\s*[^\r\n]+', head)
         reference_match = re.search(r'TASK\s+([\dA-Z-]+)', head)
-        item = {'source_id':source_id, 'type':source_type(kind, file), 'title':file.stem,
+        title = file.stem + '（Hコース後・授業追記）' if file.parent == root / ANNOTATED_SG_DIR else file.stem
+        item = {'source_id':source_id, 'type':source_type(kind, file), 'title':title,
                 'file':file.relative_to(root).as_posix(), 'sha256':digest,
                 'reference':reference_match.group(1) if reference_match else '',
                 'revision':revision_match.group(0) if revision_match else '',
