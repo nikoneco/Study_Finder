@@ -132,6 +132,36 @@
       "file": "oral-ata34-egpws-runway-field-clearance-floor.webp",
       "alt": "滑走路標高を基準とするRFCF Alert Area、300 ft Ceiling、1.5/5 NM、KRF、滑走路端を示す断面図。",
       "caption": "RFCFはGeometric Altitudeから滑走路標高を引いたField ClearanceでTCFを補う。滑走路端から5 NM、滑走路上方最大300 ftのFloorを示す。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata22-yaw-damper-interfaces.webp",
+      "alt": "SMYD 1とSMYD 2のCross-Channel比較、ADIRU/AOA/FMC入力、Main Rudder PCUのSolenoid/EHSV/LVDTを結ぶPrimary Yaw Damper図。",
+      "caption": "Primary Yaw Damperの入出力とSMYD間のCross Talk。SMYD 1がMain Rudder PCUを制御し、両SMYDの計算を比較する。",
+      "note": "この図はPrimaryの経路。Standby Yaw DamperはSMYD 2とStandby Rudder PCUを使う別経路で、Engage条件も異なる。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata22-autothrottle-connections.webp",
+      "alt": "FCC AのAutothrottleとFMC、DEU、EEC、A/T Servo Motor、Thrust Resolver Pack、MCPを結ぶ接続図。",
+      "caption": "A/Tの接続図。N1 ModeのFMC Target N1、EECのTarget TRA、FCC AからASMへの指令とFeedbackを本文と合わせて追う。",
+      "note": "N1 ModeではTarget TRAに向けてLeverを動かし、実際のN1による補正も行う。N1 Feedbackを使わないという意味ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata22-autothrottle-mode-selection.webp",
+      "alt": "ARM、N1、Speed、THR HLD、RETARD、Go-AroundのA/T Mode選択条件を並べたブロック図。",
+      "caption": "A/TのMode選択。THR HLDはServo Powerを切り、RETARDはIdleへLeverを戻す。Go-Aroundの1回目と2回目のTO/GAも区別する。",
+      "note": "図のFlare RETARDは24 ftと示すが、SG本文を優先し回答では27 ftとする。THR HLDの開始判定とFMA表示も区別し、詳細条件は回答本文を参照する。"
     }
   ]
 }
