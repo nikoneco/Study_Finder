@@ -331,6 +331,100 @@
       "file": "oral-ata29-pressure-indication.webp",
       "alt": "A/B Pressure ModuleのSystem Pressure Transmitterから各側DEUを経てSYS画面へ圧力を表示する経路図。",
       "caption": "Hydraulic Pressure表示の経路。A側はDEU 1、B側はDEU 2へ入力し、SYS画面へ表示する。Pump Low Pressure警告とは別の監視経路。"
+    },
+    {
+      "file": "oral-ata27-aileron-control-path.webp",
+      "questionId": "oral_rev3_p37_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Captain／F/O Control WheelからBody Cable、PCU、Body／Wing QuadrantとAileronまでの経路図。",
+      "caption": "AILの機械的な操縦経路。桃色のAIL側と青色のSpoiler側のつながりを追い、Spring CartridgeとTransfer Mechanismの役割を区別する。"
+    },
+    {
+      "file": "oral-ata27-aileron-pcu.webp",
+      "questionId": "oral_rev3_p37_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Main Wheel Wellの2個のAileron PCUと、Fixed Piston、Movable Housing、Bypass Valve、2段のControl Valve、Mechanical Stopを示す図。",
+      "caption": "AIL PCUの構造。Control Valveが油圧を配分してHousingを動かし、油圧喪失時にはBypassとMechanical Stopを介して操縦する。",
+      "note": "図中の「FEEDBACKがいらない」は授業での略記。Housingの動きによって油圧の流れを止める働きを指す。"
+    },
+    {
+      "file": "oral-ata27-aileron-transfer-mechanism.webp",
+      "questionId": "oral_rev3_p37_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "F/O Column底部にあるAileron Transfer MechanismのTorsion Spring、Lost Motion CrankとLug、左右Bus Drumを示す図。",
+      "caption": "Transfer Mechanismの構造。Torsion Springによる左右の結合と、Lost Motionを超えてSpoiler側へ伝わる経路を確認する。"
+    },
+    {
+      "file": "oral-ata27-aileron-trim-actuator.webp",
+      "questionId": "oral_rev3_p37_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "2個のAileron Trim SwitchからTrim Actuatorへ電源とGroundを供給し、Feel and Centering UnitのNeutral位置を変える回路図。",
+      "caption": "AIL Trimは2個のSwitchを同時に操作し、Feel and Centering UnitのNeutral位置を変えて持続的なWheel Forceを除く。"
+    },
+    {
+      "file": "oral-ata27-aileron-balance-panel-tab.webp",
+      "questionId": "oral_rev3_p37_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Aileron Balance Panelの上下Chamber、Vent GapとSeal、逆方向に動くBalance Tabの断面図。",
+      "caption": "Balance Panelの差圧とBalance Tabの空気力が操舵を助ける。Manual Reversionで特に有効な仕組みを断面で確認する。",
+      "note": "図中の「境界層」の説明は授業追記で、印刷本文による裏付けは未確認。本文ではBalance Panel／Tabの差圧・空気力の働きを押さえる。"
+    },
+    {
+      "file": "oral-ata27-spoiler-control-path.webp",
+      "questionId": "oral_rev3_p37_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Control WheelとSpeedbrake Leverから、Spring Cartridge、Spoiler Mixer／Ratio Changer、Wing Cable、Flight Spoiler Actuatorへ至る機械経路図。",
+      "caption": "Spoilerの機械的な作動経路。WheelからのRoll入力とLeverからのSpeedbrake入力を合成し、8枚のFlight Spoilerを操作する。"
+    },
+    {
+      "file": "oral-ata27-spoiler-mixer-ratio-changer.webp",
+      "questionId": "oral_rev3_p37_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Main Wheel Well前方のSpoiler Mixer／Ratio Changerと、Control Wheel入力、Speedbrake入力、Rig Pin位置の図。",
+      "caption": "Mixerは2つの入力を合成し、Ratio ChangerはSpeedbrake使用中のRoll入力とSpoiler変位の関係を調整する。"
+    },
+    {
+      "file": "oral-ata27-ground-spoiler-hydraulic.webp",
+      "questionId": "oral_rev3_p37_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "System AからGround Spoiler Control Valveと右Main Gear連動のInterlock Valveを通り、6個のActuatorへ供給する油圧回路図。",
+      "caption": "Ground Spoilerの油圧経路。Lever指令と右MLGのGround確認を別のValveで成立させ、4枚のGround Spoilerを6個のActuatorで動かす。"
+    },
+    {
+      "file": "oral-ata27-auto-speedbrake-logic.webp",
+      "questionId": "oral_rev3_p37_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Thrust、ARM／RTO、Wheel Speed、Air／Ground、R/A入力からModuleとRelayを介しAuto Speedbrake Actuatorを制御する論理図。",
+      "caption": "Auto Speedbrakeの作動条件。ThrustのAND、ARM／RTOのOR、左右のWheel／Ground信号を経てActuatorへ伝える。",
+      "note": "図の不等号と本文の「以上／以下」には表記差がある。境界値とGround信号の4秒間は回答本文の説明を参照する。"
+    },
+    {
+      "file": "oral-ata27-speedbrakes-extended-light.webp",
+      "questionId": "oral_rev3_p37_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "PSEUがAir／Ground、Speedbrake Lever、TE Flap／高度、Interlock圧からSPEEDBRAKES EXTENDEDを点灯させる論理図。",
+      "caption": "SPEEDBRAKES EXTENDEDの条件。空中ではLeverとFlap／高度、地上ではLever DOWNとGround Spoiler加圧の不一致を監視する。",
+      "note": "図の >／< と本文の「以上／以下」は表記差があるため、境界値は本文の記載を優先する。"
     }
   ]
 }
