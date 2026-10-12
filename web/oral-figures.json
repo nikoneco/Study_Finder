@@ -425,6 +425,213 @@
       "alt": "PSEUがAir／Ground、Speedbrake Lever、TE Flap／高度、Interlock圧からSPEEDBRAKES EXTENDEDを点灯させる論理図。",
       "caption": "SPEEDBRAKES EXTENDEDの条件。空中ではLeverとFlap／高度、地上ではLever DOWNとGround Spoiler加圧の不一致を監視する。",
       "note": "図の >／< と本文の「以上／以下」は表記差があるため、境界値は本文の記載を優先する。"
+    },
+    {
+      "questionId": "oral_rev3_p05_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "MCDU MENUからACMS MAIN MENUへ進み、REPORTS、DATA DISPLAY、STATUS、PRINTを選ぶ画面図。",
+      "caption": "ACMSの入口と主要メニュー。Reportを確認する操作と、Landing GなどのData Displayを区別する。",
+      "file": "oral-ata31-acms-menu.webp"
+    },
+    {
+      "questionId": "oral_rev3_p05_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Maintenance ReportのHeader、QAR情報、Limit Exceedance、Engine／Other Replay MemoryとMCDU Reportメニューの図。",
+      "caption": "Maintenance Reportの各欄。Limit ExceedanceとReplay Memoryを別々に読み、記録がある場合の処置判断につなげる。",
+      "file": "oral-ata31-acms-maint-report.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Maintenance ReportのHeader、QAR情報、Limit Exceedance、Engine／Other Replay MemoryとMCDU Reportメニューの図。",
+      "caption": "Maintenance Reportの各欄。Limit ExceedanceとReplay Memoryを別々に読み、記録がある場合の処置判断につなげる。",
+      "file": "oral-ata31-acms-maint-report.webp"
+    },
+    {
+      "questionId": "oral_rev3_p05_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "ACMS DATA DISPLAYのVERTICAL ACCELERATIONで、GMX/GMN（最大・最小G）とGFMX/GFMN（In-Airの最大・最小G）を確認する画面図。",
+      "caption": "Landing GはVERTICAL ACCELERATIONで確認する。GMX/GMNとGFMX/GFMNの測定対象・期間、最大／最小を区別する。",
+      "note": "図の2.1Gの追記を、全着陸に共通する検査不要の基準として扱わない。検査要否は回答本文の適用条件を確認する。",
+      "file": "oral-ata31-acms-landing-g.webp"
+    },
+    {
+      "questionId": "oral_rev3_p05_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "ACMS STATUSからQAR STATUS、DFDAU CURRENT FAULTSとHISTORY FAULTSを選ぶ画面図。",
+      "caption": "ACMS活用の一例。飛行データの確認と装置自身のFault確認を区別する。",
+      "file": "oral-ata31-acms-status.webp"
+    },
+    {
+      "questionId": "oral_rev3_p05_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "ACARS MUとACMS DFDAUからPrinterへ送るデータ、PrinterのPaper DoorとTEST等の表示を示す図。",
+      "caption": "Printerとデータの接続。Paper Lowの判断と用紙交換の要領は回答本文で確認する。",
+      "note": "図のRESET＋TEST同時押しの追記は、用紙交換後の確認手順として裏付け未確認。収集AMMのSLEWによる確認を優先する。",
+      "file": "oral-ata31-printer-interface.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "FLT REC Panel、DFDAU、FDR、Data Loader Control Panel等で構成するFDR System図。",
+      "caption": "FDR Systemの構成と信号の流れ。DFDAUが取得したデータをFDRへ送り記録する。",
+      "file": "oral-ata31-fdr-system.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r04",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Ground Sensing、Engine Running、FLT REC TEST、電源とOFF Lightの関係を示す回路図。",
+      "caption": "FDRの作動条件と電源経路を追う。OFF Lightの意味は回答本文で確認する。",
+      "note": "図中のENG OPE CK時のCCB操作は授業追記。適用範囲と復旧要領の確認が必要で、この図だけで実施手順を決めない。",
+      "file": "oral-ata31-fdr-power.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Display Select、EFIS、Engine Display Panel、2個のDEU、6個のDUとCoax接続のCDS構成図。",
+      "caption": "CDSの全体構成。航空機の情報をDEUで処理し、DUへ表示する。",
+      "file": "oral-ata31-cds-system.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "DEU1／2のGraphics Generator、Coax Coupler1～4、6個のDUとARINC 429 Statusの接続図。",
+      "caption": "DEUからDUへの画像信号と、DUからDEUへのStatus信号を区別して追う。",
+      "file": "oral-ata31-cds-deu-du.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "EFIS Control PanelのMINIMUMS、BARO、FPV、METERS、MODE、RANGEとMAP Switchesの図。",
+      "caption": "EFIS Control Panelの操作対象。PFDの設定とNDのMode、Range、重ね合わせ表示を区別する。",
+      "file": "oral-ata31-cds-efis-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "Display Source Selectorの位置と、各DUが選ぶDEU Graphics Generatorの対応表。",
+      "caption": "Display Sourceの選択と各DUの供給元。表のA／BはDEU内のGraphics Generatorを表す。",
+      "file": "oral-ata31-cds-source-selection.webp"
+    },
+    {
+      "questionId": "oral_rev3_p16_s02_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "PFDのFlight Mode、Speed、Attitude、Altitude、Vertical Speed、Heading等の表示位置。",
+      "caption": "PFDの一般表示。速度・姿勢・高度・昇降率・方位とFlight Modeを位置と結び付ける。",
+      "note": "図の左Speed Tape上の「Attitude」、右Altitude Tape上の「Air Speed」は授業追記の誤ラベル。印刷本文の左Airspeed、中央Attitude、右Altitudeを優先する。",
+      "file": "oral-ata31-cds-pfd.webp"
+    },
+    {
+      "questionId": "oral_rev3_p16_s02_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "NDのMap表示と、PLAN、MAP、VOR、APP等のModeの説明を示す図。",
+      "caption": "NDの一般表示とMode。Expanded／CenteredとMap情報を区別する。",
+      "note": "追記のVertical Simulationは印刷本文のVertical Situation Displayを優先する。",
+      "file": "oral-ata31-cds-nd.webp"
+    },
+    {
+      "questionId": "oral_rev3_p16_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "通常時に左右OutboardへPFD、左右InboardへND、Center DUへEngine表示を出す配置図。",
+      "caption": "通常のDU表示配置。PFD、ND、Primary／Secondary Engine Displayの位置を確認する。",
+      "file": "oral-ata31-cds-normal-layout.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "DU故障時にPFDを隣のDUへ、Engine DisplayをLower Centerへ移すAutomatic Switchingの図。",
+      "caption": "Automatic Switchingの表示例。操作による選択と故障時の自動切替を区別する。",
+      "file": "oral-ata31-cds-auto-switching.webp"
+    },
+    {
+      "questionId": "oral_rev3_p16_s02_r01",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "CDS DEU MAINT/BITEのCURRENT STATUSとINFLIGHT FAULTSを示す授業追加写真。",
+      "caption": "CDS BITEの表示例。現在のFaultと、飛行中に記録されたFaultを区別する。",
+      "note": "写真のFault CodeやMessageは撮影時の例。交換後Testの実施手順と判定は該当AMMで確認する。",
+      "file": "oral-ata31-cds-bite-pages.webp"
+    },
+    {
+      "questionId": "oral_rev3_p16_s02_r01",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "DU Loop Test画面のDU LOCATION、ARINC 429 LOOP、COAX OUTPUT、INPUT ACTIVITYと明るさ入力、および4系統のCoax経路写真。",
+      "caption": "Loop Testの表示内容とINPUT ACTIVITYの4系統。左の表示項目を、右のDEU／Coax Coupler経路と結び付ける。",
+      "note": "72、0、100、6等の値は写真の例。共通の合否基準・設定値として暗記しない。",
+      "file": "oral-ata31-cds-loop-test.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "各Warning入力、Bell／Clacker／Chime／Horn等の音、Moduleの並列Channel A／BとSpeakerの接続図。",
+      "caption": "Aural Warningの入力と音の対応。音の優先順位は回答本文の条件で確認する。",
+      "note": "図中の手書き「4」をChimeの一律4位としては採用しない。SG本文ではBell・Clacker・Chimeは優先順位を持たず、他のSoundと同時発生できる。",
+      "file": "oral-ata31-aural-functional.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Takeoff Configurationの各不成立条件とGround／Thrust条件、Intermittent Hornへの経路図。",
+      "caption": "Takeoff Warningの作動条件。Configurationの各異常はOR、地上・Takeoff Thrustは作動の入口条件として読む。",
+      "file": "oral-ata31-takeoff-warning.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Takeoff Configurationの各不成立条件とGround／Thrust条件、Intermittent Hornへの経路図。",
+      "caption": "Takeoff Warningの作動条件。Configurationの各異常はOR、地上・Takeoff Thrustは作動の入口条件として読む。",
+      "file": "oral-ata31-takeoff-warning.webp"
+    },
+    {
+      "questionId": "oral_rev3_p46_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "各System Annunciator、左右Master CautionとSystem Annunciatorの配置・接続図。",
+      "caption": "Master CautionとSystem Annunciatorの対応。ResetとRecallの作用は回答本文で確認する。",
+      "note": "追記のRecall例のLightは故障条件によって通常の警告でも点灯する。Recall時だけの表示と決め付けない。",
+      "file": "oral-ata31-master-caution.webp"
     }
   ]
 }
