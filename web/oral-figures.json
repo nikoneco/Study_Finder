@@ -230,6 +230,107 @@
       "alt": "ELT Control PanelのON、ARMED、RESET SwitchとELT Annunciator Lightを示す図。",
       "caption": "ELT Control Panel。ONによる手動作動、ARMEDでの衝撃検知、RESETによる復帰を区別する。",
       "note": "評価シートのJA303J以降という適用条件で読む。試験・整備の実施手順は適用手順書に従う。"
+    },
+    {
+      "questionId": "oral_rev3_p41_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata35-crew-oxygen-cylinder.webp",
+      "alt": "Crew Oxygen Cylinder、Cylinder Head、Pressure Reducing Regulator、Pressure Transducer、Relief Valve、Thermal Compensatorの位置を示す図。",
+      "caption": "Crew OxygenのCylinderとHead。Cylinder圧の表示、Regulatorでの減圧、過圧／高温保護の各経路を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p41_s01_r02",
+      "promptIndexes": [
+        4
+      ],
+      "file": "oral-ata35-mask-controls.webp",
+      "alt": "Crew Oxygen MaskのDonning/Inflation Plate、N/100% Dilution Control、EMERGENCY/TEST Knobを示す図。",
+      "caption": "Mask側の操作部。Harnessの膨張、N/100%の希釈切替、EMERGENCY/TESTをそれぞれ区別する。",
+      "note": "Box側のRESET/TEST Leverとは別。図中の「通常100%」は授業追記で、Departure前の最終設定の現行適用は回答の不足点を参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p41_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata35-passenger-oxygen-deployment.webp",
+      "alt": "客室高度のPressure SwitchまたはP5 SwitchからDoor Latch ActuatorとOXY Indication Relayを作動させる回路図。",
+      "caption": "Passenger Oxygenの電気的なMask展開と表示。Auto／Manualの経路と、Indication Relayの保持を確認する。",
+      "note": "Maskの展開とChemical Generatorの酸素発生は別。酸素発生はMaskを引く機械的な作動から始まる。"
+    },
+    {
+      "questionId": "oral_rev3_p41_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata35-portable-cylinder.webp",
+      "alt": "Portable Oxygen CylinderのShutoff Valve、Pressure Indicator、Mask接続とPBEの構成を比較する図。",
+      "caption": "Portable Oxygen BottleとPBEの構成。Bottleによる酸素供給と、煙の中で使うPBEの役割を区別する。",
+      "note": "図から搭載個数を推定せず、BottleとPBEそれぞれの個数は該当ConfigurationのEmergency Equipment Listで確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p39_s01_r01",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata29-main-system-flow.webp",
+      "alt": "System AのReservoirからEDP/EMDP、Pressure Module、User、Return Filterへの流れとCase DrainのFuel Heat Exchangerを示す図。",
+      "caption": "Main Hydraulicの供給・Pressure・Return・Case Drainを色付きの線で追う。Case DrainはFuel Tank内のHeat Exchangerで冷却する。",
+      "note": "図はSystem Aの例。A/BのUserの違いと低Fuel時の運転条件は回答本文を参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata29-edp-depressurization.webp",
+      "alt": "ENG Hydraulic Pump Switch ON/OFFによるEDP Depressurization Solenoid、Blocking Valve、Compensator、Yokeの動きを示す図。",
+      "caption": "EDP SW OFFの減圧作用。SolenoidがEnergizeしてSystemへのOutputを止めるが、Engineが回転している間はPumpの回転とCase Drainが続く。",
+      "note": "Fire Handle Pullは別のSupply Shutoff Valveを閉じる。Pump SWによる減圧と、Reservoirからの供給遮断を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p39_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata29-standby-hydraulic-flow.webp",
+      "alt": "Standby Reservoir、EMDP、Pressure Filter ModuleからStandby Rudder、左右Thrust Reverser、Leading Edge Deviceへの供給経路図。",
+      "caption": "Standby Hydraulicの供給経路。Rudder・左右T/R・LE DeviceのExtendに供給し、B ReservoirとはFill and Balance Lineでつながる。",
+      "note": "図のAuto条件は略記。ALTERNATE FLAPS ARM OFFを含む全条件とMAN操作の違いは項目2の本文で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p39_s01_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata29-ptu-hydraulic-flow.webp",
+      "alt": "System AのHydraulic MotorがSystem BのPumpを駆動するPTUの別Fluid回路と流れを示す図。",
+      "caption": "PTUのHydraulic経路。Aの圧力でMotorを回し、BのPumpでLE Flap/Slat側に必要な流量を補う。A/BのFluidは混ざらない。"
+    },
+    {
+      "questionId": "oral_rev3_p39_s01_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata29-ptu-control-conditions.webp",
+      "alt": "Air/Ground、TE Flaps、B EDP Low PressureとAlternate Flapsの条件からPTU Control Valveを制御する回路図。",
+      "caption": "PTUの電気制御。Air、TE Flap NOT UP、B EDP Low Pressureの条件と、Alternate Flapsによる停止経路を確認する。",
+      "note": "図中の2350 psi／0.5秒とRelay保持を、Pumpの流量定格と混同しない。"
+    },
+    {
+      "questionId": "oral_rev3_p39_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata29-pressure-indication.webp",
+      "alt": "A/B Pressure ModuleのSystem Pressure Transmitterから各側DEUを経てSYS画面へ圧力を表示する経路図。",
+      "caption": "Hydraulic Pressure表示の経路。A側はDEU 1、B側はDEU 2へ入力し、SYS画面へ表示する。Pump Low Pressure警告とは別の監視経路。"
     }
   ]
 }
