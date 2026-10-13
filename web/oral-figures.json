@@ -632,6 +632,263 @@
       "caption": "Master CautionとSystem Annunciatorの対応。ResetとRecallの作用は回答本文で確認する。",
       "note": "追記のRecall例のLightは故障条件によって通常の警告でも点灯する。Recall時だけの表示と決め付けない。",
       "file": "oral-ata31-master-caution.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "RudderのPedal・CableからMain／Standby PCUへ至る機械的な経路。",
+      "caption": "RudderのPedal・CableからMain／Standby PCUへ至る機械的な経路。",
+      "file": "oral-ata27-rest-rudder-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r03",
+      "promptIndexes": [
+        1,
+        2
+      ],
+      "alt": "Main Rudder PCUの外観と、System A／B、Yaw Damper、Load Limiterの配置。",
+      "caption": "Main Rudder PCUの外観と、System A／B、Yaw Damper、Load Limiterの配置。",
+      "file": "oral-ata27-rest-rudder-main-pcu.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r03",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Main PCUの油圧回路。Control／Bypass ValveとLoad Limiterを区別する。",
+      "caption": "Main PCUの油圧回路。Control／Bypass ValveとLoad Limiterを区別する。",
+      "file": "oral-ata27-rest-rudder-main-hydraulic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Column・Cable・PCUからOutput Torque Tubeへ至るElevatorの経路。",
+      "caption": "Column・Cable・PCUからOutput Torque Tubeへ至るElevatorの経路。",
+      "file": "oral-ata27-rest-elevator-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Input Torque Tube周辺。Pilot、A/P、Stabilizer Neutral Shift、Mach Trimの入力を追う。",
+      "caption": "Input Torque Tube周辺。Pilot、A/P、Stabilizer Neutral Shift、Mach Trimの入力を追う。",
+      "file": "oral-ata27-rest-elevator-input.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r04",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Pitot／StaticとStabilizer位置からFeel圧を作る回路。FEEL DIFF PRESSの差圧・遅延も確認する。",
+      "caption": "Pitot／StaticとStabilizer位置からFeel圧を作る回路。FEEL DIFF PRESSの差圧・遅延も確認する。",
+      "file": "oral-ata27-rest-elevator-feel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r04",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Elevator TabのBalance／Anti-Balance切替と機械的な動き。",
+      "caption": "Elevator TabのBalance／Anti-Balance切替と機械的な動き。",
+      "file": "oral-ata27-rest-elevator-tab.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r04",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "左Tabと右Tabの切替回路。右側は10秒のTime Delayを持つ。",
+      "caption": "左Tabと右Tabの切替回路。右側は10秒のTime Delayを持つ。",
+      "file": "oral-ata27-rest-elevator-tab-delay.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Manual、Main Electric、A/PのStabilizer Trim経路と、Cutout／Limitの位置。",
+      "caption": "Manual、Main Electric、A/PのStabilizer Trim経路と、Cutout／Limitの位置。",
+      "file": "oral-ata27-rest-stabilizer-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "StabilizerのJackscrew、Ball Nut、Gearboxと手動Cable Drum。",
+      "caption": "StabilizerのJackscrew、Ball Nut、Gearboxと手動Cable Drum。",
+      "file": "oral-ata27-rest-stabilizer-jackscrew.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Electric TrimのSwitch回路とRateの対応。Main ElectricとA/Pの速度選択を区別する。",
+      "caption": "Electric TrimのSwitch回路とRateの対応。Main ElectricとA/Pの速度選択を区別する。",
+      "file": "oral-ata27-rest-stabilizer-switches.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r07",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "TE FlapのPilot InputとFollow-Up。PDUの動きがControl ValveをNullへ戻す。",
+      "caption": "TE FlapのPilot InputとFollow-Up。PDUの動きがControl ValveをNullへ戻す。",
+      "file": "oral-ata27-rest-te-follow-up.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r07",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Priority ValveとFlow Limiterの位置。System BでLEへの供給を優先する。",
+      "caption": "Priority ValveとFlow Limiterの位置。System BでLEへの供給を優先する。",
+      "file": "oral-ata27-rest-te-priority-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r07",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Asymmetry、UCM、Skew、Load Reliefの違いを示す授業の模式図。",
+      "caption": "Asymmetry、UCM、Skew、Load Reliefの違いを示す授業の模式図。",
+      "file": "oral-ata27-rest-te-protection-types.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r07",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "TE Position IndicationとFSEUの関係。指示位置と故障時のPointer Biasを区別する。",
+      "caption": "TE Position IndicationとFSEUの関係。指示位置と故障時のPointer Biasを区別する。",
+      "file": "oral-ata27-rest-te-indication.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r07",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "8個のSkew SensorとFSEU。左右の組合せ、Bypass、表示Bias、警報の関係。",
+      "caption": "8個のSkew SensorとFSEU。左右の組合せ、Bypass、表示Bias、警報の関係。",
+      "file": "oral-ata27-rest-te-skew.webp",
+      "note": "ResetのGround条件には本文・図・参考表に表記差がある。本文の13°以下という閾値とLatch図を区別して読む。"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Normal／AlternateのLE経路とTE Follow-Up、FSEU、Autoslatの関係。",
+      "caption": "Normal／AlternateのLE経路とTE Follow-Up、FSEU、Autoslatの関係。",
+      "file": "oral-ata27-rest-le-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r06",
+      "promptIndexes": [
+        1,
+        2
+      ],
+      "alt": "LE Cruise Depressurizationの作動・Inhibit条件。",
+      "caption": "LE Cruise Depressurizationの作動・Inhibit条件。",
+      "file": "oral-ata27-rest-le-cruise.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r06",
+      "promptIndexes": [
+        1,
+        2
+      ],
+      "alt": "LE UCMの検知、Shutoff Valve、Inhibit／Reset条件。",
+      "caption": "LE UCMの検知、Shutoff Valve、Inhibit／Reset条件。",
+      "file": "oral-ata27-rest-le-ucm.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r06",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Slat ActuatorのRetract、Extend、Full Extend。Inner／Outer Pistonの動きを区別する。",
+      "caption": "Slat ActuatorのRetract、Extend、Full Extend。Inner／Outer Pistonの動きを区別する。",
+      "file": "oral-ata27-rest-le-actuator-positions.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "LEとAutoslatをまとめた授業の油圧模式図。Standby供給はFull Extend側に入る。",
+      "caption": "LEとAutoslatをまとめた授業の油圧模式図。Standby供給はFull Extend側に入る。",
+      "file": "oral-ata27-rest-le-hydraulic-autoslat.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r06",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "P5 LE DEVICES Panelの各Flap／Slat TRANSIT、EXT、FULL EXT表示。",
+      "caption": "P5 LE DEVICES Panelの各Flap／Slat TRANSIT、EXT、FULL EXT表示。",
+      "file": "oral-ata27-rest-le-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r08",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Stall Warningの入力・SMYD・Column Shaker・EFSMの構成。",
+      "caption": "Stall Warningの入力・SMYD・Column Shaker・EFSMの構成。",
+      "file": "oral-ata27-rest-stall-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r08",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "SMYDのStall Warning、Autoslat、CDS Performance、Yaw Damper、WTRISの役割。",
+      "caption": "SMYDのStall Warning、Autoslat、CDS Performance、Yaw Damper、WTRISの役割。",
+      "file": "oral-ata27-rest-smyd-functions.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r08",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "EFSMのSolenoidとPressure Reducer。System Aの増圧FeelをDual Feel Actuatorへ送る。",
+      "caption": "EFSMのSolenoidとPressure Reducer。System Aの増圧FeelをDual Feel Actuatorへ送る。",
+      "file": "oral-ata27-rest-efsm.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r08",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "AOA側とCAS／Speed Floor側のStall Warning判定、およびAir Mode条件。",
+      "caption": "AOA側とCAS／Speed Floor側のStall Warning判定、およびAir Mode条件。",
+      "file": "oral-ata27-rest-stall-logic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r08",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "SMYD 2からStandby Rudder PCUへのWTRIS／Standby Yaw Dampingの経路。",
+      "caption": "SMYD 2からStandby Rudder PCUへのWTRIS／Standby Yaw Dampingの経路。",
+      "file": "oral-ata27-rest-wtris-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p37_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "授業のMach Trim挿入図。A/P OFF／ONの例とNeutral Shift Sensor・Surface Position Sensor差の補正。",
+      "caption": "授業図に示されたA/P OFF／ONの比較例。A/P ActuatorによるSensor差の補正を読む。",
+      "note": "「Input Torque Tubeが回らない」は図示された状態の説明。A/P作動中は常に動かないという意味にはしない。",
+      "file": "oral-ata27-rest-mach-trim-example.webp"
     }
   ]
 }
