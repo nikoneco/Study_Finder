@@ -889,6 +889,337 @@
       "caption": "授業図に示されたA/P OFF／ONの比較例。A/P ActuatorによるSensor差の補正を読む。",
       "note": "「Input Torque Tubeが回らない」は図示された状態の説明。A/P作動中は常に動かないという意味にはしない。",
       "file": "oral-ata27-rest-mach-trim-example.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r01",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "発電・変換・制御の全体構成。IDG／APU／ExternalからAC、TRUとBatteryからDCへ。",
+      "caption": "発電・変換・制御の全体構成。IDG／APU／ExternalからAC、TRUとBatteryからDCへ。",
+      "file": "oral-ata24-oct14-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "AC／DCのBUS構成と、TRU・Battery・Standbyの接続。INT仕様のAux Battery系は破線内。",
+      "caption": "AC／DCのBUS構成と、TRU・Battery・Standbyの接続。INT仕様のAux Battery系は破線内。",
+      "file": "oral-ata24-oct14-distribution.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r06",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "現行取得AMM Figure202 Sheet1のP19灯火・Receptacle。図の適用はJAL301,302,304–309,311–319,340–999。PARK BRAKE SET灯も示され、旧SG配置図と混同しない。",
+      "caption": "現行取得AMM Figure202 Sheet1のP19灯火・Receptacle。図の適用はJAL301,302,304–309,311–319,340–999。PARK BRAKE SET灯も示され、旧SG配置図と混同しない。",
+      "file": "oral-ata24-oct14-external-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r06",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "E/F Interlock、Quality監視、EPC投入とP5／P19表示の回路。",
+      "caption": "E/F Interlock、Quality監視、EPC投入とP5／P19表示の回路。",
+      "file": "oral-ata24-oct14-external-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r06",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "E/F Interlock、Quality監視、EPC投入とP5／P19表示の回路。",
+      "caption": "E/F Interlock、Quality監視、EPC投入とP5／P19表示の回路。",
+      "file": "oral-ata24-oct14-external-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r03",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "BPCUの入力・出力と、External Power／Ground Service／Load Shedの機能。",
+      "caption": "BPCUの入力・出力と、External Power／Ground Service／Load Shedの機能。",
+      "file": "oral-ata24-oct14-bpcu.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "IDG、GCU、GCBと外部Coolingの構成。追記の9qt（IDG約7qt＋外部約2qt）は概数で、補給量はAMMとSight Glassの基準による。",
+      "caption": "IDG、GCU、GCBと外部Coolingの構成。追記の9qt（IDG約7qt＋外部約2qt）は概数で、補給量はAMMとSight Glassの基準による。",
+      "file": "oral-ata24-oct14-idg-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r02",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "IDGのReset Ring、DPI、Filter、Vent、Fill／Drainの位置。DPI処置は本回答の現行AMM条件を参照する。",
+      "caption": "IDGのReset Ring、DPI、Filter、Vent、Fill／Drainの位置。DPI処置は本回答の現行AMM条件を参照する。",
+      "file": "oral-ata24-oct14-idg-components.webp"
+    },
+    {
+      "questionId": "oral_rev3_p25_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "IDGのReset Ring、DPI、Filter、Vent、Fill／Drainの位置。DPI処置は本回答の現行AMM条件を参照する。",
+      "caption": "IDGのReset Ring、DPI、Filter、Vent、Fill／Drainの位置。DPI処置は本回答の現行AMM条件を参照する。",
+      "file": "oral-ata24-oct14-idg-components.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r02",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "IDGのCharge／Scavenge系と、外部Cooling回路・Bypass・Case Relief。",
+      "caption": "IDGのCharge／Scavenge系と、外部Cooling回路・Bypass・Case Relief。",
+      "file": "oral-ata24-oct14-idg-oil-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p25_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "IDGのCharge／Scavenge系と、外部Cooling回路・Bypass・Case Relief。",
+      "caption": "IDGのCharge／Scavenge系と、外部Cooling回路・Bypass・Case Relief。",
+      "file": "oral-ata24-oct14-idg-oil-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p25_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "IDGのCharge／Scavenge系と、外部Cooling回路・Bypass・Case Relief。",
+      "caption": "IDGのCharge／Scavenge系と、外部Cooling回路・Bypass・Case Relief。",
+      "file": "oral-ata24-oct14-idg-oil-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "PMG・Exciter・Main Generatorの発電構成。図のGCU／GCRは略記で、AC→DC変換はGCU内部のVoltage Regulator、GCRは励磁DCの開閉を担う。",
+      "caption": "PMG・Exciter・Main Generatorの発電構成。図のGCU／GCRは略記で、AC→DC変換はGCU内部のVoltage Regulator、GCRは励磁DCの開閉を担う。",
+      "file": "oral-ata24-oct14-brushless-generator.webp"
+    },
+    {
+      "questionId": "oral_rev3_p25_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Sight Glass、PUSH-TO-VENT、Pressure Fill PortとServicing Placard。温度・判定・補給条件は本回答のAMMを優先する。",
+      "caption": "Sight Glass、PUSH-TO-VENT、Pressure Fill PortとServicing Placard。温度・判定・補給条件は本回答のAMMを優先する。",
+      "file": "oral-ata24-oct14-idg-servicing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p25_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Sight Glass、PUSH-TO-VENT、Pressure Fill PortとServicing Placard。温度・判定・補給条件は本回答のAMMを優先する。",
+      "caption": "Sight Glass、PUSH-TO-VENT、Pressure Fill PortとServicing Placard。温度・判定・補給条件は本回答のAMMを優先する。",
+      "file": "oral-ata24-oct14-idg-servicing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p25_s01_r03",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Sight Glass、PUSH-TO-VENT、Pressure Fill PortとServicing Placard。温度・判定・補給条件は本回答のAMMを優先する。",
+      "caption": "Sight Glass、PUSH-TO-VENT、Pressure Fill PortとServicing Placard。温度・判定・補給条件は本回答のAMMを優先する。",
+      "file": "oral-ata24-oct14-idg-servicing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r03",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "GCUの発電制御、GCB／BTB制御、保護・表示とBITEの対応。",
+      "caption": "GCUの発電制御、GCB／BTB制御、保護・表示とBITEの対応。",
+      "file": "oral-ata24-oct14-gcu.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r03",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "GCBのManual／Automatic CloseとOpen条件。Automatic CloseはAir/Ground移行時の限定条件。",
+      "caption": "GCBのManual／Automatic CloseとOpen条件。Automatic CloseはAir/Ground移行時の限定条件。",
+      "file": "oral-ata24-oct14-gcb-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r03",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "AGCUのAPB制御と、BPCUによるGCB／BTB／EPCの非並列制御。",
+      "caption": "AGCUのAPB制御と、BPCUによるGCB／BTB／EPCの非並列制御。",
+      "file": "oral-ata24-oct14-apb-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r03",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "授業で追加されたGCB／APBとGCRの役割整理。詳細なClose／Trip条件はSG本文の個別回路を優先する。",
+      "caption": "授業で追加されたGCB／APBとGCRの役割整理。詳細なClose／Trip条件はSG本文の個別回路を優先する。",
+      "file": "oral-ata24-oct14-breaker-summary.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r03",
+      "promptIndexes": [
+        5
+      ],
+      "alt": "Configuration／Command／OvercurrentのLoad ShedとSource別の順序。矢印1は過電流が継続した場合の追加切離し。",
+      "caption": "Configuration／Command／OvercurrentのLoad ShedとSource別の順序。矢印1は過電流が継続した場合の追加切離し。",
+      "file": "oral-ata24-oct14-load-shed.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r04",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "TRU1／2／3の供給先と、DC Bus Tie・Battery・Standby系の接続。",
+      "caption": "TRU1／2／3の供給先と、DC Bus Tie・Battery・Standby系の接続。",
+      "file": "oral-ata24-oct14-dc-distribution.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r04",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "R9によるDC Bus1／2の並列接続。Close／Isolationの条件は本文を参照する。",
+      "caption": "R9によるDC Bus1／2の並列接続。Close／Isolationの条件は本文を参照する。",
+      "file": "oral-ata24-oct14-dc-tie.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r04",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "Main／Aux Battery Chargerの位置・表示とP5 Meter。充電Modeの定格と抑制条件は本文で説明する。",
+      "caption": "Main／Aux Battery Chargerの位置・表示とP5 Meter。充電Modeの定格と抑制条件は本文で説明する。",
+      "file": "oral-ata24-oct14-battery-charger.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r04",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "Battery ChargerのCharge／TR Mode、APU Start・Refuel・SPCUによる充電抑制回路。",
+      "caption": "Battery ChargerのCharge／TR Mode、APU Start・Refuel・SPCUによる充電抑制回路。",
+      "file": "oral-ata24-oct14-charger-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "INT仕様のDual Battery RCCBはJ9内、通常Open。CloseはBAT ON＋Transfer1／DC1両方無電源、TRU3 Fail、またはSTBY BAT。図のMain使用という略記はこの条件で読む。",
+      "caption": "INT仕様のDual Battery RCCBはJ9内、通常Open。CloseはBAT ON＋Transfer1／DC1両方無電源、TRU3 Fail、またはSTBY BAT。図のMain使用という略記はこの条件で読む。",
+      "file": "oral-ata24-oct14-dual-battery-rccb.webp"
+    },
+    {
+      "questionId": "oral_rev3_p07_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "INT仕様のDual Battery RCCBはJ9内、通常Open。CloseはBAT ON＋Transfer1／DC1両方無電源、TRU3 Fail、またはSTBY BAT。図のMain使用という略記はこの条件で読む。",
+      "caption": "INT仕様のDual Battery RCCBはJ9内、通常Open。CloseはBAT ON＋Transfer1／DC1両方無電源、TRU3 Fail、またはSTBY BAT。図のMain使用という略記はこの条件で読む。",
+      "file": "oral-ata24-oct14-dual-battery-rccb.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Static Inverter RCCBのJ9配置、SPCUとINVERTER REMOTEによる遠隔制御・Trip表示。",
+      "caption": "Static Inverter RCCBのJ9配置、SPCUとINVERTER REMOTEによる遠隔制御・Trip表示。",
+      "file": "oral-ata24-oct14-inverter-rccb.webp"
+    },
+    {
+      "questionId": "oral_rev3_p07_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Static Inverter RCCBのJ9配置、SPCUとINVERTER REMOTEによる遠隔制御・Trip表示。",
+      "caption": "Static Inverter RCCBのJ9配置、SPCUとINVERTER REMOTEによる遠隔制御・Trip表示。",
+      "file": "oral-ata24-oct14-inverter-rccb.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "SPCUのNormal／Alternate Relay、Battery系BUSとAC／DC Standby BUSの構成。",
+      "caption": "SPCUのNormal／Alternate Relay、Battery系BUSとAC／DC Standby BUSの構成。",
+      "file": "oral-ata24-oct14-standby-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r05",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "BAT／OFF／AUTOとNormal／Alternate電源の切替回路。",
+      "caption": "BAT／OFF／AUTOとNormal／Alternate電源の切替回路。",
+      "file": "oral-ata24-oct14-standby-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p07_s02_r01",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "BAT／OFF／AUTOとNormal／Alternate電源の切替回路。",
+      "caption": "BAT／OFF／AUTOとNormal／Alternate電源の切替回路。",
+      "file": "oral-ata24-oct14-standby-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p07_s02_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Static Inverterの配置と、P5のINV選択・ELEC表示。",
+      "caption": "Static Inverterの配置と、P5のINV選択・ELEC表示。",
+      "file": "oral-ata24-oct14-static-inverter.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r04",
+      "promptIndexes": [
+        5
+      ],
+      "alt": "Battery SW、Hot／Switched Hot／Battery BusとSPCUの供給・切替回路。",
+      "caption": "Battery SW、Hot／Switched Hot／Battery BusとSPCUの供給・切替回路。",
+      "file": "oral-ata24-oct14-battery-buses.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r04",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "50Aの定電流Chargeから27.5Vの定電圧TRへ移る授業図。横軸の時間は図の例で、実際は温度に応じた充電制御。",
+      "caption": "50Aの定電流Chargeから27.5Vの定電圧TRへ移る授業図。横軸の時間は図の例で、実際は温度に応じた充電制御。",
+      "file": "oral-ata24-oct14-charging-curve.webp"
+    },
+    {
+      "questionId": "oral_rev3_p51_s01_r06",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "現行取得AMM Figure202 Sheet2のP19灯火・Receptacle。図の適用はJAL320–323,326–339。PARK BRAKE SET灯の位置と、Sheet1との差を機番で確認する。",
+      "caption": "現行取得AMM Figure202 Sheet2のP19灯火・Receptacle。図の適用はJAL320–323,326–339。PARK BRAKE SET灯の位置と、Sheet1との差を機番で確認する。",
+      "file": "oral-ata24-oct14-external-panel-alt.webp"
     }
   ]
 }
