@@ -1220,6 +1220,204 @@
       "alt": "現行取得AMM Figure202 Sheet2のP19灯火・Receptacle。図の適用はJAL320–323,326–339。PARK BRAKE SET灯の位置と、Sheet1との差を機番で確認する。",
       "caption": "現行取得AMM Figure202 Sheet2のP19灯火・Receptacle。図の適用はJAL320–323,326–339。PARK BRAKE SET灯の位置と、Sheet1との差を機番で確認する。",
       "file": "oral-ata24-oct14-external-panel-alt.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Flight CompartmentのInstrument／Miscellaneous／Crew Lightと操作部の配置。",
+      "caption": "Flight CompartmentのInstrument／Miscellaneous／Crew Lightと操作部の配置。",
+      "file": "oral-ata33-oct14-cockpit-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "通常系統とStandby系統の色分け。Normalは輝度調整、Standbyは固定輝度で、P41のRelayとP42のTransformerをたどる。",
+      "caption": "通常系統とStandby系統の色分け。Normalは輝度調整、Standbyは固定輝度で、P41のRelayとP42のTransformerをたどる。",
+      "file": "oral-ata33-oct14-instrument-standby.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "P8のStandby照明。Transfer Bus2喪失でR425が切り替わり、Standby BusからT362を介して図示の選択機器を照明する。",
+      "caption": "P8のStandby照明。Transfer Bus2喪失でR425が切り替わり、Standby BusからT362を介して図示の選択機器を照明する。",
+      "file": "oral-ata33-oct14-p8-standby.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Domeの通常LampとEmergency Lampの配置・別電源。Battery Bus照明とEmergency Light Systemを区別する。",
+      "caption": "Domeの通常LampとEmergency Lampの配置・別電源。Battery Bus照明とEmergency Light Systemを区別する。",
+      "file": "oral-ata33-oct14-dome.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Flood LightのNormal／Standby回路。Standby時はMain Panel Floodを固定輝度で点灯し、その他のFloodとの違いを確認する。",
+      "caption": "Flood LightのNormal／Standby回路。Standby時はMain Panel Floodを固定輝度で点灯し、その他のFloodとの違いを確認する。",
+      "file": "oral-ata33-oct14-flood.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P1-3のTEST／BRT／DIM。TEST対象と未点灯例外は本回答の機体装備・AMM条件による。",
+      "caption": "P1-3のTEST／BRT／DIM。TEST対象と未点灯例外は本回答の機体装備・AMM条件による。",
+      "file": "oral-ata33-oct14-mdt-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P1-3のTEST／BRT／DIM。TEST対象と未点灯例外は本回答の機体装備・AMM条件による。",
+      "caption": "P1-3のTEST／BRT／DIM。TEST対象と未点灯例外は本回答の機体装備・AMM条件による。",
+      "file": "oral-ata33-oct14-mdt-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P1-3のTEST／BRT／DIM。TEST対象と未点灯例外は本回答の機体装備・AMM条件による。",
+      "caption": "P1-3のTEST／BRT／DIM。TEST対象と未点灯例外は本回答の機体装備・AMM条件による。",
+      "file": "oral-ata33-oct14-mdt-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "MD&TのR33／R34とZener Diode。上段はGround Seeking、下段はPower SeekingでSystemからPowerを与えて点灯する。",
+      "caption": "MD&TのR33／R34とZener Diode。上段はGround Seeking、下段はPower SeekingでSystemからPowerを与えて点灯する。",
+      "file": "oral-ata33-oct14-mdt-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "MD&TのR33／R34とZener Diode。上段はGround Seeking、下段はPower SeekingでSystemからPowerを与えて点灯する。",
+      "caption": "MD&TのR33／R34とZener Diode。上段はGround Seeking、下段はPower SeekingでSystemからPowerを与えて点灯する。",
+      "file": "oral-ata33-oct14-mdt-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Cargo Ceiling LightのLamp、Switch、LensとMicroswitch。Lensを外すとそのLampへの回路を切る。",
+      "caption": "Cargo Ceiling LightのLamp、Switch、LensとMicroswitch。Lensを外すとそのLampへの回路を切る。",
+      "file": "oral-ata33-oct14-cargo-layout.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Cargo Switch・PSEU・R623による制御と並列Lamp回路。Door信号に関する本文の例外条件も合わせて確認する。",
+      "caption": "Cargo Switch・PSEU・R623による制御と並列Lamp回路。Door信号に関する本文の例外条件も合わせて確認する。",
+      "file": "oral-ata33-oct14-cargo-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Nose1灯・Main4灯の配置。操作Switchと供給経路はWheel Well回路図で確認する。",
+      "caption": "Nose1灯・Main4灯の配置。操作Switchと供給経路はWheel Well回路図で確認する。",
+      "file": "oral-ata33-oct14-wheel-layout.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P5で全灯、機外Switchで関連Wheel Wellだけを点灯する回路。電源は28V AC Ground Service Bus。",
+      "caption": "P5で全灯、機外Switchで関連Wheel Wellだけを点灯する回路。電源は28V AC Ground Service Bus。",
+      "file": "oral-ata33-oct14-wheel-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s02_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "緊急時のExit／避難経路照明。Exit Sign、Aisle、Floor Proximity、Slide LightとPower Supplyの関係。",
+      "caption": "緊急時のExit／避難経路照明。Exit Sign、Aisle、Floor Proximity、Slide LightとPower Supplyの関係。",
+      "file": "oral-ata33-oct14-emergency-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s02_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "P5／P14 Switch、分散Power Supplyと各Emergency Lightの構成。自動点灯はP5 ARMEDかつDC Bus1の電圧12V以下という本文の条件による。",
+      "caption": "P5／P14 Switch、分散Power Supplyと各Emergency Lightの構成。自動点灯はP5 ARMEDかつDC Bus1の電圧12V以下という本文の条件による。",
+      "file": "oral-ata33-oct14-emergency-system.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P5／P14 Switch、分散Power Supplyと各Emergency Lightの構成。自動点灯はP5 ARMEDかつDC Bus1の電圧12V以下という本文の条件による。",
+      "caption": "P5／P14 Switch、分散Power Supplyと各Emergency Lightの構成。自動点灯はP5 ARMEDかつDC Bus1の電圧12V以下という本文の条件による。",
+      "file": "oral-ata33-oct14-emergency-system.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "授業図のPower Supply10台の配置例（FWD天井2・AFT天井2・客室側6）。Battery PackとTEST Switchを示す。機番別LocationはACCD／適用技術資料との照合が必要。",
+      "caption": "授業図のPower Supply10台の配置例（FWD天井2・AFT天井2・客室側6）。Battery PackとTEST Switchを示す。機番別LocationはACCD／適用技術資料との照合が必要。",
+      "file": "oral-ata33-oct14-emergency-supply.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "授業図のPower Supply10台の配置例（FWD天井2・AFT天井2・客室側6）。Battery PackとTEST Switchを示す。機番別LocationはACCD／適用技術資料との照合が必要。",
+      "caption": "授業図のPower Supply10台の配置例（FWD天井2・AFT天井2・客室側6）。Battery PackとTEST Switchを示す。機番別LocationはACCD／適用技術資料との照合が必要。",
+      "file": "oral-ata33-oct14-emergency-supply.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r05",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "DC Bus1からPower Supply／Battery Packへの充電・制御系統。実充電はP5 OFFまたはARM、DC Bus1給電、Attendant NORMALの3条件すべてが必要。",
+      "caption": "DC Bus1からPower Supply／Battery Packへの充電・制御系統。実充電はP5 OFFまたはARM、DC Bus1給電、Attendant NORMALの3条件すべてが必要。",
+      "file": "oral-ata33-oct14-emergency-power.webp"
+    },
+    {
+      "questionId": "oral_rev3_p06_s02_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "P5とP14のEmergency Light操作部・NOT ARMED表示。自動点灯の条件は本文のDC Bus1電圧12V以下を優先する。",
+      "caption": "P5とP14のEmergency Light操作部・NOT ARMED表示。自動点灯の条件は本文のDC Bus1電圧12V以下を優先する。",
+      "file": "oral-ata33-oct14-emergency-switches.webp"
+    },
+    {
+      "questionId": "oral_rev3_p53_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "P5とP14のEmergency Light操作部・NOT ARMED表示。自動点灯の条件は本文のDC Bus1電圧12V以下を優先する。",
+      "caption": "P5とP14のEmergency Light操作部・NOT ARMED表示。自動点灯の条件は本文のDC Bus1電圧12V以下を優先する。",
+      "file": "oral-ata33-oct14-emergency-switches.webp"
     }
   ]
 }
