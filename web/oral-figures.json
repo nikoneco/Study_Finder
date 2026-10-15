@@ -1418,6 +1418,377 @@
       "alt": "P5とP14のEmergency Light操作部・NOT ARMED表示。自動点灯の条件は本文のDC Bus1電圧12V以下を優先する。",
       "caption": "P5とP14のEmergency Light操作部・NOT ARMED表示。自動点灯の条件は本文のDC Bus1電圧12V以下を優先する。",
       "file": "oral-ata33-oct14-emergency-switches.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "CAP/F/O Seatの左右側面と調整部",
+      "caption": "Seat Height・Fore/Aft・Recline・Thigh Pad・Armrest・LumbarのControl位置。",
+      "file": "oral-ata25-oct15-capt-fo-seat-adjustments.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "CAP/F/O Seatの左右側面と調整部",
+      "caption": "Seat Height・Fore/Aft・Recline・Thigh Pad・Armrest・LumbarのControl位置。",
+      "file": "oral-ata25-oct15-capt-fo-seat-adjustments.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Ceiling Panel支持とHinge調整",
+      "caption": "Outboard Hinge、Inboard Groove、LanyardとHinge調整部。",
+      "file": "oral-ata25-oct15-ceiling-hinge-adjustments.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "PSUの支持・Latch Release・Oxygen部品",
+      "caption": "Rail/Hinge/Latch/LanyardとLatch Release Hole、Oxygen Generator/Mask。",
+      "file": "oral-ata25-oct15-psu-latch-components.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Sliding Carpet電源と系統構成",
+      "caption": "Control Box、Drive Unit、Carpet、Movable BulkheadとGround Service電源。",
+      "file": "oral-ata25-oct15-sliding-carpet-components.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Sliding Carpet系統構成",
+      "caption": "Drive UnitとCarpet/Bulkheadの関係。",
+      "file": "oral-ata25-oct15-sliding-carpet-components.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Sliding Carpet Control BoxのSWとLight",
+      "caption": "LOAD/UNLOAD選択、RUN、Emergency Stop、PWR AVAILABLE、ALARMの位置。警告の条件は本文で確認。",
+      "file": "oral-ata25-oct15-sliding-carpet-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Sliding Carpet Control BoxのSWとLight",
+      "caption": "LOAD/UNLOAD選択、RUN、Emergency Stop、PWR AVAILABLE、ALARMの位置。警告の条件は本文で確認。",
+      "file": "oral-ata25-oct15-sliding-carpet-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Sliding Carpet Control BoxのSWとLight",
+      "caption": "LOAD/UNLOAD選択、RUN、Emergency Stop、PWR AVAILABLE、ALARMの位置。警告の条件は本文で確認。",
+      "file": "oral-ata25-oct15-sliding-carpet-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Cargo Door横のSafety Flap",
+      "caption": "荷物がFlapを押すとUnload Driveを停止しDoorを保護。",
+      "file": "oral-ata25-oct15-sliding-carpet-safety-flap.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Sliding Carpet電源・Enable Relay系統",
+      "caption": "115V AC/28V DC Ground Service、Cargo Door Open、PSEU Ground入力。",
+      "file": "oral-ata25-oct15-sliding-carpet-power.webp"
+    },
+    {
+      "questionId": "oral_rev3_p31_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Sliding Carpet電源・Enable Relay系統",
+      "caption": "115V AC/28V DC Ground Service、Cargo Door Open、PSEU Ground入力。",
+      "file": "oral-ata25-oct15-sliding-carpet-power.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Overwing Escape Strapの収納とWing取付",
+      "caption": "Emergency Exit上Stowage TubeからWing FittingへHookを取り付ける。",
+      "file": "oral-ata25-oct15-overwing-escape-strap.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r04",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Flight Crew Escape Lanyardの収納と構造",
+      "caption": "No.2 Window上Panel、Structure固定、Link/Handhold。",
+      "file": "oral-ata25-oct15-crew-escape-lanyard.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r04",
+      "promptIndexes": [
+        5
+      ],
+      "alt": "Escape Slide PackとPressure Gauge",
+      "caption": "Cylinder、Battery、Girt、Pressure Gaugeの位置と温度補正。",
+      "file": "oral-ata25-oct15-slide-pack-pressure-gauge.webp"
+    },
+    {
+      "questionId": "oral_rev3_p36_s01_r04",
+      "promptIndexes": [
+        5
+      ],
+      "alt": "Escape Slide Lighting Battery",
+      "caption": "Battery Pocket、Lanyard/Pin、Battery Lead/Test Connector。",
+      "file": "oral-ata25-oct15-slide-light-battery.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Water Service PanelのFill/Drain HandleとInterference Bracket",
+      "caption": "Handle復帰とPanel閉止、国内線Quantity Indicatorを対応づける。",
+      "file": "oral-ata38-oct15-potable-service-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r01",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "Water Service PanelのFill/Drain HandleとInterference Bracket",
+      "caption": "Handle復帰とPanel閉止、国内線Quantity Indicatorを対応づける。",
+      "file": "oral-ata38-oct15-potable-service-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Water Service PanelとTank Drain Handle",
+      "caption": "後部のTank/Distribution Line排水操作位置。",
+      "file": "oral-ata38-oct15-potable-service-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Water Service PanelとTank Drain Handle",
+      "caption": "後部のTank/Distribution Line排水操作位置。",
+      "file": "oral-ata38-oct15-potable-service-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Lavatory Supply ShutoffとForward Lavatory Drain",
+      "caption": "四位置Supply Valveと前方Drain Valveは別の役割。",
+      "file": "oral-ata38-oct15-lavatory-supply-drain.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Lavatory Supply ShutoffとForward Lavatory Drain",
+      "caption": "四位置Supply Valveと前方Drain Valveは別の役割。",
+      "file": "oral-ata38-oct15-lavatory-supply-drain.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Lavatoryの給水分配とForward Drain",
+      "caption": "Supply先選択とDrain経路を分ける。",
+      "file": "oral-ata38-oct15-lavatory-supply-drain.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Quantity TransmitterとAdapter Cable",
+      "caption": "Standpipeに合わせたAdapter CableでFull表示の基準を合わせる。",
+      "file": "oral-ata38-oct15-potable-quantity-adapter.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Air Compressor Control回路",
+      "caption": "Panel CLOSEDと低圧条件でR184が励磁し、40psigで停止。",
+      "file": "oral-ata38-oct15-potable-compressor-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Compressor加圧条件",
+      "caption": "給電・Panel・Pressure Limit SwitchのAND条件。",
+      "file": "oral-ata38-oct15-potable-compressor-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Forward Gray Waterの地上・飛行排水経路",
+      "caption": "地上はSill側、飛行中はMast側。Door Sill Drainの閉止圧は本文1psidで確認。",
+      "file": "oral-ata38-oct15-gray-water-drain-path.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Forward Gray Waterの地上・飛行排水経路",
+      "caption": "地上はSill側、飛行中はMast側。Door Sill Drainの閉止圧は本文1psidで確認。",
+      "file": "oral-ata38-oct15-gray-water-drain-path.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r10",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "FlushとBlowerの時系列",
+      "caption": "同じLavatoryの15秒Inhibit、1秒後Rinse、2秒後Flush。",
+      "file": "oral-ata38-oct15-waste-flush-timing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Vacuum WasteのFlush Cycle",
+      "caption": "Rinse0.7秒、Flush4秒、Blower15秒。",
+      "file": "oral-ata38-oct15-waste-flush-timing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Vacuum WasteのFlush Cycle",
+      "caption": "Rinse0.7秒、Flush4秒、Blower15秒。",
+      "file": "oral-ata38-oct15-waste-flush-timing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r10",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Vacuum Blowerの作動許可条件",
+      "caption": "低高度側でBlowerを許可する回路。16,000 ftの境界表記はSG本文と図で異なるため、適用AMMで確認する。",
+      "file": "oral-ata38-oct15-vacuum-blower-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Vacuum Blower電気制御",
+      "caption": "低高度側でBlowerを許可する回路。16,000 ftの境界表記はSG本文と図で異なるため、適用AMMで確認する。",
+      "file": "oral-ata38-oct15-vacuum-blower-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r07",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Continuous Level Sensorの圧力補償",
+      "caption": "底部液圧とTank内Air Pressureの差からLevelを求める。",
+      "file": "oral-ata38-oct15-waste-continuous-pressure.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Continuous Level Sensor構成",
+      "caption": "Remote Diaphragm、Oil-filled Capillary Tube、Sensor Module。",
+      "file": "oral-ata38-oct15-waste-continuous-pressure.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Waste Drain Ball ValveのHeater Blanket対象位置",
+      "caption": "図はBlanketを省略しValve/Linkageを示す。",
+      "file": "oral-ata38-oct15-waste-ball-valve-blanket.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Potable Water Quantityの表示回路とEmptyの灯",
+      "caption": "静電容量式SensorからTransmitter、表示器へ。図は0～-10V出力だが本文の一部は0～10V表記のため、極性は適用AMM/WDMで確認する。Emptyでも電源供給を示す灯が点灯する。",
+      "file": "oral-ata38-oct15-potable-indication-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Potable Water Tankの加圧機器とPneumatic経路",
+      "caption": "Pneumatic供給の35psig調圧、Check ValveとManifold Relief。Compressor本体のReliefは別に説明する。",
+      "file": "oral-ata38-oct15-potable-pneumatic-regulator.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Potable WaterのPneumatic加圧系統",
+      "caption": "二つの加圧源、調圧・逆流防止・過圧保護を回路で確認する。",
+      "file": "oral-ata38-oct15-potable-pneumatic-regulator.webp"
+    },
+    {
+      "questionId": "oral_rev3_p24_s01_r07",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Waste Tankの二つのPoint SensorとAttendant表示部",
+      "caption": "Point SensorはFull停止保護、Continuous SensorはQuantity用。CLEAN/CHECKとLAVS INOPの条件は回答本文を確認する。",
+      "file": "oral-ata38-oct15-waste-level-sensors-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p41_s02_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Waste QuantityとFull停止の別系統",
+      "caption": "LCM、Point Level Sensor二つ、Continuous Level Sensorと表示器を対応づける。",
+      "file": "oral-ata38-oct15-waste-level-sensors-panel.webp"
     }
   ]
 }
