@@ -1789,6 +1789,116 @@
       "alt": "Waste QuantityとFull停止の別系統",
       "caption": "LCM、Point Level Sensor二つ、Continuous Level Sensorと表示器を対応づける。",
       "file": "oral-ata38-oct15-waste-level-sensors-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "APU Start Sequenceの回転数と作動の対応図",
+      "caption": "7%・30%・60%・70%・95%の作動を回転数と対応づける。図の約60秒はStandard Dayの例。",
+      "file": "oral-ata49-oct15-start-sequence.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "APU Normal Shutdownの60秒Cool Downと回転低下",
+      "caption": "Normal Shutdownの時系列。Protective ShutdownではCool Downを省略し、Fire・OverspeedではFuel SOVとInlet Doorの閉開始条件も異なる。",
+      "file": "oral-ata49-oct15-shutdown-sequence.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "SPU・SCUとAPU Starter-Generatorの電源変換",
+      "caption": "SPUの270 V DCをSCUがStarter用3相ACへ変換し、Rotor位置と同期させる。",
+      "file": "oral-ata49-oct15-start-power-conversion.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r01",
+      "promptIndexes": [
+        4,
+        5
+      ],
+      "alt": "APU SPU・SCUの接続とStart電源回路",
+      "caption": "SPUは115 V ACまたは28 V DCから270 V DCを作り、SCUへ送る。両UnitとECU・Starter-Generatorの対応を確認する。",
+      "file": "oral-ata49-oct15-start-power-conversion.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU Fuel FeedからFCU・Flow Divider・Fuel Nozzleへの経路",
+      "caption": "機体側供給、APU Fuel Shutoff Valve、FCU、Primary・Secondary FuelとServo Fuelの経路を区別する。",
+      "file": "oral-ata49-oct15-fuel-feed-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "APU Fuel Shutoff Valveを含むFuel Feed全体図",
+      "caption": "機体側からのFuelをAPU Fuel Shutoff Valve経由でFCUへ供給する。Valve位置・開閉信号と供給源は回答本文で確認する。",
+      "file": "oral-ata49-oct15-fuel-feed-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU Bleed AirのIGV・BAV・SCVとECU制御図",
+      "caption": "IGVで吸入量を調整し、BAVから供給する。SCVは空気をExhaustへ逃がしてSurgeを防ぐ。凡例でAir・Fuel・電気信号を確認する。",
+      "file": "oral-ata49-oct15-bleed-air-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU Bleed供給とSurge防止の全体図",
+      "caption": "BAVの供給経路、IGVの流量調整、SCVのExhaust経路とSensorのFeedbackを対応づける。",
+      "file": "oral-ata49-oct15-bleed-air-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU OilのSupply・Scavenge・Vent全体図",
+      "caption": "供給・冷却／Bypass・Filter・潤滑先・回収・Air-Oil Separatorを一連の流れで確認する。色の凡例とGenerator・Turbineの回収経路を区別する。",
+      "file": "oral-ata49-oct15-oil-supply-scavenge.webp"
+    },
+    {
+      "questionId": "oral_rev3_p26_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU Oil Systemの供給・回収・通気経路",
+      "caption": "Supply、Generator／Turbine Scavenge、Gearcase Ventを凡例の色と線種で追う。",
+      "file": "oral-ata49-oct15-oil-supply-scavenge.webp"
+    },
+    {
+      "questionId": "oral_rev3_p26_s01_r07",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU OilのPressure・Temperature・Filter・Level信号図",
+      "caption": "各Sensor／SwitchからECU、CDU、P5表示への対応。Oil Filter Shutdownの地上・Both Engine OFF時間・温度・継続時間の条件は回答本文で確認する。",
+      "file": "oral-ata49-oct15-oil-indication.webp"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU EGTの二つのThermocoupleとECUの高温側選択",
+      "caption": "各Thermocouple内のJunction信号と、二つのThermocouple間の高温側選択を区別する。ECUは高温側を指示・制御に用いる。",
+      "file": "oral-ata49-oct15-egt-thermocouples.webp"
     }
   ]
 }
