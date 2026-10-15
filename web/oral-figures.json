@@ -1705,7 +1705,7 @@
         0
       ],
       "alt": "Vacuum Blowerの作動許可条件",
-      "caption": "低高度側でBlowerを許可する回路。16,000 ftの境界表記はSG本文と図で異なるため、適用AMMで確認する。",
+      "caption": "約16,000 ftを境に、低高度ではBlower、高高度では機内外差圧を使う。Drain Valve・Tank Full・Thermal保護も合わせて確認する。",
       "file": "oral-ata38-oct15-vacuum-blower-control.webp"
     },
     {
@@ -1714,7 +1714,7 @@
         1
       ],
       "alt": "Vacuum Blower電気制御",
-      "caption": "低高度側でBlowerを許可する回路。16,000 ftの境界表記はSG本文と図で異なるため、適用AMMで確認する。",
+      "caption": "約16,000 ftを境に、低高度ではBlower、高高度では機内外差圧を使う。Drain Valve・Tank Full・Thermal保護も合わせて確認する。",
       "file": "oral-ata38-oct15-vacuum-blower-control.webp"
     },
     {
@@ -1751,7 +1751,7 @@
         2
       ],
       "alt": "Potable Water Quantityの表示回路とEmptyの灯",
-      "caption": "静電容量式SensorからTransmitter、表示器へ。図は0～-10V出力だが本文の一部は0～10V表記のため、極性は適用AMM/WDMで確認する。Emptyでも電源供給を示す灯が点灯する。",
+      "caption": "静電容量式SensorからTransmitter、表示器へ。出力は0～−10 V DC（Empty＝0 V、Full＝−10 V）。Empty表示は電源供給も示す。",
       "file": "oral-ata38-oct15-potable-indication-circuit.webp"
     },
     {
