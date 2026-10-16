@@ -1899,6 +1899,150 @@
       "alt": "APU EGTの二つのThermocoupleとECUの高温側選択",
       "caption": "各Thermocouple内のJunction信号と、二つのThermocouple間の高温側選択を区別する。ECUは高温側を指示・制御に用いる。",
       "file": "oral-ata49-oct15-egt-thermocouples.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "MLG構造とWalking Beam/Reaction Link",
+      "caption": "Walking Beam・Reaction LinkとStrutのつながり。Gearの姿勢とActuatorの取付関係を確認する。",
+      "file": "oral-ata32-oct16-main-gear-structure.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Transfer ValveのIn-Air/On-Ground分岐",
+      "caption": "Gear TransferのAIR／GROUND条件とPrimary・Secondary Solenoidの経路。GroundのNWS切替条件と飛行中のGear Retract補助を区別する。",
+      "file": "oral-ata32-oct16-transfer-valve-logic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "MLG Extension/Retraction Flow",
+      "caption": "MLGのUP／DOWN PressureとReturn。Transfer Cylinder、Lock Actuator、Volume Fuseを含む経路を確認する。",
+      "file": "oral-ata32-oct16-main-gear-hydraulic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "NLG FlowとNWSへのDown Pressure",
+      "caption": "NLGのExtend／RetractとNWSへ向かうDown Pressure。Rate FuseとVolume Fuseを区別する。",
+      "file": "oral-ata32-oct16-nose-gear-hydraulic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Manual Extensionの電気と機械経路",
+      "caption": "Manual Extensionの機械的なUplock解除とAccess Door Switchの電気経路。MLGはUP位置で描かれている。",
+      "file": "oral-ata32-oct16-manual-extension.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r08",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Rudder Pedal SteeringのAIR/GND切替",
+      "caption": "Rudder Pedal SteeringのAIR／GROUND切替。ClutchのEngageと、Steering Wheel操作時のBack-drive防止を確認する。",
+      "file": "oral-ata32-oct16-rudder-pedal-steering.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r04",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "MLG indication green/red条件",
+      "caption": "MLGのPrimary／Auxiliary表示と、Lever・Uplock／Downlockによる赤／緑灯条件。NLGの条件とは分けて読む。",
+      "file": "oral-ata32-oct16-main-gear-indication.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r07",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Brake供給4状態",
+      "caption": "Normal・Alternate・Gear Retract・Accumulatorの供給経路を4状態で比較する。保持時間はAccumulatorの充填条件と合わせて確認する。",
+      "file": "oral-ata32-oct16-brake-supply-states.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r07",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Brake Hydraulic Flow全体",
+      "caption": "Normal・Alternate・Accumulator Brakeの全体図。Pressure／Metered／Returnの凡例とAntiskid、Fuse、Shuttle Valveの関係を確認する。",
+      "file": "oral-ata32-oct16-brake-hydraulic-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r07",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Parking Brake構成と2種表示",
+      "caption": "Parking Brakeの機械的保持とNormal Antiskid Returnの遮断。Cockpit灯と機外灯が検出する位置を区別する。",
+      "file": "oral-ata32-oct16-parking-brake.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r07",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Landing Autobrake ARM/APPLICATION",
+      "caption": "Landing AutobrakeのARM条件とAPPLICATION条件を別々に追う。Wheel Spin-up・Ground・Thrustの条件を混ぜない。",
+      "file": "oral-ata32-oct16-autobrake-landing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r07",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "RTO ARM/APPLICATION",
+      "caption": "RTOのARM条件とAPPLICATION条件。平均Wheel Speed 60 ktのARM条件と88 ktの作動判定を区別する。",
+      "file": "oral-ata32-oct16-autobrake-rto.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r08",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "NWS Summing MechanismとSteering Metering Valve Module",
+      "caption": "Steering InputとNose GearからのFollow-upを合成してMetering Valveを動かす機械的なつながり。",
+      "file": "oral-ata32-oct16-nws-summing.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r08",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Nose Wheel Steeringの油圧経路",
+      "caption": "Towing Shutoff／Bypass、Metering、Compensator、Swivel Valveと左右Actuatorの経路。Steering角度の切替値は本文で確認する。",
+      "file": "oral-ata32-oct16-nws-hydraulic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "PSEU Air／GroundのSensor投票条件",
+      "caption": "SYS1／SYS2のSensor番号、MainとNoseのGround条件、Overrideの分岐を確認する。",
+      "file": "oral-ata32-oct16-air-ground-voting.webp"
+    },
+    {
+      "questionId": "oral_rev3_p40_s01_r07",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Normal／Alternate AntiskidのCardとValveの対応",
+      "caption": "Normalは各Wheel、Alternateは同じMLGの2輪（左1／2・右3／4）のBrake PressureをReleaseする。Inboard／Outboard Cardの比較PairとValveの制御単位を区別する。",
+      "file": "oral-ata32-oct16-antiskid-control.webp"
     }
   ]
 }
