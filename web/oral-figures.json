@@ -2188,6 +2188,227 @@
       "alt": "DUAL BLEED Lightの点灯Logic",
       "caption": "APU BAV Openに、ENG1 BLEED Switch ON、またはENG2 BLEED Switch ON＋Isolation Valve Openを組み合わせる。実際の圧力比較やPRSOV実位置の表示ではない。",
       "file": "oral-ata36-oct19-dual-bleed-logic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r01",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Pack冷却・除湿の全流路",
+      "caption": "F1-03：Primary／Secondary Heat Exchanger、Reheater、Condenser、Water Extractor、TurbineとHot Bypassの流れ。",
+      "file": "oral-ata21-oct19-pack-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "alt": "FCSOVのSolenoidとFlow Servo",
+      "caption": "F1-07：CがOpen/Close、BがNormal/High、AがAPU High。換気量0.55 lb/minとManual Close Lockは授業追記。",
+      "file": "oral-ata21-oct19-fcsov-servo.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r01",
+      "promptIndexes": [
+        5
+      ],
+      "alt": "Ram Airの3Mode比較表",
+      "caption": "授業追加表：Ground／Flight Flap Not Up／Flight Flap UpのDoor位置・表示・Controller。従来型の図でありSRADAの電源構成は別。",
+      "file": "oral-ata21-oct19-ram-modes.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Standby TCVの構造と差圧入力",
+      "caption": "F1-28：自立したCondenser差圧De-Icingと、Opposite PZTCによるStandby Pack温度制御。より大きくOpenするCommandを優先。",
+      "file": "oral-ata21-oct19-stby-tcv.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "RecirculationのAirflowと左右吸込元",
+      "caption": "F2-10：右はCollector Shroud、左はMain Distribution Compartment内Airを吸う。約50%は授業で示された概数。図の左側CGOという表現はこのCompartmentを指す。",
+      "file": "oral-ata21-oct19-recirc-schematic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "RecirculationのAirflowと左右吸込元",
+      "caption": "F2-10：右はCollector Shroud、左はMain Distribution Compartment内Airを吸う。約50%は授業で示された概数。図の左側CGOという表現はこのCompartmentを指す。",
+      "file": "oral-ata21-oct19-recirc-schematic.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r03",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Pack Switchと左右Recirculation Fan作動の対応表",
+      "caption": "F2-12：RECIRC FAN AUTO・電源正常・Overheatなしの通常Pack Flow Logic。Pack OFF/HIGHの組合せでは両Fan作動。",
+      "file": "oral-ata21-oct19-recirc-fan-table.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "左右PZTCの5Channelと担当",
+      "caption": "F3-06：Onside Auto／Opposite Standby／Onside Ram Air、RightはCockpit Primary、LeftはBackup。",
+      "file": "oral-ata21-oct19-pztc-channels.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Coolest DemandにはActual Zone Temperatureが必要な授業例",
+      "caption": "授業追加図：設定温度の最小値だけでなくActual Zone Temperatureとの比較からCooling要求を判断する。数値は説明用の例。",
+      "file": "oral-ata21-oct19-coolest-demand-example.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r02",
+      "promptIndexes": [
+        6
+      ],
+      "alt": "Coolest DemandにはActual Zone Temperatureが必要な授業例",
+      "caption": "授業追加図：設定温度の最小値だけでなくActual Zone Temperatureとの比較からCooling要求を判断する。数値は説明用の例。",
+      "file": "oral-ata21-oct19-coolest-demand-example.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Balanced ModeのZone/Pack二段階制御",
+      "caption": "F3-14：Zone Duct Demand、Partial Pack Demandの交換、Pack実温度と2°C下限制御の流れ。",
+      "file": "oral-ata21-oct19-balanced-controls.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r02",
+      "promptIndexes": [
+        6
+      ],
+      "alt": "Balanced ModeのZone/Pack二段階制御",
+      "caption": "F3-14：Zone Duct Demand、Partial Pack Demandの交換、Pack実温度と2°C下限制御の流れ。",
+      "file": "oral-ata21-oct19-balanced-controls.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "E/E SupplyとExhaustの全体Air経路",
+      "caption": "F4-02：冷却対象とSupply/Exhaust、OEVとCargoへの排気経路",
+      "file": "oral-ata21-oct19-ee-cooling-paths.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r04",
+      "promptIndexes": [
+        1,
+        2
+      ],
+      "alt": "P5 Equipment Cooling PanelとOFF Light",
+      "caption": "F4-04：Supply/Exhaust選択とLow Flow・Temperature・BITのOFF表示",
+      "file": "oral-ata21-oct19-ee-cooling-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r04",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "Overboard Exhaust ValveのLocationとActuator",
+      "caption": "F4-11：Spring/Offsetによる空力作動とSilicone Oil Damper",
+      "file": "oral-ata21-oct19-oev-installation.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "CPC Input、Actuator、MotorとFeedbackの全Interface",
+      "caption": "F7-06：AUTO/Manualの経路、電源、ADIRU/SMYD/PSEU入力とRS422",
+      "file": "oral-ata21-oct19-pressurization-interface.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P5 Cabin Pressure Control ModuleとCabin Altitude Panel",
+      "caption": "F7-07：計器・四つのStatus Light・Single/Dual Failure・Off Schedule Descent",
+      "file": "oral-ata21-oct19-pressurization-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "P5 Cabin Pressure Control ModuleとCabin Altitude Panel",
+      "caption": "F7-07：計器・四つのStatus Light・Single/Dual Failure・Off Schedule Descent",
+      "file": "oral-ata21-oct19-pressurization-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "P5 Cabin Pressure Control ModuleとCabin Altitude Panel",
+      "caption": "F7-07：計器・四つのStatus Light・Single/Dual Failure・Off Schedule Descent",
+      "file": "oral-ata21-oct19-pressurization-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Aft Outflow ValveのDouble Gateと3 Motor",
+      "caption": "F7-09：28 V Auto/48 V Manualと14,500 ft Automatic Fail-Safe",
+      "file": "oral-ata21-oct19-outflow-valve.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Positive Pressure Relief Valveの通常とRelief状態",
+      "caption": "F7-16：差圧8.95±0.15 psiで機外へ逃がす独立保護",
+      "file": "oral-ata21-oct19-positive-relief.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Negative Pressure Relief ValveのLocationとFlapper",
+      "caption": "F7-17：機内が機外より低圧になった場合の機体保護",
+      "file": "oral-ata21-oct19-negative-relief.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Cargo Ceiling/Bulkhead Blowout Panel配置",
+      "caption": "F7-18：急減圧時の区画間差圧を逃がすPanel",
+      "note": "授業追記のCollector ShouloudはD2-10のCollector Shroudに表記を合わせて説明。本文のPassenger/Cargo間の均圧と、授業のShroud/Cargo側の説明を併記する。",
+      "file": "oral-ata21-oct19-cargo-blowout.webp"
+    },
+    {
+      "questionId": "oral_rev3_p50_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Cabin Altitude Warning SwitchとHorn/Light",
+      "caption": "F7-20：10,000 ft Warning、Horn CutoutとCABIN ALTITUDE表示",
+      "note": "Switch数・Light作動は機番適用差を回答と併せて確認。",
+      "file": "oral-ata21-oct19-cabin-altitude-warning.webp"
     }
   ]
 }
