@@ -2043,6 +2043,151 @@
       "alt": "Normal／Alternate AntiskidのCardとValveの対応",
       "caption": "Normalは各Wheel、Alternateは同じMLGの2輪（左1／2・右3／4）のBrake PressureをReleaseする。Inboard／Outboard Cardの比較PairとValveの制御単位を区別する。",
       "file": "oral-ata32-oct16-antiskid-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r01",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Pneumaticの供給源と全体流れ",
+      "caption": "Engine・APU・GroundからManifoldへ入る流れと、Engine Bleedの調圧・冷却経路を確認する。",
+      "file": "oral-ata36-oct19-pneumatic-flow.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Engine Bleed Operational Testの圧力グラフ",
+      "caption": "Sea Level・Normal PACK条件のOperational Test図。High Stage側32±6 psigとPRSOV側42±8 psigの区間を区別する。220 psiの保護はBAR入力側で、Manifoldの通常調圧値ではない。",
+      "file": "oral-ata36-oct19-bleed-pressure-chart.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "High Stage RegulatorとHigh Stage Valve",
+      "caption": "High Stage Regulator／Valveの取付位置、Control Air接続、Manual Override／Position Indicatorを確認する。",
+      "file": "oral-ata36-oct19-high-stage-regulator.webp"
+    },
+    {
+      "questionId": "oral_rev3_p32_s02_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "High Stage RegulatorとHigh Stage Valve",
+      "caption": "High Stage Regulator／Valveの取付位置、Control Air接続、Manual Override／Position Indicatorを確認する。",
+      "file": "oral-ata36-oct19-high-stage-regulator.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r02",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "BARとPRSOVの位置・構成",
+      "caption": "BARとPRSOVの位置、Actuator、Manual Override／Position Indicatorの対応を確認する。",
+      "file": "oral-ata36-oct19-bar-prsov-location.webp"
+    },
+    {
+      "questionId": "oral_rev3_p32_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "BARとPRSOVの位置・構成",
+      "caption": "BARとPRSOVの位置、Actuator、Manual Override／Position Indicatorの対応を確認する。",
+      "file": "oral-ata36-oct19-bar-prsov-location.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "450F Thermostat・BAR・PRSOVの空気回路",
+      "caption": "450°F ThermostatのVentでControl Pressureが下がり、PRSOVを閉方向へModulateする。流量を減らす温度Limitingで、490°FのBleed Tripとは区別する。",
+      "file": "oral-ata36-oct19-temperature-limiting.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "450F Thermostat・BAR・PRSOVの空気回路",
+      "caption": "450°F ThermostatのVentでControl Pressureが下がり、PRSOVを閉方向へModulateする。流量を減らす温度Limitingで、490°FのBleed Tripとは区別する。",
+      "file": "oral-ata36-oct19-temperature-limiting.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Engine Bleedの電気制御・保護回路",
+      "caption": "Normal ONはACAU Relay経由でOpen、Start中はACAU経由でClose、OFF／Fireは直接Closeする。Overpressure／OvertemperatureのTrip・Latch・Resetの経路を確認する。",
+      "file": "oral-ata36-oct19-bleed-electrical-control.webp"
+    },
+    {
+      "questionId": "oral_rev3_p32_s02_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Precooler Control Valveの位置とActuator",
+      "caption": "Precooler前のPCV、Actuator、Supply Pressure Lineの配置を確認する。図中390／440°Fの注記はSensorのVent動作として読み、PCV本体のFull Open温度とは断定しない。Deactivateの固定方法は回答本文のP/N別手順と対応させる。",
+      "file": "oral-ata36-oct19-precooler-control-valve.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "PrecoolerのFan Air制御回路",
+      "caption": "SensorのVentでControl Pressureを変え、PCVがFan Airを調節する。390～440°FはSensor側の作動範囲で、440°FをPCV本体のFull Open温度とは断定しない。",
+      "file": "oral-ata36-oct19-precooler-functional.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Isolation Valveの位置とManual Override",
+      "caption": "Crossover DuctのIsolation ValveとManual Override／Position Indicatorを確認する。手動操作前の電源隔離と整備処置は回答本文に対応させる。",
+      "file": "oral-ata36-oct19-isolation-valve-location.webp"
+    },
+    {
+      "questionId": "oral_rev3_p32_s02_r04",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Isolation Valveの位置とManual Override",
+      "caption": "Crossover DuctのIsolation ValveとManual Override／Position Indicatorを確認する。手動操作前の電源隔離と整備処置は回答本文に対応させる。",
+      "file": "oral-ata36-oct19-isolation-valve-location.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Isolation ValveのAUTO Logic",
+      "caption": "AUTOでは両ENG BLEEDがON、両PACKがAUTO／HIGHならCloseし、いずれかのSwitchがOFFならOpenする。Switch位置のLogicであり、実ValveのTrip位置と混同しない。",
+      "file": "oral-ata36-oct19-isolation-valve-auto.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "APU Check Valveの位置と流れ方向",
+      "caption": "APU供給DuctのCheck Valve。Engine側のBleed AirがAPU Load Compressorへ逆流するのを防ぐ。",
+      "file": "oral-ata36-oct19-apu-check-valve.webp"
+    },
+    {
+      "questionId": "oral_rev3_p54_s01_r07",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "DUAL BLEED Lightの点灯Logic",
+      "caption": "APU BAV Openに、ENG1 BLEED Switch ON、またはENG2 BLEED Switch ON＋Isolation Valve Openを組み合わせる。実際の圧力比較やPRSOV実位置の表示ではない。",
+      "file": "oral-ata36-oct19-dual-bleed-logic.webp"
     }
   ]
 }
