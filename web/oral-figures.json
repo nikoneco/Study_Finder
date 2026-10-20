@@ -2603,6 +2603,157 @@
       "alt": "Vacuum Waste Rinse Line TapeとBall Valve Blanketの加熱回路",
       "caption": "SG F7-04：Rinse Line 28VDC、Drain Ball Valve 115VACの抵抗加熱。",
       "file": "oral-ata30-oct20-vacuum-waste-heat.webp"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "授業追加のEngine BITE IDENT/CONFIG画面例",
+      "caption": "Engine BITE IDENT/CONFIG 1/2の画面例。機体/Engine Model、BUMP、Trim、EEC Software、Start Mode、Engine Serial Numberを別々に表示する。",
+      "note": "図の各値は画面例。実機共通の設定値や操作手順を示すものではない。",
+      "file": "oral-ata71-oct20-ident-config.webp"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "授業資料のStandard、Tech Insertion、Evolution分類と改良点",
+      "caption": "授業資料の3系統分類。Tech InsertionとEvolutionの改良部位・目的・Blade枚数差を示す。",
+      "note": "授業追加資料。/3、E等の実機適用はNameplateと適用資料で確認する。",
+      "file": "oral-ata71-oct20-engine-classes.webp"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "授業資料の従来と2011 Production AirplaneのExhaust Nozzle比較",
+      "caption": "授業図のJA339J以前／JA340J以降のNozzle・Plug・Heat Shield比較。New側にPlume SuppressorとBackward compatibleの表示がある。",
+      "note": "同図はNozzleの機体別区分とEngine本体を区別している。機番やNozzleだけでEngine Configurationを断定しない。",
+      "file": "oral-ata71-oct20-nozzle-generations.webp"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Engine Mountの取付位置と授業追記の荷重・部品名",
+      "caption": "Forward MountはFan Frame、Aft MountはTurbine Frameに取り付く。授業追記はForwardの上下/左右荷重、Aftの上下/左右/Thrust/Torque荷重とGuide Pin、Shear Pin、Evener Barを示す。",
+      "file": "oral-ata71-oct20-engine-mounts.webp"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Engine Drainの外側出口と左右Fan Cowl内の排出元を対応させたSG原図",
+      "caption": "Engine Drain：外側の4出口と左右の排出元。Leak Limitは71-71-00-200-801-F00で適用を確認する。",
+      "note": "Drain別数値や現行適用の未照合を解消する図ではない。",
+      "file": "oral-ata71-oct20-engine-drains.webp"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Engine Drainの外側出口と左右Fan Cowl内の排出元を対応させたSG原図",
+      "caption": "Engine Drain：外側の4出口と左右の排出元。Leak Limitは71-71-00-200-801-F00で適用を確認する。",
+      "note": "Drain別数値や現行適用の未照合を解消する図ではない。",
+      "file": "oral-ata71-oct20-engine-drains.webp"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r01",
+      "promptIndexes": [
+        3,
+        4
+      ],
+      "alt": "Engine Drainの外側出口と左右Fan Cowl内の排出元を対応させたSG原図",
+      "caption": "Engine Drain：外側の4出口と左右の排出元。Leak Limitは71-71-00-200-801-F00で適用を確認する。",
+      "note": "Drain別数値や現行適用の未照合を解消する図ではない。",
+      "file": "oral-ata71-oct20-engine-drains.webp"
+    },
+    {
+      "questionId": "oral_rev3_p30_s02_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Fan CowlのLatch、Hinge、Hold-open RodとLock表示のSG原図",
+      "caption": "Fan Cowl：開閉40 ktと開放保持65 ktは別限界。28°/55°の保持位置、CollarとLock表示、MID→FWD→AFTのLatch順序。",
+      "file": "oral-ata71-oct20-fan-cowl.webp"
+    },
+    {
+      "questionId": "oral_rev3_p30_s02_r01",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "Fan CowlのLatch、Hinge、Hold-open RodとLock表示のSG原図",
+      "caption": "Fan Cowl：開閉40 ktと開放保持65 ktは別限界。28°/55°の保持位置、CollarとLock表示、MID→FWD→AFTのLatch順序。",
+      "file": "oral-ata71-oct20-fan-cowl.webp"
+    },
+    {
+      "questionId": "oral_rev3_p30_s02_r01",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "Fan CowlのLatch、Hinge、Hold-open RodとLock表示のSG原図",
+      "caption": "Fan Cowl：開閉40 ktと開放保持65 ktは別限界。28°/55°の保持位置、CollarとLock表示、MID→FWD→AFTのLatch順序。",
+      "file": "oral-ata71-oct20-fan-cowl.webp"
+    },
+    {
+      "questionId": "oral_rev3_p30_s02_r01",
+      "promptIndexes": [
+        3
+      ],
+      "alt": "Fan CowlのLatch、Hinge、Hold-open RodとLock表示のSG原図",
+      "caption": "Fan Cowl：開閉40 ktと開放保持65 ktは別限界。28°/55°の保持位置、CollarとLock表示、MID→FWD→AFTのLatch順序。",
+      "file": "oral-ata71-oct20-fan-cowl.webp"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "印刷SG原本のIdle PowerにおけるEngine危険域とEntry/Exit Corridorの全体図",
+      "caption": "印刷SG原本F0-03のIdle図。Inlet半径10 ft、4 ft/5 ftの位置、45°の排気側境界とEntry/Exit Corridor。通路利用はIdleかつCockpitとの通話確保が条件。",
+      "file": "oral-ata71-oct20-engine-hazards-idle.webp"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Idle運転中のEngine Accessで避ける危険域とEntry/Exit Corridorを示す印刷SG原図",
+      "caption": "印刷SG原本F0-03のIdle図。Inlet/Exhaust危険域を避け、Entry/Exit CorridorはIdleかつ通話確保時に限る。",
+      "file": "oral-ata71-oct20-engine-hazards-idle.webp"
+    },
+    {
+      "questionId": "oral_rev3_p33_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "印刷SG原本のIdle寸法とEntry/Exit Corridorを示す完全図",
+      "caption": "印刷SG原本F0-03のIdle図。半径10 ftと後方位置4 ft/5 ft、45°の排気側境界を区別する。本文のTakeoff授業値は別条件。",
+      "file": "oral-ata71-oct20-engine-hazards-idle.webp"
+    },
+    {
+      "questionId": "oral_rev3_p33_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "印刷SG原本のIdle寸法とEntry/Exit Corridorを示す完全図",
+      "caption": "印刷SG原本F0-03のIdle図。半径10 ftと後方位置4 ft/5 ft、45°の排気側境界を区別する。本文のTakeoff授業値は別条件。",
+      "file": "oral-ata71-oct20-engine-hazards-idle.webp"
+    },
+    {
+      "questionId": "oral_rev3_p33_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "alt": "印刷SG原本のIdle寸法とEntry/Exit Corridorを示す完全図",
+      "caption": "印刷SG原本F0-03のIdle図。半径10 ftと後方位置4 ft/5 ft、45°の排気側境界を区別する。本文のTakeoff授業値は別条件。",
+      "file": "oral-ata71-oct20-engine-hazards-idle.webp"
     }
   ]
 }
