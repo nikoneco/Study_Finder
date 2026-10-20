@@ -2918,6 +2918,78 @@
       "file": "oral-ata72-blade-markings.webp",
       "alt": "Fan Blade Rootの識別刻印とShimの実物写真",
       "caption": "識別・Position記録とMomentum Weight管理の補助。刻印例の数値を一般のMatching基準として扱わない。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata76-eec-channels.webp",
+      "alt": "EEC A/B ChannelのRange Check、CCDL、Command計算とActive/Standbyの図",
+      "caption": "EEC二重Channelの信号処理例。図示のCH A Active/CH B Standbyは一例。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata76-autothrottle-assembly.webp",
+      "alt": "ASM、Gearbox、Clutch PackとThrust Lever Resolverの断面原図",
+      "caption": "ASMからGearbox/Clutchを通る機械入力と、Lever位置をEECへ伝えるResolver。右下グラフの角度を一般Limitへ転用しない。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata76-control-location.webp",
+      "alt": "Control StandのLever、Rodと床下Autothrottle AssemblyのLocation原図",
+      "caption": "床上のThrust/Start Leverと、床下のResolver/Interlock Solenoidの配置。"
+    },
+    {
+      "questionId": "oral_rev3_p44_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata76-switchpack.webp",
+      "alt": "Autothrottle Switch PackのInput CrankとS1からS9の機能原図",
+      "caption": "機械Linkageで動く9 SwitchのDiscrete出力。ResolverのAnalog TRA経路と区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata76-thrust-lever-lock.webp",
+      "alt": "Forward、Idle、Reverse各位置のControl LinkとThrust Lever Lock Pawlの原図",
+      "caption": "Forward LeverがIdleの時だけPawlがWeb Holeへ移動できる機械的Interlock。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata76-start-lever-circuit.webp",
+      "alt": "Engine 2 Start Leverの6 Switch、HPSOV/Spar Valve、EEC Relayと表示の原図",
+      "caption": "Engine 2の回路例。IDLE/CUTOFFの燃料Valve、Ignition Arm Power、EEC Resetの連動。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata76-reverse-interlock.webp",
+      "alt": "左右Sleeve LVDT、EECの両60%条件とReverse Thrust Interlock原図",
+      "caption": "両Sleeve60%以上でInterlock SolenoidをEnergizeし、Reverse Leverの追加移動を許す。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata76-reverse-interlock.webp",
+      "alt": "左右Sleeve LVDTからEEC Channel A/BへのFeedbackとInterlock Solenoid原図",
+      "caption": "LVDTの位置情報をReverse Lever Interlockに使う経路。"
     }
   ]
 }
