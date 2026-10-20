@@ -2781,6 +2781,143 @@
       "file": "oral-ata71-confirmed-hazard-distances.webp",
       "alt": "Idle・TakeoffのInlet寸法と機体後方Hazard Areaの授業追記図",
       "caption": "授業追記の機体後方Hazard AreaはIdle73 ft／Takeoff1,132 ft。InletのIdle10 ft・Takeoff14 ftの半径とは別の寸法。Corridorを利用できるのはIdleかつCockpitとの通話が可能な場合のみ。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-engine-layout.webp",
+      "alt": "Engine断面とPrimary／Secondary Flow、N1／N2とAccessory Drive",
+      "caption": "SG72 F0-03原図。Primary／Secondary Flow、各SectionとN1／N2 Shaft、IGB→RDS→TGB→HDS→AGBの位置を確認する。LPT段数は本文の4段を用いる。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-bearings.webp",
+      "alt": "N1／N2別のMain BearingとForward／Rear Sump",
+      "caption": "SG72 F0-04授業図。No.1 Ball・No.2 Roller・No.5 RollerがN1、No.3 Ball／Roller・No.4 RollerがN2を支持する。No.3は2形式からなる1つのAssembly。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-flanges.webp",
+      "alt": "Engineの16 Flangeの位置呼称A1、B1〜B14、A6",
+      "caption": "SG72 F0-05原図。前方からA1、B1〜B14、A6の16 Flangeを、Component Locationの説明に対応させる。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-stations.webp",
+      "alt": "Engine Aerodynamic Station0、12、25、30、49.5",
+      "caption": "SG72 F0-06印刷原図。Ambient、Fan Inlet、HPC Inlet、HPC Discharge、Stage 2 LPT Statorの位置。EGT Sensor名はSG77のT49.5を用いる。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-accessories.webp",
+      "alt": "AGB Front／Rear FaceのAccessory Location",
+      "caption": "SG72 F0-07授業図。Front Faceの6構成と、Rear FaceのFuel Pump Package・Lubrication Unit・Scavenge Oil Filterを、各図のFWD矢印と合わせて確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata72-borescope-ports.webp",
+      "alt": "BSI Port一覧。HPC、Igniter／燃焼部側、HPT TE／LPT側を色分けした左右のEngine図",
+      "caption": "授業追加のBSI Port配置図。所在の学習用。図の1965は意味未確認で、点検手順・Limit・許可条件には用いない。"
+    },
+    {
+      "questionId": "oral_rev3_p13_s02_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-borescope-ports.webp",
+      "alt": "Booster、HPC、燃焼部、Turbine側のBSI Port配置全体図",
+      "caption": "BSIの検査対象とPortの所在を対応させる。Gaspath侵入後の実施範囲・順序・延期はAMMの条件に従う。数字1965は意味未確認。"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-fan-blades.webp",
+      "alt": "24枚のTitanium Fan BladeとRoot、Fan Disk、Spacer Shimの構造図",
+      "caption": "Fan Bladeと保持部の位置関係。Critical Areaの区分と損傷LimitはAMM図605–608で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p12_s01_r03",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata72-fan-blades.webp",
+      "alt": "24枚のTitanium Fan BladeとRoot、Fan Disk、Spacer Shimの構造図",
+      "caption": "Fan Bladeと保持部の位置関係。Critical Areaの区分と損傷LimitはAMM図605–608で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-fan-blades.webp",
+      "alt": "Fan Blade、Platform、Spacer ShimとFan Diskの位置関係",
+      "caption": "Blade全体からRoot／保持部までの対応。使用可否はAMMのArea別基準で判断する。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r04",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata72-fan-blades.webp",
+      "alt": "Spinner Cone、Retaining部、Blade、Platform、Spacer Shim、Offset Holeの全体分解図",
+      "caption": "24枚のWide Chord Titanium Fan Bladeと保持構造、No.1 Blade／Offset Hole。Trim Screwの36は授業図の収容数の追記で、実装本数・配置の指示ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r04",
+      "promptIndexes": [
+        4
+      ],
+      "file": "oral-ata72-fan-blades.webp",
+      "alt": "Spinner Cone、Retaining部、Blade、Platform、Spacer Shim、Offset Holeの全体分解図",
+      "caption": "24枚のWide Chord Titanium Fan Bladeと保持構造、No.1 Blade／Offset Hole。Trim Screwの36は授業図の収容数の追記で、実装本数・配置の指示ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r04",
+      "promptIndexes": [
+        5,
+        6
+      ],
+      "file": "oral-ata72-fan-blades.webp",
+      "alt": "Spinner Cone、Retaining部、Blade、Platform、Spacer Shim、Offset Holeの全体分解図",
+      "caption": "24枚のWide Chord Titanium Fan Bladeと保持構造、No.1 Blade／Offset Hole。Trim Screwの36は授業図の収容数の追記で、実装本数・配置の指示ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata72-blade-markings.webp",
+      "alt": "Fan BladeとShimの実物写真およびRoot刻印の拡大",
+      "caption": "RootのMomentum Weight／Part Number／Serial Numberの表示箇所を確認する。写真の値は個体例。"
+    },
+    {
+      "questionId": "oral_rev3_p18_s02_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata72-blade-markings.webp",
+      "alt": "Fan Blade Rootの識別刻印とShimの実物写真",
+      "caption": "識別・Position記録とMomentum Weight管理の補助。刻印例の数値を一般のMatching基準として扱わない。"
     }
   ]
 }
