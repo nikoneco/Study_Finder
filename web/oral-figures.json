@@ -3062,6 +3062,123 @@
       "file": "oral-ata74-power-control.webp",
       "alt": "右AC Standby Busと左Transfer BusからEEC、Exciterまでの回路",
       "caption": "SG74 F0-07原図。通常の右電源経路と、MCM処置で正常Left側にStandby電源を使う目的を理解する。実際のMCM適用条件は回答本文を参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata75-post-p06.webp",
+      "alt": "Engine AirのAir源と5系統の接続全体図",
+      "caption": "HPTACC/LPTACC/TBVのAir源と送出先、VSV/VBVの位置。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata75-native-p08.webp",
+      "alt": "EECとHMUと各Actuatorおよび位置Feedbackの全体系統図",
+      "caption": "共通Servo Loopと、LPTACCだけがRVDTを用いる構成。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p12.webp",
+      "alt": "HPTACCの2つのAir源とHPT Shroud Supportへの全体経路",
+      "caption": "4th/9th Stage Airを混合してShroud Supportの熱膨張を調節する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-post-p18.webp",
+      "alt": "HPTACCのValve構成と1本の歯付きShaftによる2 Butterfly駆動機構",
+      "caption": "1個のActuatorで4th/9th Butterflyを連動する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p22.webp",
+      "alt": "LPTACCのValveとAir DuctとCase周囲Manifoldの全体図",
+      "caption": "Fan Discharge AirをLPT Caseへ送り、冷却でTip Clearanceを制御する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-post-p34.webp",
+      "alt": "LPTACC Control Lawの高度別N1KとEGTのSchedule図",
+      "caption": "授業追記のControl Law図。13,500ftより高い側と低い側の傾向を示す。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p30.webp",
+      "alt": "VSVの左右ActuatorとBellcrankとIGVおよび1～3段Statorの全体図",
+      "caption": "VSVはRotor速度に合うAirflowとなるようStator角を変える。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-post-p44.webp",
+      "alt": "VSV左右Actuatorの位置とLVDT接続の全体図",
+      "caption": "右2:00はEEC A、左8:00はEEC Bへ位置Feedbackを送る。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p38.webp",
+      "alt": "VBV全体のActuatorとDoor配置およびLPCからSecondary Flowへの経路",
+      "caption": "2個のActuatorで12 Doorを動かしLPC出口のAirを逃がす。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p44.webp",
+      "alt": "VBVのMaster Doorと通常DoorとActuation Ringの連動図",
+      "caption": "Master Door2枚と通常Door10枚。ActuatorからRingを介して全Doorが連動する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-post-p52.webp",
+      "alt": "Rapid Deceleration時のLPCとHPCの流れを説明する全体図",
+      "caption": "N1の追従遅れでLPCに背圧がかかるため、VBVからBleedしてStallを防ぐ。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p48.webp",
+      "alt": "TBVの9th Stage AirからLPT1st Stage Nozzleへの全体経路",
+      "caption": "HPC9th Stage AirをBleedし、Start/Acceleration時のHPC Stall Marginを増す。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata75-native-p52.webp",
+      "alt": "TBVのValveとActuatorとLVDTとButterflyの構造図",
+      "caption": "Servo FuelでButterflyを動かし、2個のLVDTが位置を返す。"
     }
   ]
 }
