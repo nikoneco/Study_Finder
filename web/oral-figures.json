@@ -2409,6 +2409,200 @@
       "caption": "F7-20：10,000 ft Warning、Horn CutoutとCABIN ALTITUDE表示",
       "note": "Switch数・Light作動は機番適用差を回答と併せて確認。",
       "file": "oral-ata21-oct19-cabin-altitude-warning.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r01",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Ice and Rain Protectionの全機防氷対象位置",
+      "caption": "Hot Bleed Airを使うWing／Inlet Cowlと、Electrical Heatを使うProbe・Window・Water／Waste系統の全体図。",
+      "file": "oral-ata30-oct20-ice-protection-overview.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "WTAIのSupply Duct、Valve、Thermal Switch、Solenoid、Switchpackの位置",
+      "caption": "WTAIの構成とLocation。Ground OverheatはValve下流で検知し、地上のSolenoidはPrecooler Control ValveをFull Openにする。",
+      "file": "oral-ata30-oct20-wing-component-locations.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Slat伸展時のTelescoping DuctとSpray Tubeの断面図",
+      "caption": "Slatが動いてもTelescoping Ductを通してHot AirをSpray Tubeへ送り、Slat Cavityを加熱して下面から排出する。",
+      "file": "oral-ata30-oct20-wing-telescoping-duct.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "WTAI Motor-operated Butterfly ValveとGround Overheat Thermal Switch",
+      "caption": "115VACのShutoff ValveはManual Override／Position Indicator Leverを備える。下流のThermal Switchは地上で125°Cを検知し両方のValveをCloseする。",
+      "file": "oral-ata30-oct20-wing-shutoff-valve-thermal-switch.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Engine Compressor Section上のWTAI Solenoid ValveとControl Pressure Port",
+      "caption": "地上のWTAI使用時、Solenoid ValveはPrecooler Control ValveのControl PressureをReleaseしてFull Openとし、Bleed Airを最大冷却する。",
+      "file": "oral-ata30-oct20-wing-solenoid-valve.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Engine TAI Valve、Manual Lock、下流Pressure Switchの構造と位置",
+      "caption": "TAI Valveは電気制御・空気作動で下流を50psiに調圧する。65psi以上のPressure Switchは過圧表示用でValveを動かさない。",
+      "file": "oral-ata30-oct20-engine-tai-valve-pressure-switch.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Engine TAIのPanel Blue Light、Amber過圧表示とCDS TAI Message",
+      "caption": "Blue COWL VALVE OPENは指令と位置を照合する。CDSのTAIはON／OpenでGreen、不一致が8秒以上続くとAmber。Amber COWL ANTI-ICEは下流過圧の表示。",
+      "file": "oral-ata30-oct20-engine-tai-panel-cds.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Probe Anti-Ice対象のPitot、Elevator Pitot、AOA、TAT位置図",
+      "caption": "Probe Anti-Iceの対象とLocation（F3-01）。Pitotは前部3本とElevator用2本、AOAは左右、TATは左前部。",
+      "file": "oral-ata30-oct20-probe-location.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "P5 Probe Heat panelの332Jまでと333J以降の比較",
+      "caption": "A/BのControl割当と機体適用によるON/OFF・ON/AUTOの違い（F3-02）。",
+      "file": "oral-ata30-oct20-probe-panel.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "CAPT PitotのAUTO加熱と電流検出・表示回路",
+      "caption": "CAPT Pitot：Any Engine RunningによるAUTO制御とHeater電流による消灯（F3-04B）。",
+      "note": "図示CAPT回路のHeater電源は115VAC STBY BUS SEC1。Lightは温度そのものの表示ではない。",
+      "file": "oral-ata30-oct20-pitot-auto.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r03",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "AOA VaneとCaseの加熱およびVaneのみ監視する回路",
+      "caption": "AOAはVaneとCaseを加熱するが、Current DetectionはVane側のみ（F3-06B）。",
+      "file": "oral-ata30-oct20-aoa-monitoring.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "TATのAir/Ground抑止とTAT TESTによる地上加熱試験回路",
+      "caption": "通常地上では加熱と警報を抑止し、TAT TESTでK1をDeenergizeしてHeater電流を確認（F3-08A）。",
+      "file": "oral-ata30-oct20-tat-ground-test.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r03",
+      "promptIndexes": [
+        1
+      ],
+      "alt": "AUTO加熱有効条件と地上TAT抑止を分ける回路",
+      "caption": "On Ground・Any Engine Running・Switch AUTOでもTATは加熱しない（F3-08B）。",
+      "note": "実際の地上Test説明はSG本文のPROBE HEAT ON＋TAT TESTに従う。",
+      "file": "oral-ata30-oct20-tat-auto-ground.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r04",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "WindowのConductive Coating、Bus Bar、Primary/Spare Sensor",
+      "caption": "SG F4-02：導電膜とPrimary/Spare Sensor。No.1はEEのSW、No.2はConnectorで切り替える。",
+      "file": "oral-ata30-oct20-window-layer-sensors.webp"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "alt": "Flight Deck加熱窓の積層と導電膜、温度Sensor",
+      "caption": "SG F4-02：加熱窓のConductive LayerとTemperature Sensor。",
+      "file": "oral-ata30-oct20-window-layer-sensors.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r04",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Right Front WindowのWHCU、Power Demand Detector、K1/K2、Primary/Spare Sensorの回路図",
+      "caption": "SG F4-07：Right Front Windowの加熱制御、過熱保護、Primary/Spare Sensor選択と表示回路。",
+      "file": "oral-ata30-oct20-window-control-circuit.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r04",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "WHCU前面のBITE Switchと赤5灯・緑1灯",
+      "caption": "SG F4-08：LAMP TEST、BIT VERIFY、FAULT HISTORY、BIT LAMP RESETとFault Indicator。",
+      "file": "oral-ata30-oct20-whcu-bite.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Potable Fill Fitting、Fill Hose、Supply Hoseの電気加熱回路",
+      "caption": "SG F7-02：28VDC/115VAC電源とPotable各部のHeater回路。",
+      "file": "oral-ata30-oct20-potable-heat.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Gray Water LineとForward/Aft Drain MastのAir/Ground切替回路",
+      "caption": "SG F7-03：R594 Relayによる空中115VAC・地上28VAC切替とDrain Mast/Inlet Line加熱。",
+      "file": "oral-ata30-oct20-gray-drain-heat.webp"
+    },
+    {
+      "questionId": "oral_rev3_p52_s02_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "alt": "Vacuum Waste Rinse Line TapeとBall Valve Blanketの加熱回路",
+      "caption": "SG F7-04：Rinse Line 28VDC、Drain Ball Valve 115VACの抵抗加熱。",
+      "file": "oral-ata30-oct20-vacuum-waste-heat.webp"
     }
   ]
 }
