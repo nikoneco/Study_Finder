@@ -2754,6 +2754,33 @@
       "alt": "印刷SG原本のIdle寸法とEntry/Exit Corridorを示す完全図",
       "caption": "印刷SG原本F0-03のIdle図。半径10 ftと後方位置4 ft/5 ft、45°の排気側境界を区別する。本文のTakeoff授業値は別条件。",
       "file": "oral-ata71-oct20-engine-hazards-idle.webp"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata71-confirmed-specifications.webp",
+      "alt": "Engine Nameplate・諸元・Limitの原図と授業追記",
+      "caption": "Nameplateの各表示欄と諸元・Limit。EGT MAX CONTは925°C。APU106%は回転数の記憶補助で、Main EngineのN1/N2とは別の参考値。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata71-confirmed-airframe-data.webp",
+      "alt": "EECへ入力するA/C Model・Engine Positionと推力区分の授業図",
+      "caption": "機体側のA/C Model・Engine Position入力。授業確認では737-800のMax Certified Thrustは27,300 lb。図中の7B24の24,300は誤記で、Takeoff Thrustは24,200 lbと読む。Max Continuous Thrustとは区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p33_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata71-confirmed-hazard-distances.webp",
+      "alt": "Idle・TakeoffのInlet寸法と機体後方Hazard Areaの授業追記図",
+      "caption": "授業追記の機体後方Hazard AreaはIdle73 ft／Takeoff1,132 ft。InletのIdle10 ft・Takeoff14 ftの半径とは別の寸法。Corridorを利用できるのはIdleかつCockpitとの通話が可能な場合のみ。"
     }
   ]
 }
