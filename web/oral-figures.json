@@ -2990,6 +2990,78 @@
       "file": "oral-ata76-reverse-interlock.webp",
       "alt": "左右Sleeve LVDTからEEC Channel A/BへのFeedbackとInterlock Solenoid原図",
       "caption": "LVDTの位置情報をReverse Lever Interlockに使う経路。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata74-component-location.webp",
+      "alt": "Engine下側から見た左右Exciter・Lead・Spark Igniter・冷却経路",
+      "caption": "SG74 F0-03。図中のLower/IGN1はLeft、Upper/IGN2はRight。Booster AirでCore側のLeadとIgniterを冷却する。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata74-general-system.webp",
+      "alt": "Ignitionの115VAC電源、Start Lever、EEC、Exciterと高圧Leadの系統",
+      "caption": "SG74 F0-02。LeftはEngine別Transfer Bus、RightはAC Standby Bus。操作信号と点火用電力の経路を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata74-power-control.webp",
+      "alt": "EEC Channel A/Bと左右Ignitionの電源回路",
+      "caption": "SG74 F0-07の原図。左右系統とChannel A/Bを区別し、Digital/Analog入力とEEC制御Switchを追う。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata74-mode-comparison.webp",
+      "alt": "Start SwitchとSelectorによるIgniter作動の比較",
+      "caption": "SG74 F0-09。通常Cruiseの非点火、選択点火、FLTの両系統作動を比較する。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata74-exciter.webp",
+      "alt": "Exciterの上右・下左、Shockmount、Bond Jumper",
+      "caption": "SG74 F0-05原図。構造と接続の理解用。位置・隔離・R/Iの手順と限度はAMMを確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r02",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata74-lead-igniter.webp",
+      "alt": "Lead・ShroudとSpark Igniter、Washer、Adapter、電極の構造",
+      "caption": "SG74 F0-06原図。冷却部品と電気接続を区別する。Plug自体のR/I手順を示す図ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata74-cdu-bite.webp",
+      "alt": "CDUのIgnition BITE表示例",
+      "caption": "SG74 F0-10。L Exciterへの機体入力電圧が範囲外のFault例。Audible Checkは実音とFault表示をAMMの手順で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p19_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata74-power-control.webp",
+      "alt": "右AC Standby Busと左Transfer BusからEEC、Exciterまでの回路",
+      "caption": "SG74 F0-07原図。通常の右電源経路と、MCM処置で正常Left側にStandby電源を使う目的を理解する。実際のMCM適用条件は回答本文を参照する。"
     }
   ]
 }
