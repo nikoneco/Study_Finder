@@ -3368,6 +3368,60 @@
       "file": "oral-ata73-post-p121.webp",
       "alt": "5 Dispatch LevelとENGINE CONTROL・ALTN・MASTER CAUTIONの表示経路",
       "caption": "Fault分類とFlight Deck灯火の全体図。SHORT TIME・LONG TIME・ECONOMICは灯火を伴わない。修理期限は本文のJAL B0077、ALTNのDispatch条件はMELを参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata77-post-p11.webp",
+      "alt": "N1通常表示とExceedance時の赤表示の比較",
+      "caption": "N1のReadout・Box・Pointer・Shaded Areaの色変化。図中の回転数は表示例で、Limit値ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata77-post-p16.webp",
+      "alt": "N1 Command・ReferenceとN2・ENG FAILの表示構成",
+      "caption": "N1の実回転数・Command・Referenceと、Primary/Secondaryの表示位置を示す全体原図。数字は表示例。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata77-post-p24.webp",
+      "alt": "EGT ThermocoupleとT49.5 Harnessの左右配置・構成",
+      "caption": "LPT Second-stage Nozzle内のThermocouple、Junction Box、Tubeと左右各2組・計4組のHarnessの全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata77-post-p35.webp",
+      "alt": "CDUのEngine Exceedance閲覧ページの関係",
+      "caption": "DEUに保持された超過履歴をCDUで確認するページのつながり。MAINT BITE INDEXからENGINE/EXCEED BITE INDEX、Engine別EXCEEDANCE MENUへ進む。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata77-post-p39.webp",
+      "alt": "FFCCV Vibration SensorのEngine 3:00 Strut AreaとEE CompartmentのAVM Signal Conditionerを示す全体配置図。",
+      "caption": "FFCCVはRear Fan Frameの3:00、AVMはE3-2 Shelf。右端は適用機番の注記があるAVM外観。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata77-post-p42.webp",
+      "alt": "AVMの4機能、前面BITE、N1/N2の振動単位とUnitへの変換を示す授業追加全体図。",
+      "caption": "AVMは振動計算・CDS表示、履歴保存、Balance Solution計算、Fault Memoryを担う。32LegはSG本文の32Flight(Engine Cycle)に対応する。"
     }
   ]
 }
