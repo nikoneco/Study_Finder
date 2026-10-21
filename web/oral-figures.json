@@ -3179,6 +3179,195 @@
       "file": "oral-ata75-native-p52.webp",
       "alt": "TBVのValveとActuatorとLVDTとButterflyの構造図",
       "caption": "Servo FuelでButterflyを動かし、2個のLVDTが位置を返す。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p17.webp",
+      "alt": "Fuel Pump AssemblyとFuel Filter/Servo Wash Filterの全体原図",
+      "caption": "LP/HP Pumpの用途、Main Fuel Filterと差圧Switch位置。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-native-p23.webp",
+      "alt": "Main Oil/Fuel Heat ExchangerとServo Fuel Heaterの取付け・配管原図",
+      "caption": "Main Oil/Fuel Heat ExchangerとServo Fuel Heaterの取付け・配管を示す全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p27.webp",
+      "alt": "20個のFuel NozzleとManifold、Color Code Bandの全体原図",
+      "caption": "Silver/Blueの個数、Primary/Secondary噴射角、取付位置の授業追記。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p29.webp",
+      "alt": "燃焼用Fuel、Servo Fuel、Bypass Fuelを色分けした全体流路図",
+      "caption": "LP Pumpから熱交換、HP Pump、HMU、Nozzleへ進む燃焼流とServo/Bypassの分岐。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p127.webp",
+      "alt": "Fuel Flow Rate/Used、差圧警報、HPSOV位置表示の全体原図",
+      "caption": "Transmitter→EEC→DEUの経路とRATE/USED、Valve Position表示。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p130.webp",
+      "alt": "Fuel Flow TransmitterのImpeller/DrumとPulse時間差の参考図",
+      "caption": "Start/Stopに相当する2信号の時間差でMass Flowを測る原理の授業参考図。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p132.webp",
+      "alt": "Fuel Filter Differential Pressure Switchと警報経路の全体原図",
+      "caption": "11.5 psidは差圧Switchの警報値。Bypass Valveの開弁圧とは区別。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata73-post-p35.webp",
+      "alt": "EECと機体SystemのInterface全体",
+      "caption": "EEC・DEU・FCC AとEngine側Componentの信号経路。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p45.webp",
+      "alt": "Fuel Control Component左側配置",
+      "caption": "T3、PS3、PT25、HMU、EEC Alternatorの位置を全体図で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p47.webp",
+      "alt": "Fuel Control Component右側配置",
+      "caption": "EEC・Engine ID Plug・T12 Sensorの位置を確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p49.webp",
+      "alt": "PT25 SensorとA/B Platinum Element",
+      "caption": "HPC Inlet TemperatureをA/B各Elementで測る構成。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-native-p51.webp",
+      "alt": "T12 SensorとInlet Cowlの配置",
+      "caption": "T12 Probe・Access位置・2 Channel Elementの全体図。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p53.webp",
+      "alt": "T3 SensorとPS3 Port",
+      "caption": "温度測定とHPC Discharge圧力取出し位置を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p55.webp",
+      "alt": "EEC本体とConnector配置",
+      "caption": "EECのCooling、Channel Connector、P0・PS3・ID Plug接続。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p66.webp",
+      "alt": "EEC Alternator構造",
+      "caption": "A/Bへの独立供給とRotor・Stator構造。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p68.webp",
+      "alt": "EEC電源系統全体",
+      "caption": "Transfer Busからの代替供給とAlternator、Channel別Transfer Relayの経路。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-native-p73.webp",
+      "alt": "HMUのFuel MeteringとServo Pressure系統",
+      "caption": "EECのEHSV Command、FMV/Resolver、HPSOV、Mechanical Overspeed Governorの関係。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata73-native-p99.webp",
+      "alt": "EEC Thrust Control Logic全体",
+      "caption": "Normal・Soft・HardとN1 Trim経路。本文の条件と併せて読む。"
+    },
+    {
+      "questionId": "oral_rev3_p05_s02_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata73-post-p114.webp",
+      "alt": "EECとDEUとCDUを結ぶ通信経路とBITE Main Menu",
+      "caption": "CDUはDEUを介してEECに要求を送り、記録Data・Test Resultを受け取る。EEC BITEの通信経路を全体図で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p05_s02_r02",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata73-post-p114.webp",
+      "alt": "EECとDEUとCDUを結ぶ通信経路とBITE Main Menu",
+      "caption": "EEC BITE Main Menuの5機能とINDEXを全体図で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p05_s02_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata73-post-p121.webp",
+      "alt": "5 Dispatch LevelとENGINE CONTROL・ALTN・MASTER CAUTIONの表示経路",
+      "caption": "Fault分類とFlight Deck灯火の全体図。SHORT TIME・LONG TIME・ECONOMICは灯火を伴わない。修理期限は本文のJAL B0077、ALTNのDispatch条件はMELを参照する。"
     }
   ]
 }
