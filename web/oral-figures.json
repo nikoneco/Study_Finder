@@ -3422,6 +3422,258 @@
       "file": "oral-ata77-post-p42.webp",
       "alt": "AVMの4機能、前面BITE、N1/N2の振動単位とUnitへの変換を示す授業追加全体図。",
       "caption": "AVMは振動計算・CDS表示、履歴保存、Balance Solution計算、Fault Memoryを担う。32LegはSG本文の32Flight(Engine Cycle)に対応する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p35.webp",
+      "alt": "T/R各HalfのLocking/Non-Locking ActuatorとSync Shaftを内蔵するDeploy Tube",
+      "caption": "上部1本がLocking、下部2本がNon-Locking。太いDeploy Tubeの中をSync Shaftが通る。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p77.webp",
+      "alt": "A/T Switch PackのARM・STOW・SYNC LOCK各Switch",
+      "caption": "S5 ARM、S6 STOW、S4 SYNC LOCKの授業追記。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p95.webp",
+      "alt": "T/R DeployのSequence Relayと並列Enable Ground経路",
+      "caption": "Sync Lock Unlock後の0.1秒Delayと、FCC・Air/Ground・低高度のEnable経路。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p97.webp",
+      "alt": "Deploy時のHIV・DCVとActuator両側への油圧流れ",
+      "caption": "HIV Open、DCV Deploy。Actuator両側へ圧力を送り、面積差で伸長する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p102.webp",
+      "alt": "Stow指令時のEAU・Arm/Stow Solenoidと18秒Sync Lock遅延",
+      "caption": "正常Stowは10.5秒後にEAU出力を止め、Sync Lockは18秒間Unlockを維持する。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p103.webp",
+      "alt": "Auto-Restowの保持とStowed/Locked確認後のEAU Reset",
+      "caption": "10.5秒後も未Stow/未LockならStow出力を保持し、回復確認後のEAU Resetが必要。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p104.webp",
+      "alt": "Stow時にHead側FluidをReturnへ流す油圧経路",
+      "caption": "HIVで供給を維持し、DCVはStow。Rod側加圧とHead側Returnで引き込む。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata78-post-p83.webp",
+      "alt": "Sleeve Stow SensorとPlunger・Crank・Targetの関係",
+      "caption": "Sleeve StowでTarget Far、Sleeveが後退するとNearとなりNot Stowedを知らせる。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata78-post-p117.webp",
+      "alt": "Proximity SensorからEAU、LVDTからEECへ入る別々の表示経路",
+      "caption": "EAUはREVERSER Light、EEC/DEUはSleeve位置に応じたREV Messageを受け持つ。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata78-post-p125.webp",
+      "alt": "REVERSER LightのFault Logicと各Proximity SensorのFar/Near",
+      "caption": "Stow/Lock SensorはFarが正常Stow/Lock、HIVはNearがOpen、DCVはNearがDeploy。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r05",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata78-post-p123.webp",
+      "alt": "Locking ActuatorのLVDT・Feedback RodとManual Unlock Lever",
+      "caption": "LVDTは上部Locking ActuatorのHead Endにあり、Feedback Rodで連続位置を測る。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s02_r02",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata78-post-p53.webp",
+      "alt": "T/R底部6個のTension Latchと前方V-Bladeの位置関係",
+      "caption": "Openは後方6→1。CloseはV-BladeをAlignし、Latch 2のToolで寄せて1を固定後2→6。"
+    },
+    {
+      "questionId": "oral_rev3_p32_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata78-post-p37.webp",
+      "alt": "Locking ActuatorのManual Unlock Lever・Lock Sleeve・Detent Pin",
+      "caption": "上部Locking Actuatorの内部Lock。下部のSync Lockとは別のLock機構である。"
+    },
+    {
+      "questionId": "oral_rev3_p32_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata78-post-p67.webp",
+      "alt": "Dispatch用Deactivation Pinの上下取付点とCascade Support Ringへの結合",
+      "caption": "Upperの突出量は約1.75 in、Lowerは約0.50 in。Sleeveを固定側Ringへ機械的に結ぶ。"
+    },
+    {
+      "questionId": "oral_rev3_p27_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p19.webp",
+      "alt": "MagnetとMetallic-mesh Screenを備えた3回収回路のChip Detector",
+      "caption": "Chip Detectorの構造とForward Sump・Rear Sump・AGB/TGBの対応。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r06",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p19.webp",
+      "alt": "MagnetとMetallic-mesh Screenを備えた3回収回路のChip Detector",
+      "caption": "Chip Detectorの構造とForward Sump・Rear Sump・AGB/TGBの対応。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p27_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata79-post-p27.webp",
+      "alt": "Engine OilのSupply・Scavenge・Vent全流路",
+      "caption": "Supply/Scavenge各Pump、Filter、Bypass、3回収回路を色分けした全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r06",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p27.webp",
+      "alt": "Engine OilのSupply・Scavenge・Vent全流路",
+      "caption": "Supply/Scavenge各Pump、Filter、Bypass、3回収回路を色分けした全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r06",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p23.webp",
+      "alt": "Scavenge Oil Filter AssemblyとClogging Transmitter",
+      "caption": "Body、Filter Bowl、Locking Ratchet Leverと全流路中の位置。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r06",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p25.webp",
+      "alt": "Anti-Leakage ValveとRear Sump Supply圧力接続",
+      "caption": "TankからLubrication Unitへの配管と、開弁保持に使うRear Sump Supply Pressure接続。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p27_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata79-post-p29.webp",
+      "alt": "Oil QuantityのDEU直接経路と他のOil信号のEEC経路",
+      "caption": "Quantity、Pressure、Temperature、Scavenge Filterの入力経路とPrimary/Secondary表示。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p27_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata79-post-p37.webp",
+      "alt": "Oil Temperatureの2Elementと140℃・155℃Marker",
+      "caption": "Oil Temperature Sensorの2Element、EEC/DEU信号経路、固定Amber140℃・Redline155℃の授業追記。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p29.webp",
+      "alt": "Oil QuantityのDEU直接経路と他のOil信号のEEC経路",
+      "caption": "Quantity、Pressure、Temperature、Scavenge Filterの入力経路とPrimary/Secondary表示。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata79-post-p37.webp",
+      "alt": "Oil Temperatureの2Elementと140℃・155℃Marker",
+      "caption": "Oil Temperature Sensorの2Element、EEC/DEU信号経路、固定Amber140℃・Redline155℃の授業追記。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r06",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata79-post-p29.webp",
+      "alt": "Oil QuantityのDEU直接経路と他のOil信号のEEC経路",
+      "caption": "Quantity、Pressure、Temperature、Scavenge Filterの入力経路とPrimary/Secondary表示。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r06",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata79-post-p37.webp",
+      "alt": "Oil Temperatureの2Elementと140℃・155℃Marker",
+      "caption": "Oil Temperature Sensorの2Element、EEC/DEU信号経路、固定Amber140℃・Redline155℃の授業追記。原図全体。"
+    },
+    {
+      "questionId": "oral_rev3_p33_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata80-post-p14.webp",
+      "alt": "Start Valveの位置、Manual Override Port実機写真、Visual IndicatorとCowlのAccess Hole",
+      "caption": "Manual Override Portと工具Access。ClampのKey-SlotとCowl Holeの位置関係、Valve位置の目視表示を示す。"
+    },
+    {
+      "questionId": "oral_rev3_p33_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata80-post-p20.webp",
+      "alt": "Engine Start SwitchのGRD保持、Valve Open指令、Valve Position表示の信号経路",
+      "caption": "通常のGRD保持と55% N2でのCutout。手動Closeの56% N2指示はAMM手順として別に扱う。"
     }
   ]
 }
