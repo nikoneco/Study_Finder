@@ -4387,6 +4387,267 @@
       "file": "oral-ata26-post-p77.webp",
       "alt": "国際線Cargoの2 Bottle、60分Timerと保持時間60分/135分",
       "caption": "国際線2 Bottleの全体回路。第2放出までの60分Timerと、Bottle 1の60分・Bottle 2の135分の保持時間を分けて読む。着陸時の第2放出抑止とTimer継続を含む。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p03.webp",
+      "alt": "737-800の全体写真とDesign Lifeの授業追記",
+      "caption": "Low Wing/Twin Engineの全体像。75,000 FC/25年はSGの設計目標の説明である。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p09.webp",
+      "alt": "Wing下面のTank Access Panel配置",
+      "caption": "Center/Main/Surge/Dry Bay Access Panelと、授業で耐衝撃Panelと示されたIB側3枚。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p11.webp",
+      "alt": "Nacelle/Pylon各部と授業追記の材料",
+      "caption": "Fan Cowl SkinはAluminium、Thrust Reverser HalfはGraphite。全構成部品の材料内訳は未確認。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p16.webp",
+      "alt": "機体Composite Materialの配置を示すカラー全体原図",
+      "caption": "追加F5-01の全体原図。Graphite、Fiberglass、その組合せを色分けし各部の材料を示す。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p20.webp",
+      "alt": "Flight Compartmentの左右No.1/2/3 Window配置",
+      "caption": "No.1/2のLaminate構造・与圧/Bird Strike/Heatingと、No.3の2枚Air-Gap構造を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p22.webp",
+      "alt": "No.1とNo.3 Windowの層構成断面",
+      "caption": "No.1の構造層/保護層/加熱膜、No.3の2枚AcrylicとAir Gapを示す。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p24.webp",
+      "alt": "No.2 Windowの機構と右側外部Release",
+      "caption": "Open LatchとRelease機構、積層断面。機外操作はF/O側No.2の開放のみ。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p26.webp",
+      "alt": "CabinとDoor-Mounted Windowの三層構成",
+      "caption": "Outer/Middleが構造部材、Innerが非構造部材。Middle上部のBreather Holeの位置を示す。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p39.webp",
+      "alt": "Entry DoorのHandleと2本のCam Trackの全体原図",
+      "caption": "Latch側とCocking側のRocker、Crank、Pushrod、Torque Tubeの関係。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p40.webp",
+      "alt": "開く初動のLatch解除とGate折畳みを示す授業追加図",
+      "caption": "Handle→Cam Plate→Latching系→Latch Torque Tube/Gate Pushrod。追加原頁全体。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p41.webp",
+      "alt": "Handleをさらに回した時のCocking系を示す授業追加図",
+      "caption": "Cocking Roller Rocker→Crank→Pushrod→Door Torque Tube。追加原頁全体。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p42.webp",
+      "alt": "上下Hingeを介したDoorとFrame Torque Tubeの接続図",
+      "caption": "Frame側を中心にDoor前端がCocked Positionへ動く。追加原頁全体。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p48.webp",
+      "alt": "Forward Entry DoorのTorque TubeとAssist Spring",
+      "caption": "Door側とFrame側のTube、上下Hinge、Assist Spring。原頁全体。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p52.webp",
+      "alt": "Forward Entry Door Upper HingeとFull Open保持",
+      "caption": "Guide Plate、Guide Arm、Latch Release/Trigger、Release Knobの関係。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p56.webp",
+      "alt": "Lower HingeのSnubberとStop Assembly",
+      "caption": "油圧減速・終端StopをUpper HingeのOpen Lockと区別する全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r01",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p58.webp",
+      "alt": "InsideでHandleからAssist Handleへ切り替える流れ",
+      "caption": "Girt収納・周囲Clear→HandleでCocked→Assist HandleでFull Open。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r02",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata5x-post-p59.webp",
+      "alt": "Forward Entry DoorのInner Assist Handle2本と黄色いLock Release部の追加写真",
+      "caption": "FWD Entry固有差の授業追記と実物写真を含む追加原頁全体。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p63.webp",
+      "alt": "Outsideから見るSlide Warning PennantとDoor開放の原図",
+      "caption": "Windowを横切るPennantはArmed表示。Girt状態の確認とあわせて読む。"
+    },
+    {
+      "questionId": "oral_rev3_p30_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p83.webp",
+      "alt": "Overwingの下方移動からFull Openまでの全体原図",
+      "caption": "非PlugのOverwingがStopから離れ外側へ開き、Full OpenでPawlに保持される。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p79.webp",
+      "alt": "Overwing Flight LockのSolenoid、Pawl、Torque Tube",
+      "caption": "Flight LockはSolenoidでPawlを動かしTorque TubeのUnlock方向への動きを阻止する。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p87.webp",
+      "alt": "FWD/AFT Cargo Doorと内側のCounterbalance、Snubber、Bungee",
+      "caption": "Cargo Doorの手動機構と保持・開放補助部品。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p93.webp",
+      "alt": "Cargo Doorの開閉とBungee LanyardからHandleへの持替え",
+      "caption": "Cargoを全開から下げる時のBungee Lanyardの役割。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p97.webp",
+      "alt": "Forward Equipment Access DoorのHinge、Latch Pin、Catch、Warning Switch",
+      "caption": "Forward Access Doorの開位置保持とLatch位置検出。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p99.webp",
+      "alt": "EE Access Doorの4本Latch PinとRoller Track、Warning Switch",
+      "caption": "EE Access Doorは上方右側にSlideし、Track内側を折りたためる。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p123.webp",
+      "alt": "Flight Compartment Doorの内外構成とDeadbolt3位置",
+      "caption": "電気Lockと独立したDeadbolt、上下Decompression Panelの位置。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p129.webp",
+      "alt": "Chime ModuleとTIMERS/ACCESS Switch",
+      "caption": "Chime Moduleの時間設定系とCode設定系を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p133.webp",
+      "alt": "Flight Compartment KeypadとRed/Amber/Green表示",
+      "caption": "RedはLock、AmberはEmergency Code受理、GreenはUnlock。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata5x-post-p139.webp",
+      "alt": "Flight Compartment DoorのDecompression PanelとPressure Release Latch",
+      "caption": "CPT側急減圧時の圧力緩和と上下Panelの構成。"
+    },
+    {
+      "questionId": "oral_rev3_p42_s01_r05",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata5x-post-p143.webp",
+      "alt": "Door Warning回路とFWD Entryだけの追加Microswitch",
+      "caption": "PSEU経由の通常経路と、FWD Entry追加Switchの直接警報経路。"
     }
   ]
 }
