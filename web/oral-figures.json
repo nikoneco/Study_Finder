@@ -4009,6 +4009,384 @@
       "file": "oral-ata28-47-post-p172.webp",
       "alt": "NGS BDUの場所、表示部、6ボタン、BITEメニュー",
       "caption": "Right ECSのBDUと前面操作部の全体原図。Operability Indicatorとは場所と用途を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r01",
+      "promptIndexes": [
+        1,
+        2
+      ],
+      "file": "oral-ata26-post-p17.webp",
+      "alt": "Engine A/Bの検知とOVHT/FIRE・FAULT/INOP試験を色分けした回路図。",
+      "caption": "右欄5RED/5AMBERはENG/APU分。WHEEL WELLはAC条件を別確認。新型CODC適用は原設問どおり除外。桃はFIRE、橙はOVHT、青はOVHT/FIRE Test、緑はFAULT/INOP Test。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r01",
+      "promptIndexes": [
+        1,
+        2
+      ],
+      "file": "oral-ata26-post-p11.webp",
+      "alt": "EngineのA/B Detector、M279、P7/P8とAural Warningの入出力図。",
+      "caption": "Overheat・Fire・Fault・Testの経路とP7/P8の表示位置。M279はE2-2。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p13.webp",
+      "alt": "EngineのA/B Detector Assembly、Gas Charged Sense Tube、Pressure Switchと抵抗回路の全体図。",
+      "caption": "1区画にA/B各1Detector。圧力Switchにより合成抵抗値が変化するGas Responder方式。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p18.webp",
+      "alt": "両Loop使用時とSingle Engine Loop使用時のFire/Overheat Detection Logic Table。",
+      "caption": "通常、Fire/Overheat Test、Fault/Inop Testの表示をLoop状態別に比較する。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r03",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata26-post-p18.webp",
+      "alt": "両LoopとSingle Engine Loopの表示Logic表。",
+      "caption": "両Loopが健全な場合の一致条件と、Fault/Power Failure時や手動Single Loopの表示を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p15.webp",
+      "alt": "E2-2のM279とFault Area、Fault Display、Fault/Inop Test部。",
+      "caption": "複数Fault時のCode表示優先順位はENG 1 A→1 B→2 A→2 B→APU。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r04",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata26-post-p15.webp",
+      "alt": "Engine A/BとAPU Single Channelを監視するM279前面と配置図。",
+      "caption": "琥珀5Area灯、Red3Code灯、5秒保持のFAULT/INOP TEST。詳細なFault確定はFIMを参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p07_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p43.webp",
+      "alt": "APU Single LoopのFire/Fault検知、P8 Handle、APU DET INOPとMaster Cautionの回路図。",
+      "caption": "APU FaultではAPU DET INOP、OVHT/DET、MASTER CAUTIONを表示する。Engine通常両Loop Faultと区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata26-post-p15.webp",
+      "alt": "Engine/APU Fire Detection Moduleと表示優先順位",
+      "caption": "Engine両A/BとAPU Single Loopを監視するModule。5つのFault Areaと3灯のFault Display、表示優先順位。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        2
+      ],
+      "file": "oral-ata26-post-p39.webp",
+      "alt": "APU Single LoopとModule、ECU、P28の関係",
+      "caption": "APUの3DetectorからModuleへ入り、火災警報、ECU Shutdown、P28外部警報へ伝わる全体系統図。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata26-post-p57.webp",
+      "alt": "Cargo FWD/AFTのA/B LoopとCEU",
+      "caption": "FWD各Loop2、AFT各Loop3のDetector。通常の両Loop故障表示とSensor方式の授業追記を含む。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata26-post-p65.webp",
+      "alt": "Cargo CEUの警報・故障・試験信号経路",
+      "caption": "Detector→CEU→Panel→FIRE WARN/Bell。試験時の不良Detector LED不点灯と両Loop故障時MASTER CAUTIONなしを区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata26-post-p67.webp",
+      "alt": "Cargo Panel TESTとCEU PRESS TO TEST",
+      "caption": "操縦室とCEUからの試験を対比する外観図。Bell/FIRE WARNと前後Cargo赤灯の相違は本文の条件を参照する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "file": "oral-ata26-post-p97.webp",
+      "alt": "CODC E1-4とBITE操作部",
+      "caption": "印刷本文と一致するE1-4、MAINT ADV、Memory読出し／消去、LOC TEST／DISP TESTの全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "file": "oral-ata26-post-p99.webp",
+      "alt": "Wheel WellのCODC電源・Alarm・TEST経路",
+      "caption": "図示の旧CODC回路。115VACの制御電源と28VDC警報側、実AlarmのMemoryとTEST入力を区別する。機番・P/N差は本文参照。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r01",
+      "promptIndexes": [
+        4
+      ],
+      "file": "oral-ata26-post-p103.webp",
+      "alt": "Wing/Body RH1・LH4監視LoopとCODC",
+      "caption": "監視領域の非対称配置とP5警告／OVHT TEST回路。4LoopはSensor Element総数を示す数ではない。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p13.webp",
+      "alt": "EngineのGas ResponderとA/B Detector Assembly",
+      "caption": "He／芯線のH Gas、圧力Switch、抵抗変化、Gas Lossの授業追記を含む全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p41.webp",
+      "alt": "APU Fire DetectorのFire／Fault Switch",
+      "caption": "APUのGas-Charged DetectorはFire／Faultのみで、Overheat Switchを持たない。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p61.webp",
+      "alt": "Cargo光電Cell・Thermistor複合Detector",
+      "caption": "煙のPhoto Electric Cellと熱のThermistorを併用し、CEUのA/B各8位置LEDに接続する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p83.webp",
+      "alt": "Lavatory Ionization型Smoke Sensor",
+      "caption": "Ionization型のSensor LRU、Filter、Power Interrupt、Power-On／Alarm LEDとHornを示す。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p85.webp",
+      "alt": "Lavatory Photoelectric型の操作部",
+      "caption": "Photoelectric型のStatus LED、Horn Cancel、Self TestとAssembly。Ionization型のPower Interruptと区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p95.webp",
+      "alt": "Wheel Well Thermistor Elementの内部構造",
+      "caption": "外側Tube、絶縁体、Nickel Wireと取付部の全体原図。塩化物／温度と抵抗の説明は本文参照。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p21.webp",
+      "alt": "Engineの共用Bottle位置と、Fan/Coreへの消火剤の放出方向。窒素はHalonを押し出す加圧用。",
+      "caption": "Engineの共用Bottle位置と、Fan/Coreへの消火剤の放出方向。窒素はHalonを押し出す加圧用。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p23.webp",
+      "alt": "Engine 1/2の放出経路、Bottleごとの2つのSquib、Overrideと低圧表示の配置。黄色はEngine 1、青色はEngine 2。",
+      "caption": "Engine 1/2の放出経路、Bottleごとの2つのSquib、Overrideと低圧表示の配置。黄色はEngine 1、青色はEngine 2。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p25.webp",
+      "alt": "Engine BottleのCheck Valve、Pressure Gauge/Switch、Safety Reliefと2つのDischarge Port。",
+      "caption": "Engine BottleのCheck Valve、Pressure Gauge/Switch、Safety Reliefと2つのDischarge Port。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p27.webp",
+      "alt": "EngineのSquibとDischarge Outlet、Pressure Gauge/Switchの位置。",
+      "caption": "EngineのSquibとDischarge Outlet、Pressure Gauge/Switchの位置。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p29.webp",
+      "alt": "P8 Engine/APU Fire Control Panel。Handle Pullで行う系統隔離と、EXT TESTの緑色灯を確認する。",
+      "caption": "P8 Engine/APU Fire Control Panel。Handle Pullで行う系統隔離と、EXT TESTの緑色灯を確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p31.webp",
+      "alt": "Engineの放出回路とBottle Pressure Switchの表示回路。HandleのCW/CCWでR/L Bottleを選択する。",
+      "caption": "Engineの放出回路とBottle Pressure Switchの表示回路。HandleのCW/CCWでR/L Bottleを選択する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p35.webp",
+      "alt": "Engine Squib Testの回路。Hot Battery側のTest給電とMASTER DIM側の灯給電を区別する。",
+      "caption": "Engine Squib Testの回路。Hot Battery側のTest給電とMASTER DIM側の灯給電を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p45.webp",
+      "alt": "APU専用Bottleの位置と、Right Main Wheel WellのP28 Remote Panel。",
+      "caption": "APU専用Bottleの位置と、Right Main Wheel WellのP28 Remote Panel。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p47.webp",
+      "alt": "APUのHandle PullによるShutdown/隔離、P8/P28からの消火経路と低圧表示の配置。",
+      "caption": "APUのHandle PullによるShutdown/隔離、P8/P28からの消火経路と低圧表示の配置。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p49.webp",
+      "alt": "APU BottleはHorizontal Stabilizer Accessory Compartmentにある。使用側とCapされた未使用側のDischarge Portを区別する。",
+      "caption": "APU BottleはHorizontal Stabilizer Accessory Compartmentにある。使用側とCapされた未使用側のDischarge Portを区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p53.webp",
+      "alt": "P28の地上APU火災警報。Horn Cutout前は点滅、押した後は点灯となる。HandleとBottle Discharge Switchは別の操作部。",
+      "caption": "P28の地上APU火災警報。Horn Cutout前は点滅、押した後は点灯となる。HandleとBottle Discharge Switchは別の操作部。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p55.webp",
+      "alt": "APUのSquib Test、放出、低圧表示の回路。Testでは低電圧による導通を確認する。",
+      "caption": "APUのSquib Test、放出、低圧表示の回路。Testでは低電圧による導通を確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p69.webp",
+      "alt": "CargoのFWD/AFT選択・ARM/DISCHとNozzle配置。国内1本、国際2本のBottle構成。",
+      "caption": "CargoのFWD/AFT選択・ARM/DISCHとNozzle配置。国内1本、国際2本のBottle構成。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p71.webp",
+      "alt": "Distribution BayのCargo Bottle位置。Bottle 2は国際線仕様のみ。",
+      "caption": "Distribution BayのCargo Bottle位置。Bottle 2は国際線仕様のみ。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p75.webp",
+      "alt": "国内線仕様CargoのSquib放出回路とPressure Switch表示回路。FWDのARMにより放出先を選択する。",
+      "caption": "国内線仕様CargoのSquib放出回路とPressure Switch表示回路。FWDのARMにより放出先を選択する。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p79.webp",
+      "alt": "CargoのSquib Test/EXT灯とDISCH灯の回路。第2Bottleは国際線仕様のみ。",
+      "caption": "CargoのSquib Test/EXT灯とDISCH灯の回路。第2Bottleは国際線仕様のみ。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p91.webp",
+      "alt": "Lavatory固定消火Bottleと2つのNozzle、温度Indicator Strip。Plugの放出温度とStripの温度目盛を分けて読む。",
+      "caption": "Lavatory固定消火Bottleと2つのNozzle、温度Indicator Strip。Plugの放出温度とStripの温度目盛を分けて読む。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r04",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata26-post-p107.webp",
+      "alt": "WaterとHalonの携帯消火器の構成。授業追記の放射時間はそれぞれ40秒、10秒。",
+      "caption": "WaterとHalonの携帯消火器の構成。授業追記の放射時間はそれぞれ40秒、10秒。"
+    },
+    {
+      "questionId": "oral_rev3_p52_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata26-post-p77.webp",
+      "alt": "国際線Cargoの2 Bottle、60分Timerと保持時間60分/135分",
+      "caption": "国際線2 Bottleの全体回路。第2放出までの60分Timerと、Bottle 1の60分・Bottle 2の135分の保持時間を分けて読む。着陸時の第2放出抑止とTimer継続を含む。"
     }
   ]
 }
