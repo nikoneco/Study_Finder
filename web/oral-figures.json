@@ -3674,6 +3674,341 @@
       "file": "oral-ata80-post-p20.webp",
       "alt": "Engine Start SwitchのGRD保持、Valve Open指令、Valve Position表示の信号経路",
       "caption": "通常のGRD保持と55% N2でのCutout。手動Closeの56% N2指示はAMM手順として別に扱う。"
+    },
+    {
+      "questionId": "oral_rev3_p16_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p52.webp",
+      "alt": "Center Boost PumpとPressure Switchの配置",
+      "caption": "Center PumpとPressure Switchを左右Wheel Wellから見る全体図。Motor ConnectorとPressure Switchを区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p16_s01_r02",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p56.webp",
+      "alt": "Main Forward/Aft PumpとPressure Switchの位置",
+      "caption": "Main1のFront Spar、Wing上面、Wheel Wellの対応。SW Connector自体のStation/識別番号不足は残る。"
+    },
+    {
+      "questionId": "oral_rev3_p16_s01_r03",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p52.webp",
+      "alt": "Boost Pump Housing内の各Check Valve",
+      "caption": "Removal、Discharge、Vapor Discharge Check Valveを区別する全体原図。"
+    },
+    {
+      "questionId": "oral_rev3_p16_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata28-47-post-p54.webp",
+      "alt": "CTR Boost Pump Auto Shutoff回路",
+      "caption": "CTR左Pump例。15秒T/D、Pressure Switch、P61 Test、GFI Relayを示す。"
+    },
+    {
+      "questionId": "oral_rev3_p16_s01_r05",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata28-47-post-p60.webp",
+      "alt": "Main Boost Pump回路",
+      "caption": "Main左FWD例。6 psi検出とGFI、低圧Auto Shutoffなしを示す。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r01",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata28-47-post-p16.webp",
+      "alt": "Fuel Vent Systemの全体構成",
+      "caption": "Vent Float、Drain Float、Surge Check、Scoop、Flame Arrestor、Reliefの位置を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p18.webp",
+      "alt": "Center Tank Fuel Scavengeの流れ",
+      "caption": "Left Forward BoostのMotive Flow、Center→Main1、Float Shutoffを示す。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p50.webp",
+      "alt": "Engine Fuel Feed主要品配置",
+      "caption": "Pump、Crossfeed、Spar Valve、Water ScavengeとP6のBatteryの位置。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p64.webp",
+      "alt": "Crossfeed Valveの制御と表示",
+      "caption": "BAT BUS作動電源、指令と位置の照合、Close OFF/Open DIM/Disagree BRIGHT。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p68.webp",
+      "alt": "Engine Fuel Spar Valveの制御と表示",
+      "caption": "HOT BAT BUS作動電源、SW HOT BAT BUS表示電源、Start Lever/Fire Switch別経路。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r02",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p72.webp",
+      "alt": "Water Scavenge Ejector Pumpの配置と流路",
+      "caption": "Tank Low PointからBoost Pump Inletへ戻る各Main1個/Center2個のWater Scavenge。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p76.webp",
+      "alt": "APU Fuel FeedのECU入力と遮断Valve",
+      "caption": "P5、P8、P28、Fire Module、SensorとECU、機体側Valve、Shroudの関係。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r03",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p80.webp",
+      "alt": "APU Supply LineとShroud Drain",
+      "caption": "Supply Line/Shroudの二重構造とDrain Mast。APU FuelとHydraulic Reservoir Drainを区別。"
+    },
+    {
+      "questionId": "oral_rev3_p56_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p78.webp",
+      "alt": "機体側APU Fuel Supply Line全体配置",
+      "caption": "Fuel Shutoff Valve、APU FCU、Feed Line/ShroudとDrain Mastを全体で追う。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata28-47-post-p50.webp",
+      "alt": "Engine上流の機体側Fuel Feed配置",
+      "caption": "Engine内部Fuel Controlに対する上流Tank/Boost/Crossfeed/Spar位置。"
+    },
+    {
+      "questionId": "oral_rev3_p57_s01_r02",
+      "promptIndexes": [
+        1
+      ],
+      "file": "oral-ata28-47-post-p68.webp",
+      "alt": "機体側Engine Fuel Spar Valveの電源と遮断",
+      "caption": "HMU内HPSOVと別の機体側Valve。作動電源と位置表示電源を分けて見る。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r02",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata28-47-post-p20.webp",
+      "alt": "右主翼下面のP15 Fueling Station全体図",
+      "caption": "ATA28 F2-01。Single Point No-CapとP15の位置。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r02",
+      "promptIndexes": [
+        3
+      ],
+      "file": "oral-ata28-47-post-p22.webp",
+      "alt": "給油系統とP15・Tankの全体関係図",
+      "caption": "ATA28 F2-02。Blue lightはSolenoid電源表示。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p24.webp",
+      "alt": "各TankのFloat Switchと右主翼Fueling Stationの配置図",
+      "caption": "ATA28 F2-03。FloatとP15・各給油構成品の位置。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p27.webp",
+      "alt": "3つのFueling Valveと共通Manifoldの追加参考原図",
+      "caption": "ATA28追加参考図。Orifice/Solenoid/Diaphragmと3Tankへの接続。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p28.webp",
+      "alt": "Tank1側Solenoid Energize時の燃料経路を示す追加参考原図",
+      "caption": "ATA28追加参考図。Tank1側の燃料流入を色分け。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p30.webp",
+      "alt": "Fueling Manifoldと3つのManual Override Plungerの全体図",
+      "caption": "ATA28 F2-05。各Valve本体のManual Override位置。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p32.webp",
+      "alt": "MainとCenterのFueling Float Switch構造図",
+      "caption": "ATA28 F2-06。Float containerとConduit。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r06",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p34.webp",
+      "alt": "Refueling PowerとPreset・Float・Solenoidの制御回路原図",
+      "caption": "ATA28 F2-07。Panel電源とValve制御、Blue lightの分岐。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r03",
+      "promptIndexes": [
+        4
+      ],
+      "file": "oral-ata28-47-post-p106.webp",
+      "alt": "Measuring StickのTank配置とFloat・Inner Stickの全体原図",
+      "caption": "ATA28 F8-01。目盛はFuel Heightであり、換算には機体姿勢を使う。"
+    },
+    {
+      "questionId": "oral_rev3_p22_s01_r08",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p40.webp",
+      "alt": "Defueling Valveの右主翼位置と外部Handle原図",
+      "caption": "ATA28 F3-02。手動HandleはPosition Indicatorを兼ねる。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p88.webp",
+      "alt": "Tank Unit・CompensatorからFQPUと表示への全体原図",
+      "caption": "ATA28 F6-02。Main各12、Center8の静電容量式Tank Unit。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p92.webp",
+      "alt": "各TankのFQIS HarnessとSpar Feedthrough接続原図",
+      "caption": "ATA28 F6-04。MainはSpar Valve近く、CenterはAPU Fuel SOV近く。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p94.webp",
+      "alt": "Forward Equipment CenterのFQPU配置原図",
+      "caption": "ATA28 F6-05。FQPUは前方機器室後方隔壁。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p96.webp",
+      "alt": "FQPUの二系統入力電源原図",
+      "caption": "ATA28 F6-06。Battery Bus入力とRelayで選ぶ入力を区別する。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p98.webp",
+      "alt": "FQPU内部SCCC・BDCとCDS/FMC/P15接続原図",
+      "caption": "ATA28 F6-07。Tank 2 SCCCがTotal WeightをFMCへ送る。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r04",
+      "promptIndexes": [
+        0
+      ],
+      "file": "oral-ata28-47-post-p102.webp",
+      "alt": "FQIS BITEのCDU Main Menu全体原図",
+      "caption": "ATA28 F6-09。On Groundで閲覧する各BITE menu。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p148.webp",
+      "alt": "ASMの膜分離：AIR入口、NEA側、酸素・CO2・水分の排出側",
+      "caption": "ASMの繊維を通るNEAと側方へ分離するOEAの経路を全体原図で確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p155.webp",
+      "alt": "NEADS全体配管：ASM供給、逆流防止、Nozzle、Float、Cross Vent、左右Vent",
+      "caption": "追加された全体配管原図。NEA供給管と左右のVent系統を分け、Tank内で混合する経路を確認する。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r05",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p167.webp",
+      "alt": "NGS Controller：空中の許可条件とGround Testの入力",
+      "caption": "通常飛行のAND条件とGround Testの別入力を示す全体原図。現行Taskの試験手順を置き換えない。"
+    },
+    {
+      "questionId": "oral_rev3_p38_s01_r06",
+      "promptIndexes": [
+        0,
+        1
+      ],
+      "file": "oral-ata28-47-post-p172.webp",
+      "alt": "NGS BDUの場所、表示部、6ボタン、BITEメニュー",
+      "caption": "Right ECSのBDUと前面操作部の全体原図。Operability Indicatorとは場所と用途を区別する。"
     }
   ]
 }
